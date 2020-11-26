@@ -214,7 +214,7 @@ class SQLQuery {
 						#echo '<!--'.$queryChild.'-->';
 						$resultChild = mysqli_query( $this->_dbHandle, $queryChild );
 //                        echo var_dump($resultChild);
-
+//
 						$tableChild = array();
 						$fieldChild = array();
 						$tempResultsChild = array();
