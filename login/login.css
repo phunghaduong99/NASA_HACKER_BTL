@@ -1,4 +1,10 @@
+body {
+    width: 100%;
+    height: 100%;
+}
+
 /* -----------------------Header---------------------- */
+
 .header {
     padding-top: 10px;
     width: 100%;
@@ -24,8 +30,9 @@
 }
 
 .header .header1 .img img {
-    width: 10%;
-    height: 70%;
+    margin-top:-100px;
+    width:30px;
+    height: 30px;
 }
 
 .header .header1 a.home {
@@ -68,20 +75,40 @@
 }
 
 /* ---------------------------------------body--------------------------- */
+
+
 .body {
-    width: 400px;
-    height: 210px;
+    width: 100%;
+    height: 100%;
+    display:flex;
+ 
+}
+
+body .img{
+    padding-top: 10px;;
+    width: 50%;
+    height: 50%;
+    text-align: right;
+}
+body .img img{
+    width: 50%;
+    height: 50%;
+}
+.body form{
+    width: 30%;
+ 
+   margin-top: auto;
+   margin-bottom: auto;
+    
     border: 1px solid #979292;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
     border-radius: 10px;
-    margin: auto;
-    margin-top: 10%;
-}
 
-.body p {
+}
+.body  form p {
     padding: 10px;
     padding-left: 20px;
     border: 0.5px solid #979292;
@@ -106,23 +133,34 @@ input.right {
     border-radius: 5px;
 }
 
-.body form a.forgot {
-    color: #166fe5;
-    text-decoration: none;
-}
 
 .body form input.check {
-    margin-left: 157px;
+    width: auto;
+    margin-left: 45%;
     margin-bottom: 10px;
 }
 
-.body form input.submit {
-    margin-left: 130px;
+.body form .division .submit {
+  width: 50%;
+    text-align: right;
+    margin-right: 3px;
+}
+
+.body form .division .submit input{
     background-color: #1877f2;
     border: none;
     border-radius: 3px;
     width: 50px;
     height: 30px;
+}
+.body form .division .forgot{
+    color: #166fe5;
+    text-decoration: none;
+    text-align: left;
+
+}
+input{
+    width:40%;
 }
 
 input:hover {
@@ -133,4 +171,9 @@ input:hover {
     transform: scaleY(1.2);
     -moz-transform: scaleY(1.2);
     -webkit-transform: scaleY(1.2);
+}
+img:hover{
+    transform: scaleY(1.2);
+    -moz-transform: scaleY(1.1);
+    -webkit-transform: scaleY(1.1);
 }
