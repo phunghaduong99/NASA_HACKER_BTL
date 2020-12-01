@@ -1,3 +1,4 @@
+/* -----------------------Header---------------------- */
 .header {
     padding-top: 10px;
     width: 100%;
@@ -66,6 +67,7 @@
     -webkit-transform: scaleY(1.2);
 }
 
+/* ---------------------------------------body--------------------------- */
 .body {
     width: 400px;
     height: 210px;
@@ -124,6 +126,9 @@ input.right {
 }
 
 input:hover {
+    border: 0.5px solid #2f41e9;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     background-color: #7aaef1;
     transform: scaleY(1.2);
     -moz-transform: scaleY(1.2);
