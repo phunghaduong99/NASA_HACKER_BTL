@@ -1,0 +1,145 @@
+body {
+    width: 100%;
+    height: 100%;
+}
+
+/* -----------------------Header---------------------- */
+
+.header {
+    padding-top: 10px;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    border-bottom: 2px solid #d2cacd;
+}
+
+.header .header1 {
+    width: 50%;
+    display: flex;
+}
+
+.header .header2 {
+    width: 50%;
+    display: flex;
+}
+
+.header .header1 .img {
+    width: 50%;
+    text-align: right;
+    margin-right: 0.8%;
+}
+
+.header .header1 .img img {
+    width: 10%;
+    height: 70%;
+}
+
+.header .header1 a.home {
+    color: black;
+    text-decoration: none
+}
+
+.header .header1:hover a {
+    color: #166fe5;
+    transform: scaleY(1.2);
+    -moz-transform: scaleY(1.2);
+    -webkit-transform: scaleY(1.2);
+}
+
+.header .header2 a.login {
+    color: gray;
+    width: 50%;
+    text-align: right;
+    margin-right: 6px;
+    text-decoration: none;
+}
+
+.header .header2 a.login:hover {
+    color: #166fe5;
+    transform: scaleY(1.2);
+    -moz-transform: scaleY(1.2);
+    -webkit-transform: scaleY(1.2);
+}
+
+.header a.register {
+    color: gray;
+    text-decoration: none;
+}
+
+.header a.register:hover {
+    color: #166fe5;
+    transform: scaleY(1.2);
+    -moz-transform: scaleY(1.2);
+    -webkit-transform: scaleY(1.2);
+}
+
+/* ---------------------------------------body--------------------------- */
+
+.body {
+    width: 32%;
+    border: 1px solid #979292;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 7%;
+}
+
+.body p {
+    padding: 10px;
+    padding-left: 20px;
+    border: 0.5px solid #979292;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-top: 0px;
+    background-color: #b9c6ce;
+}
+
+.body form .division {
+    display: flex;
+    margin-bottom: 8px;
+}
+
+label.left {
+    width: 35%;
+    text-align: right;
+    margin: 8px;
+}
+
+input.right {
+    border-radius: 5px;
+}
+
+.body form input.check {
+    margin-left: 157px;
+    margin-bottom: 10px;
+}
+
+.body form input.submit {
+    width: 15%;
+    height: 30px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #1877f2;
+    border: none;
+    border-radius: 3px;
+}
+
+input {
+    width: 40%;
+}
+
+input:hover {
+    border: 0.5px solid #2f41e9;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #7aaef1;
+    transform: scaleY(1.2);
+    -moz-transform: scaleY(1.2);
+    -webkit-transform: scaleY(1.2);
+}
