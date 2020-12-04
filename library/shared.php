@@ -73,9 +73,26 @@ function routeURL($url) {
 
 function callHook() {
 	global $url;
+	global $method;
 	global $default;
-
+    global  $request_uri;
 	$queryString = array();
+
+    $parsedUrl = rtrim($request_uri, '/');
+    $parsedUrl = filter_var($parsedUrl, FILTER_SANITIZE_URL);
+    $parsedUrl = explode('/', $parsedUrl);
+
+    if ($parsedUrl[1] === "rest") {
+	    $parsedUrl = parse_url($request_uri);
+	    $apiControllerClassname = API_LIST[$parsedUrl['path']];
+        if ((int)method_exists($apiControllerClassname, $method)) {
+            $controller = new $apiControllerClassname();
+            $controller->$method($parsedUrl["query"]);
+        } else {
+            header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+        }
+        return;
+    }
 
 	if (!isset($url)) {
 		$controller = $default['controller'];
@@ -94,19 +111,20 @@ function callHook() {
 		}
 		$queryString = $urlArray;
 	}
-	
+
+
 	$controllerName = ucfirst($controller).'Controller';
 
 //	echo "$controllerName, $controller, $action </br>";
-	$dispatch = new $controllerName($controller,$action);
-	
+
 	if ((int)method_exists($controllerName, $action)) {
+        $dispatch = new $controllerName($controller, $action);
 		call_user_func_array(array($dispatch,"beforeAction"),$queryString);
 		call_user_func_array(array($dispatch,$action),$queryString);
 		call_user_func_array(array($dispatch,"afterAction"),$queryString);
 	} else {
-		/* Error Generation Code Here */
-	}
+        header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+    }
 }
 
 
@@ -116,7 +134,9 @@ function __autoload($className) {
 	if (file_exists(ROOT . DS . 'library' . DS . strtolower($className) . '.class.php')) {
 		require_once(ROOT . DS . 'library' . DS . strtolower($className) . '.class.php');
 	} else if (file_exists(ROOT . DS . 'application' . DS . 'controllers' . DS . strtolower($className) . '.php')) {
-		require_once(ROOT . DS . 'application' . DS . 'controllers' . DS . strtolower($className) . '.php');
+        require_once(ROOT . DS . 'application' . DS . 'controllers' . DS . strtolower($className) . '.php');
+    } else if (file_exists(ROOT . DS . 'application' . DS . 'controllers' .DS . 'API' . DS . strtolower($className) . '.php')) {
+	    require_once(ROOT . DS . 'application' . DS . 'controllers' .DS . 'API' . DS . strtolower($className) . '.php');
 	} else if (file_exists(ROOT . DS . 'application' . DS . 'models' . DS . strtolower($className) . '.php')) {
 		require_once(ROOT . DS . 'application' . DS . 'models' . DS . strtolower($className) . '.php');
 	} else {
@@ -150,7 +170,7 @@ gzipOutput() || ob_start("ob_gzhandler");
 $cache = new Cache();
 $inflect = new Inflection();
 
-//setReporting();
+setReporting();
 removeMagicQuotes();
 unregisterGlobals();
 callHook();
