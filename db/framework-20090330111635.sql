@@ -9,95 +9,69 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `categories` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `name` varchar(45) NOT NULL,
-  `parent_id` int(10) unsigned default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+CREATE TABLE `users` (
+  `user_id` int(40) unsigned NOT NULL auto_increment,
+  `username` varchar(45) default NULL,
+  `email` varchar(45) NOT NULL,
+  `password` varchar(255) NOT  NULL,
+  `profile_title` varchar(255) default NULL ,
+  `profile_description` varchar(255) default NULL,
+  `profile_url` varchar(255) default NULL,
+  `profile_image_id` int(40) default NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4  ;
 
 --
--- Dumping data for table `categories`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `categories` VALUES(1, 'Electronics', 0);
-INSERT INTO `categories` VALUES(2, 'Toys & Games', 0);
-INSERT INTO `categories` VALUES(3, 'Camera', 1);
-INSERT INTO `categories` VALUES(4, 'Security', 1);
-INSERT INTO `categories` VALUES(5, 'Games', 2);
-INSERT INTO `categories` VALUES(6, 'Puzzles', 2);
+INSERT INTO `users` VALUES(1, "Phùng Hà Dương", 'phunghaduong99@gmail.com', 'sdfsdasdff', null, null, null,null,null, null);
+
+
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Table structure for table `posts`
 --
 
-CREATE TABLE `products` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `category_id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `price` varchar(45) default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+CREATE TABLE `posts` (
+  `post_id` int(40) unsigned NOT NULL auto_increment,
+  `user_id` int(40) unsigned NOT NULL,
+  `post_description` varchar(255) NOT NULL ,
+  `post_image_id` int(40) unsigned NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`post_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4  ;
 
---
--- Dumping data for table `products`
+
+
+-- Dumping data for table `posts`
 --
 
-INSERT INTO `products` VALUES(1, 3, 'Product A', '34');
-INSERT INTO `products` VALUES(2, 3, 'Product B', '40');
-INSERT INTO `products` VALUES(3, 4, 'Product C', '50');
-INSERT INTO `products` VALUES(4, 4, 'Product D', '50');
-INSERT INTO `products` VALUES(5, 5, 'Product E', '44');
-INSERT INTO `products` VALUES(6, 5, 'Product F', '55');
-INSERT INTO `products` VALUES(7, 6, 'Product G', '45');
-INSERT INTO `products` VALUES(8, 6, 'Product H', '23');
+INSERT INTO `posts` VALUES(1, 3, 'Product A', '34');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products_tags`
+-- Table structure for table `image`
 --
 
-CREATE TABLE `products_tags` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `product_id` int(10) unsigned NOT NULL,
-  `tag_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+CREATE TABLE `image` (
+  `img_id` int(40) unsigned NOT NULL auto_increment,
+  `type` varchar(255)  NOT NULL,
+  `type_id` int(40) unsigned NOT NULL,
+  `content` varchar(255) unsigned NOT NULL,
+  PRIMARY KEY  (`img_id`)
+) ENGINE=InnoDBDEFAULT CHARSET=utf8mb4 ;
 
 --
--- Dumping data for table `products_tags`
+-- Dumping data for table `image`
 --
 
-INSERT INTO `products_tags` VALUES(1, 1, 1);
-INSERT INTO `products_tags` VALUES(2, 1, 2);
-INSERT INTO `products_tags` VALUES(3, 1, 3);
-INSERT INTO `products_tags` VALUES(4, 2, 3);
-INSERT INTO `products_tags` VALUES(5, 3, 4);
-INSERT INTO `products_tags` VALUES(6, 4, 3);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tags`
---
-
-CREATE TABLE `tags` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `name` varchar(45) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `tags`
---
-
-INSERT INTO `tags` VALUES(1, 'Tag A');
-INSERT INTO `tags` VALUES(2, 'Tag B');
-INSERT INTO `tags` VALUES(3, 'Tag C');
-INSERT INTO `tags` VALUES(4, 'Tag D');

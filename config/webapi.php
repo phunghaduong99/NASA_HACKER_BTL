@@ -12,7 +12,7 @@
 //- khai báo các hàm GET, POST, PUT, DELETE để xử lý các request method tương ứng, nếu không khai báo cũng không sao
 //- các hàm trên đều nhận vào 1 tham số là $args, tham số này chứ 1 string là string query trong url
 //- nếu muốn lấy body cúa request thì dùng $this->body để lấy.
-
+//- file controller phải extend VanillaApiController
 
 
 // Định dạng: "<đừng dẫn>" => "<tên class controller>"
