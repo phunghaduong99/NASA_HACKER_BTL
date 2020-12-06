@@ -23,8 +23,6 @@
             </div>
         </div>
     </div>
-
-
 </div>
 <div class="container ">
     <div class="form">
@@ -35,7 +33,6 @@
 
             <h1 class="title">OutSta</h1>
         </div>
-
         <form>
             <div class="caption ">
                 <label class="title">Post Caption</label> <br>
@@ -45,22 +42,14 @@
                 <label class="title">Post Image</label> <br>
             </div>
 
-
-
             <div class="check title">
                 <input type="file" id="myfile" name="" ><br>
             </div>
             <div class="">
                 <button class="btn-hover color-1  " type="submit" value="Login">Add New Post
             </div>
-
-
         </form>
     </div>
-
 </div>
-
-
 </body>
-
 </html>
