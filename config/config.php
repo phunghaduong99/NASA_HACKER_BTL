@@ -1,9 +1,9 @@
 <?php
 define("DB_HOST", "localhost");
 define("DB_USER", "root");
-define("DB_PASS", "");
-define("DB_NAME", "testlogin");
-
+define("DB_PASSWORD", "Phunghaduong@1612");
+define("DB_NAME", "framework");
+// Nasa_Hacker
 /** Configuration Variables **/
 
 define ('DEVELOPMENT_ENVIRONMENT', false);
