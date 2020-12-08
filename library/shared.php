@@ -80,6 +80,7 @@ function callHook() {
 		$controller = $default['controller'];
 		$action = $default['action'];
 	} else {
+	    $url = rtrim($url, '/');
 		$url = routeURL($url);
 		$urlArray = explode("/",$url);
 		$controller = $urlArray[0];
@@ -95,6 +96,7 @@ function callHook() {
 
 	$controllerName = ucfirst($controller).'Controller';
 //	var_dump([$url,$controllerName, $action]);die;
+//    var_dump((int)method_exists($controllerName, $action));die;
 //	echo "$controllerName, $controller, $action </br>";
 
 	if ((int)method_exists($controllerName, $action)) {
@@ -119,7 +121,7 @@ function __autoload($className) {
 	} else if (file_exists(ROOT . DS . 'application' . DS . 'models' . DS . strtolower($className) . '.php')) {
 		require_once(ROOT . DS . 'application' . DS . 'models' . DS . strtolower($className) . '.php');
 	} else {
-		var_dump("error");
+        throw new Exception("Cannot auto load file");
 	}
 }
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="/public/css/login.css">
     <title>Login</title>
 </head>
 
@@ -12,7 +12,7 @@
 <div class="header">
     <div class="left">
         <div class="img">
-            <img class="img" src="../images/logo.png" alt="">
+            <img class="img" src="/public/img/logo.png" alt="">
         </div>
         <div class="home">
             <a href="#"> | OUTstagram</a>
@@ -36,7 +36,7 @@
     <div class="form">
         <div class="logo">
             <div class="img">
-                <img src="../images/logo.png" alt="">
+                <img src="/public/img/logo.png" alt="">
             </div>
 
             <h1 class="title">OutSta</h1>

@@ -14,7 +14,7 @@ define ('DEVELOPMENT_ENVIRONMENT', false);
 // define('DB_PASSWORD', 'Phunghaduong@1612');
 // define('DB_HOST', 'localhost');
 
-// define('BASE_PATH','http://localhost/framework');
+define('BASE_PATH','http://localhost:81/');
 
 
 define('PAGINATE_LIMIT', '5');
