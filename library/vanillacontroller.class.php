@@ -5,6 +5,7 @@ class VanillaController {
 	protected $_controller;
 	protected $_action;
 	protected $_template;
+	protected $body;
 
 	public $doNotRenderHeader;
 	public $render;
@@ -19,6 +20,7 @@ class VanillaController {
 
 		$this->doNotRenderHeader = 0;
 		$this->render = 1;
+        $this->body = $this->getBodyData();
 		$this->$model = new $model();
 		$this->_template = new Template($controller,$action);
 
