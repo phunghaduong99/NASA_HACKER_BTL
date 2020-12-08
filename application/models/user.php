@@ -9,7 +9,7 @@
 	/**
 	 * 
 	 */
-	class customer
+	class User
 	{
 		private $db;
 		private $fm;

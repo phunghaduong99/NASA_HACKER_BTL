@@ -59,7 +59,6 @@ function performAction($controller,$action,$queryString = null,$render = 0) {
 function routeURL($url) {
 	global $routing;
 
-
 	foreach ( $routing as $pattern => $result ) {
             if ( preg_match( $pattern, $url ) ) {
 				return preg_replace( $pattern, $result, $url );
@@ -73,33 +72,15 @@ function routeURL($url) {
 
 function callHook() {
 	global $url;
-	global $method;
+	global $request_uri;
 	global $default;
-    global  $request_uri;
-	$queryString = array();
-
-    $parsedUrl = rtrim($request_uri, '/');
-    $parsedUrl = filter_var($parsedUrl, FILTER_SANITIZE_URL);
-    $parsedUrl = explode('/', $parsedUrl);
-
-    if ($parsedUrl[1] === "rest") {
-	    $parsedUrl = parse_url($request_uri);
-	    $apiControllerClassname = API_LIST[$parsedUrl['path']];
-        if ((int)method_exists($apiControllerClassname, $method)) {
-            $controller = new $apiControllerClassname();
-            $controller->$method($parsedUrl["query"]);
-        } else {
-            header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
-        }
-        return;
-    }
+	$queryString = [parse_url($request_uri, PHP_URL_QUERY)];
 
 	if (!isset($url)) {
 		$controller = $default['controller'];
 		$action = $default['action'];
 	} else {
 		$url = routeURL($url);
-		$urlArray = array();
 		$urlArray = explode("/",$url);
 		$controller = $urlArray[0];
 		array_shift($urlArray);
@@ -109,18 +90,18 @@ function callHook() {
 		} else {
 			$action = 'index'; // Default Action
 		}
-		$queryString = $urlArray;
 	}
 
 
 	$controllerName = ucfirst($controller).'Controller';
-
+//	var_dump([$url,$controllerName, $action]);die;
 //	echo "$controllerName, $controller, $action </br>";
 
 	if ((int)method_exists($controllerName, $action)) {
         $dispatch = new $controllerName($controller, $action);
+//        var_dump(get_class($dispatch));die;
 		call_user_func_array(array($dispatch,"beforeAction"),$queryString);
-		call_user_func_array(array($dispatch,$action),$queryString);
+		call_user_func_array(array($dispatch,$action), $queryString);
 		call_user_func_array(array($dispatch,"afterAction"),$queryString);
 	} else {
         header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
@@ -135,12 +116,10 @@ function __autoload($className) {
 		require_once(ROOT . DS . 'library' . DS . strtolower($className) . '.class.php');
 	} else if (file_exists(ROOT . DS . 'application' . DS . 'controllers' . DS . strtolower($className) . '.php')) {
         require_once(ROOT . DS . 'application' . DS . 'controllers' . DS . strtolower($className) . '.php');
-    } else if (file_exists(ROOT . DS . 'application' . DS . 'controllers' .DS . 'API' . DS . strtolower($className) . '.php')) {
-	    require_once(ROOT . DS . 'application' . DS . 'controllers' .DS . 'API' . DS . strtolower($className) . '.php');
 	} else if (file_exists(ROOT . DS . 'application' . DS . 'models' . DS . strtolower($className) . '.php')) {
 		require_once(ROOT . DS . 'application' . DS . 'models' . DS . strtolower($className) . '.php');
 	} else {
-		/* Error Generation Code Here */
+		var_dump("error");
 	}
 }
 
