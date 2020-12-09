@@ -32,17 +32,26 @@ class UsersController extends VanillaController {
         global $method;
         $this->doNotRenderHeader=1;
         if ($method == 'GET') {
-
+          
         }elseif ($method == 'POST') {
             $this->sendJson("checking for used email");
         }
     }
-
+    function apilogin($queryString = "") {
+        global $method;
+        var_dump("asdf");die();
+        $this->doNotRenderHeader=1;
+        if ($method == 'GET') {
+            $this->sendJson("checking for used email");
+        }elseif ($method == 'POST') {
+            $this->sendJson("checking for used email");
+        }
+    }
     function edit($queryString = "") {
         global $method;
         $this->doNotRenderHeader=1;
         if ($method == 'GET') {
-
+//            $this->sendJson("Sent get profile data");
         }elseif ($method == 'POST') {
             $this->sendJson("Sent edit profile data");
         }

@@ -3,6 +3,7 @@
 $routing = array(
 	'/admin\/(.*?)\/(.*?)\/(.*)/i' => 'admin/\1_\2/\3',
     '/rest\/tests(.*?)/i' => 'tests/index',
+    '/v1\/users\/login(.*?)/i' => "users/apilogin", //GET, POST
 
     '/users\/login(.*?)/i' => "users/login", //GET, POST
     '/users\/register(.*?)/i' => "users/register", //GET, POST

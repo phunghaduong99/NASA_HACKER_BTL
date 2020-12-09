@@ -95,15 +95,16 @@ function callHook() {
 
 
 	$controllerName = ucfirst($controller).'Controller';
-//	var_dump([$url,$controllerName, $action]);die;
+//	var_dump([$url, $request_uri, $controllerName, $action]);die;
 //    var_dump((int)method_exists($controllerName, $action));die;
 //	echo "$controllerName, $controller, $action </br>";
 
 	if ((int)method_exists($controllerName, $action)) {
+
         $dispatch = new $controllerName($controller, $action);
-//        var_dump(get_class($dispatch));die;
+//        var_dump(call_user_func_array($queryString));die;
 		call_user_func_array(array($dispatch,"beforeAction"),$queryString);
-		call_user_func_array(array($dispatch,$action), $queryString);
+        call_user_func_array(array($dispatch,$action), $queryString);
 		call_user_func_array(array($dispatch,"afterAction"),$queryString);
 	} else {
         header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
@@ -120,7 +121,9 @@ function __autoload($className) {
         require_once(ROOT . DS . 'application' . DS . 'controllers' . DS . strtolower($className) . '.php');
 	} else if (file_exists(ROOT . DS . 'application' . DS . 'models' . DS . strtolower($className) . '.php')) {
 		require_once(ROOT . DS . 'application' . DS . 'models' . DS . strtolower($className) . '.php');
-	} else {
+	}  else if (file_exists(ROOT . DS . 'application' . DS . 'services' . DS . strtolower($className) . '.php')) {
+        require_once(ROOT . DS . 'application' . DS . 'services' . DS . strtolower($className) . '.php');
+    } else {
         throw new Exception("Cannot auto load file");
 	}
 }
@@ -150,7 +153,6 @@ gzipOutput() || ob_start("ob_gzhandler");
 
 $cache = new Cache();
 $inflect = new Inflection();
-
 setReporting();
 removeMagicQuotes();
 unregisterGlobals();

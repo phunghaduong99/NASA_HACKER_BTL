@@ -6,7 +6,8 @@ class VanillaController {
 	protected $_action;
 	protected $_template;
 	protected $body;
-
+    protected $_service;
+	
 	public $doNotRenderHeader;
 	public $render;
 
@@ -22,6 +23,10 @@ class VanillaController {
 		$this->render = 1;
         $this->body = $this->getBodyData();
 		$this->$model = new $model();
+        $serviceName = ucfirst($controller).'Service';
+        if ((int)method_exists($serviceName, $action)) {
+            $this->_service = new $serviceName($controller);
+        }
 		$this->_template = new Template($controller,$action);
 
 	}
