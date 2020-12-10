@@ -41,17 +41,17 @@
 
             <h1 class="title">OutSta</h1>
         </div>
-        <form>
+        <form action="/users/login" method="post">
             <div class="email ">
                 <label class="title">E-mail Address</label> <br>
-                <input class="form-input" type="text" name="" required="re"><br>
+                <input class="form-input" type="text" name="email" required="re"><br>
             </div>
             <div class="pass">
                 <label class="title">Password</label> <br>
-                <input class="form-input" type="password" name="" id=""><br>
+                <input class="form-input" type="password" name="password" id=""><br>
             </div>
             <div class="check title">
-                <input class="check" type="checkbox" name="" value=""> Rememeber me <br>
+                <input class="check" type="checkbox" name="isRemember" value=""> Rememeber me <br>
             </div>
             <div class="">
                 <button class="btn-hover color-1  " type="submit" value="Login">Login

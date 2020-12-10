@@ -1,4 +1,4 @@
-<?php	
+<?php
 
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(dirname(__FILE__)));
@@ -12,5 +12,7 @@ $request_uri = $_SERVER['REQUEST_URI'];
 $url = $_GET['url'];
 //echo $url;
 //$url = 'products/view/1';
+
+$loginUserId = null;
 
 require_once (ROOT . DS . 'library' . DS . 'bootstrap.php');

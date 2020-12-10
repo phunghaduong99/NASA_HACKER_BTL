@@ -7,12 +7,13 @@ class VanillaController {
 	protected $_template;
 	protected $body;
     protected $_service;
-	
+	protected $curUser;
+
 	public $doNotRenderHeader;
 	public $render;
 
 	function __construct($controller, $action) {
-		
+		global $loginUserId;
 		global $inflect;
 
 		$this->_controller = ucfirst($controller);
@@ -23,7 +24,8 @@ class VanillaController {
 		$this->render = 1;
         $this->body = $this->getBodyData();
 		$this->$model = new $model();
-        $serviceName = ucfirst($controller).'Service';
+        $this->curUser = $loginUserId;
+		$serviceName = ucfirst($controller).'Service';
         if ((int)method_exists($serviceName, $action)) {
             $this->_service = new $serviceName($controller);
         }

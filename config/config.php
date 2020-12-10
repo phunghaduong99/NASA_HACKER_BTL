@@ -9,3 +9,6 @@ define("DB_NAME", "framework");
 define ('DEVELOPMENT_ENVIRONMENT', false);
 define('BASE_PATH','http://localhost:80/');
 define('PAGINATE_LIMIT', '5');
+
+define("SECRET", "982@1kns%sdf323faDd@3sdafAasdfKgdFffA");
+define("TOKEN_EXP", 365 * 24 * 60 * 60);

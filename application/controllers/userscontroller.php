@@ -1,4 +1,5 @@
 <?php
+include_once(ROOT . DS . 'helpers/jwt.php');
 
 class UsersController extends VanillaController {
 
@@ -34,23 +35,26 @@ class UsersController extends VanillaController {
         if ($method == 'GET') {
           
         }elseif ($method == 'POST') {
-            $this->sendJson("checking for used email");
+            // Validate input
+            // check for password
+            if ($this->body["email"] == "ok") {
+                $jwtHelper = new Jwt();
+                setrawcookie("Authorization", $jwtHelper->encode(["email"=>$this->body["email"]]));
+            } else {
+                $this->sendJson("Wrong email or password");
+            }
         }
     }
-    function apilogin($queryString = "") {
-        global $method;
-        var_dump("asdf");die();
-        $this->doNotRenderHeader=1;
-        if ($method == 'GET') {
-            $this->sendJson("checking for used email");
-        }elseif ($method == 'POST') {
-            $this->sendJson("checking for used email");
-        }
-    }
+
     function edit($queryString = "") {
         global $method;
         $this->doNotRenderHeader=1;
         if ($method == 'GET') {
+            if ($this->curUser) {
+                $this->sendJson("Current user " . $this->curUser);
+            } else {
+                $this->sendJson("Not login");
+            }
 //            $this->sendJson("Sent get profile data");
         }elseif ($method == 'POST') {
             $this->sendJson("Sent edit profile data");
