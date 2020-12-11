@@ -20,7 +20,7 @@ class SQLQuery {
     /** Connects to database **/
 	
     function connect($address, $account, $pwd, $name) {
-        $this->_dbHandle = new mysqli('127.0.0.1', $account, $pwd, $name);
+        $this->_dbHandle = new mysqli($address, $account, $pwd, $name);
         if (!$this->_dbHandle) {
             die("Connection failed: " . mysqli_connect_error());
         }
@@ -118,7 +118,7 @@ class SQLQuery {
 		}
 		
 		$this->_query = 'SELECT * FROM '.$from.' WHERE '.$conditions;
-		echo "$this->_query</br>";
+//		echo "$this->_query</br>";
 		$this->_result = mysqli_query( $this->_dbHandle, $this->_query);
 
 //        echo var_dump($this->_result)."//<br/>";
