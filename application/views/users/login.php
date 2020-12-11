@@ -33,7 +33,7 @@
 </div>
 
 <div class="container ">
-    <div class="form">
+    <div class="form" id="form" onsubmit="logSubmit()">
         <div class="logo">
             <div class="img">
                 <img src="/public/img/logo.png" alt="">
@@ -41,7 +41,7 @@
 
             <h1 class="title">OutSta</h1>
         </div>
-        <form action="/users/login" method="post">
+        <form  method="post">
             <div class="email ">
                 <label class="title">E-mail Address</label> <br>
                 <input class="form-input" type="text" name="email" required="re"><br>
@@ -61,7 +61,24 @@
             </div>
 
         </form>
+        <div id="log"></div>
     </div>
 </body>
-
 </html>
+
+
+<script type="text/javascript">
+    const log = document.getElementById('log');
+    document.getElementById('form').addEventListener(function (event) {
+        event.preventDefault();
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("log").innerHTML = this.responseText;
+            }
+        };
+        var   myURL ="http://localhost/users/register";
+        xhttp.open("GET", myURL, true);
+        xhttp.send();
+    })
+</script>
