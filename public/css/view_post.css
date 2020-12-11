@@ -1,0 +1,313 @@
+body {
+    margin-top: 0px;
+    width: 100%;
+    height: 100%;
+    background-size: 400% 400%;
+}
+
+/* -----------------------Header---------------------- */
+
+.header {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    border-bottom: 2px solid #d2cacd;
+}
+
+.header .left {
+    width: 50%;
+    display: flex;
+    margin: auto;
+}
+
+.header .right {
+    width: 50%;
+    margin: auto;
+    margin-left: 107px;
+    text-align: center;
+}
+
+.header .left .img {
+    width: 50%;
+    text-align: right;
+    margin-right: 0.8%;
+}
+
+.header .left .img img {
+    width: 30px;
+    height: 30px;
+}
+
+.header .left a.home {
+    padding-top: 4px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: black;
+    text-decoration: none
+}
+
+.header .left:hover a {
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 1);
+}
+
+/* The dropdown container */
+
+.dropdown {
+    margin-left: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown button */
+
+.dropdown .dropbtn {
+    /* margin-left: 20px; */
+    width: 40%;
+    height: 31px;
+    margin-bottom: auto;
+    margin-top: auto;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown img {
+    width: 23px;
+}
+
+/* Add a red background color to navbar links on hover */
+
+.dropdown .dropbtn:hover {
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 1);
+    z-index: 2;
+}
+
+/* Dropdown content (hidden by default) */
+
+.dropdown-content {
+    font-size: 16px;
+    margin-top: -4px;
+    display: none;
+    position: absolute;
+    min-width: 40%;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+
+.dropdown-content a {
+    color: black;
+    margin-top: 8px;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Add a grey background color to dropdown links on hover */
+
+.dropdown-content a:hover {
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 1);
+}
+
+/* Show the dropdown menu on hover */
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+*/ .dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+/* ----------- body------------------------------------------------------ */
+
+.container {
+    margin-top: 5%;
+    width: 58%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    /* background-color: burlywood; */
+}
+.container-post {
+    
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.container .post {
+    margin-bottom: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    height: 693px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+}
+
+.container .post .header-container {
+    display: flex;
+    width: 599px;
+    height: 60px;
+    /* border-top: #747272 solid 1px;
+    border-left: #747272 solid 1px;
+    border-right: #747272 solid 1px; */
+}
+
+.header-container .avata {
+    width: 42px;
+    height: 42px;
+    margin: 5px;
+    overflow: hidden;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+.header-container .descrip {
+    padding-left: 10px;
+    padding-top: 6px;
+}
+
+.descrip .name {
+    padding-left: 3px;
+}
+
+.descrip p {
+    color: rgb(43, 42, 42);
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.post .container-img {
+    position: relative;
+}
+
+.container-img .img {
+    overflow: hidden;
+}
+
+.container-img img {
+    transition: 2s;
+    /** TÃƒÂ¡Ã‚ÂºÃ‚Â¡o Ãƒâ€žÃ¢â‚¬ËœÃƒÂ¡Ã‚Â»Ã¢â€žÂ¢ mÃƒâ€ Ã‚Â°ÃƒÂ¡Ã‚Â»Ã‚Â£t **/
+}
+
+.container-img .after {
+    position: absolute;
+    background-color: #f18668;
+    opacity: 0.7;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    visibility: hidden;
+    overflow: hidden;
+    transition: 1s;
+}
+
+.container-img:hover .after {
+    visibility: visible;
+}
+
+.container-img .eye {
+    position: absolute;
+    width: 24px;
+    height: 20px;
+    z-index: 2;
+    visibility: hidden;
+    top: 40%;
+    left: 46%;
+}
+
+.container-img:hover .eye {
+    visibility: visible;
+}
+
+.container-img:hover img {
+    transform:scale(1.2);
+}
+
+.container-img .after .eye img {
+    width: 100%;
+    height: 100%;
+}
+
+ .context {
+  
+}
+
+ .context .caption {
+    padding: 10px 10px 3px 10px;
+    text-align: center;
+    font-size: 13px;
+    color: #444;
+    font-family: 'Lato';
+    font-weight: 300;
+}
+
+
+.context .action{
+    width:100%;
+    height: 24px;
+    display: inline-flex;
+}
+
+/* .action .heart{
+    width:25px;
+    padding-left:5px;
+    display: flex;
+
+} */
+.action  p.number_heart{
+    width: 23px;
+    margin-top: 3px;
+    margin-left: 24px;
+    margin-right: -12px;
+}
+.action img.heart {
+    width: 25px;
+}
+
+.action  p.number_cmt{
+    width: 23px;
+    margin-top: 3px;
+    margin-left: 11px;
+    margin-right: -12px;
+}
+.action img.cmt{
+    margin-top: 4px;
+    width: 15px;
+    height: 17px;
+}
+
+img:hover{
+/* transform:scale(1.2); */
+transform: translateX(2px);
+transition:0.5s;
+
+}
+
+form{
+    margin-top:7px;
+    width: 100%;
+    display: flex;
+}
+input{
+    width:85% ;
+    height:50px;
+    border:none;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.6);
+}
+button{
+    margin-top:0.5px;
+    width:15%;
+    height:53px;
+    color:#1877f2;
+}
