@@ -6,7 +6,6 @@ class VanillaController {
 	protected $_action;
 	protected $_template;
 	protected $body;
-    protected $_service;
 	protected $curUser;
 
 	public $doNotRenderHeader;
@@ -25,10 +24,7 @@ class VanillaController {
         $this->body = $this->getBodyData();
 		$this->$model = new $model();
         $this->curUser = $loginUserId;
-		$serviceName = ucfirst($controller).'Service';
-        if ((int)method_exists($serviceName, $action)) {
-            $this->_service = new $serviceName($controller);
-        }
+
 		$this->_template = new Template($controller,$action);
 
 	}
@@ -40,29 +36,29 @@ class VanillaController {
     function sendJson($data) {
         header('Content-type: application/json');
         $this->render = 0;
+
         if (is_array($data)) {
             $data = json_encode($data);
         }
-        echo $data;
+        echo htmlentities($data, ENT_QUOTES, 'UTF-8');
     }
 
     private function getBodyData()
     {
-        if(!empty($_POST))
-        {
+        $data = [];
+        if (!empty($_POST)) {
             // when using application/x-www-form-urlencoded or multipart/form-data as the HTTP Content-Type in the request
             // NOTE: if this is the case and $_POST is empty, check the variables_order in php.ini! - it must contain the letter P
-            return $_POST;
+            $data = $_POST;
+        } else {
+            // when using application/json as the HTTP Content-Type in the request
+            $post = json_decode(file_get_contents('php://input'), true);
+            if(json_last_error() == JSON_ERROR_NONE)
+            {
+                $data = $post;
+            }
         }
-
-        // when using application/json as the HTTP Content-Type in the request
-        $post = json_decode(file_get_contents('php://input'), true);
-        if(json_last_error() == JSON_ERROR_NONE)
-        {
-            return $post;
-        }
-
-        return [];
+        return strip_tags($data);
     }
 
 	function __destruct() {

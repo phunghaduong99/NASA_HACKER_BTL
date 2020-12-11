@@ -81,7 +81,6 @@ class SQLQuery {
 	}
 
 	function search() {
-//        echo "search//<br/>";
 		global $inflect;
 
 		$from = '`'.$this->_table.'` as `'.$this->_model.'` ';
@@ -119,7 +118,7 @@ class SQLQuery {
 		}
 		
 		$this->_query = 'SELECT * FROM '.$from.' WHERE '.$conditions;
-//		echo "$this->_query</br>";
+		echo "$this->_query</br>";
 		$this->_result = mysqli_query( $this->_dbHandle, $this->_query);
 
 //        echo var_dump($this->_result)."//<br/>";
