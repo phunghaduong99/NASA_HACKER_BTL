@@ -18,11 +18,10 @@ class UsersController extends VanillaController {
         $this->User->showHasMany();
         $user = $this->User->search();
         $this->set('user',$user);
-
-
-        $this->User->where('id',1);
-        $user = $this->User->search();
-        var_dump(json_encode($user)); die();
+//
+//        $this->User->where('id',1);
+//        $user = $this->User->search();
+        $this->sendJson($user);
     }
 
     function register($queryString = "") {
@@ -37,33 +36,60 @@ class UsersController extends VanillaController {
 
     function login($queryString = "") {
         global $method;
-//        $str = "Stop 'quote' is <b>bold</b>!" ;
-//        echo htmlentities($str);
-//        echo '<br/>';
-//        echo strip_tags($str);
-//        echo '<br/>';
 
-
-        echo  htmlentities($str,
-            ENT_QUOTES, 'UTF-8');
-        $both =  htmlspecialchars($str );
-        var_dump($both);die();
 
         $this->doNotRenderHeader=1;
 
-
-
         if ($method == 'GET') {
 
-        }elseif ($method == 'POST') {
+        } elseif ($method == 'POST') {
+
+        }
+    }
+
+    function apiLogin($queryString = "") {
+        global $method;
+        if ($method == "POST") {
             // Validate input
-            // check for password
-            if ($this->body["email"] == "ok") {
-                $jwtHelper = new Jwt();
-                setrawcookie("Authorization", $jwtHelper->encode(["email"=>$this->body["email"]]));
-            } else {
-                $this->sendJson("Wrong email or password");
+            include_once(ROOT . DS . 'helpers/validate.php');
+            $validator = new Validator();
+            $validateError = [];
+
+            $validateResult = $validator->validateEmail($this->body["email"]);
+            if ($validateResult["error"]) {
+                $validateError["email"] = $validateResult["error"];
             }
+
+            $validateResult = $validator->validatePassword($this->body["password"]);
+            if ($validateResult["error"]) {
+                $validateError["password"] = $validateResult["error"];
+            }
+            if (!empty($validateError)) {
+                $this->sendJson(["validateError"=>$validateError]);
+            }
+
+            // check for password
+            $this->User->where('email',$this->body["email"]);
+            $users = $this->User->search();
+            if (!empty($users)) {
+                $user = $users[0]["User"];
+                if ($user["password"] == $this->body["password"]) {
+                    $jwtHelper = new Jwt();
+                    unset($user["password"]);
+                    unset($user["created_at"]);
+                    unset($user["update_at"]);
+                    $this->sendJson([
+                        "Authorization"=>$jwtHelper->encode(["email"=>$this->body["email"]]),
+                        "user" => $user
+                    ]);
+                    return;
+                }
+            }
+            $this->sendJson([
+                "loginError" => "Wrong email or password"
+            ]);
+        } else {
+            header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
         }
     }
 

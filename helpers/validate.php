@@ -1,17 +1,18 @@
 <?php
 
-class Validate {
+class Validator {
     function validateEmail($email) {
-        $email = test_input($_POST["email"]);
+        if (!$email || empty($email)) {
+            return [
+                "error" => "Email is required."
+            ];
+        }
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return [
-                "success" => false,
                 "error" => "Email is invalid."
             ];
         }
-        return [
-            "success" => true
-        ];
+        return [];
     }
 
     function validatePassword($password) {
@@ -19,10 +20,11 @@ class Validate {
 
         if (empty($password)) {
             $passwordErr = "Password is required";
-        } elseif (is_string($password)) {
+        } elseif (!is_string($password)) {
             $passwordErr = "Password must be a String";
         } else {
-            if (strlen($password) <= '8'
+//            var_dump(strlen($password));die;
+            if (strlen($password) < 8
                 || !preg_match("#[0-9]+#",$password)
                 || !preg_match("#[A-Z]+#",$password)
                 || !preg_match("#[a-z]+#",$password)
@@ -33,13 +35,10 @@ class Validate {
 
         if ($passwordErr) {
             return [
-                "success" => false,
                 "error" => $passwordErr
             ];
         } else {
-            return [
-                "success" => true
-            ];
+            return [];
         }
     }
 }
