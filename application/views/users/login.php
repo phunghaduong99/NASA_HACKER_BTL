@@ -9,29 +9,7 @@
 </head>
 
 <body>
-<div class="header">
-    <div class="left">
-        <div class="img">
-            <img class="img" src="/public/img/logo.png" alt="">
-        </div>
-        <div class="home">
-            <a href="#"> | OUTstagram</a>
-        </div>
-
-    </div>
-    <div class="right">
-        <div class="login">
-            <div class="login-user">
-                <a href="">Login</a>
-            </div>
-
-        </div>
-        <div class="register">
-            <a  href="">Register</a></div>
-    </div>
-
-</div>
-
+<?php include ("")?>
 <div class="container ">
     <div class="form" id="form" >
         <div class="logo">

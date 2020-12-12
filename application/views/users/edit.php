@@ -10,24 +10,7 @@
 </head>
 
 <body>
-<div class="header">
-    <div class="left">
-        <div class="img"> <img class="img" src="/public/img/logo.png" alt=""></div>
-        <a class="home" href=""> | OUTstagram</a>
-    </div>
-    <div class="right">
-        <div class=" right dropdown">
-            <p class="dropbtn"> DropDown
-                <i class="fa fa-caret-down"></i>
-            </p>
-            <div class="dropdown-content">
-                <a href="#">Log Out</a>
-            </div>
-        </div>
-    </div>
-
-
-</div>
+<?php include ("")?>
 <div class="container ">
     <div class="form">
         <div class="logo">
