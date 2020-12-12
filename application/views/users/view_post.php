@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="/public/css/view_post.css">
     <title>View </title>
 </head>
+<?php include ("header_user.php")?>
 <div class="container">
     <div class="container-post">
         <div class="post">
             <div class="header-container">
                 <div class="avata">
-                    <img src="images/avata1.jpg" alt="">
+                    <img src="/public/img/avata1.jpg" alt="">
                 </div>
                 <div class="descrip">
                     <b>nestkp</b>
@@ -22,10 +23,10 @@
             </div>
             <div class="container-img">
                 <div class="img">
-                    <img src="images/img1.jpg" alt="">
+                    <img src="/public/img/img1.jpg" alt="">
                 </div>
 
-                <div class="eye"><img src="images/eye-xl.png" alt=""></div>
+                <div class="eye"><img src="/public/img/eye-xl.png" alt=""></div>
                 <div class="after">
                 </div>
 
@@ -38,9 +39,9 @@
                 </div>
                 <div class="action">
                     <p class="number_heart">6</p>
-                    <img class="heart" src="images/icons8-heart-26.png" alt="">
+                    <img class="heart" src="/public/img/icons8-heart-26.png" alt="">
                     <p class="number_cmt">9</p>
-                    <img class="cmt" src="images/icons8-topic-26.png" alt="">
+                    <img class="cmt" src="/public/img/icons8-topic-26.png" alt="">
                 </div>
                 <div class="all-cmt">
                     <div class="title-cmt cmts ">
@@ -65,7 +66,7 @@
         <div class="post">
             <div class="header-container">
                 <div class="avata">
-                    <img src="images/avata1.jpg" alt="">
+                    <img src="/public/img/avata1.jpg" alt="">
                 </div>
                 <div class="descrip">
                     <b>nestkp</b>
@@ -75,10 +76,10 @@
             </div>
             <div class="container-img">
                 <div class="img">
-                    <img src="images/post2.jpg" alt="">
+                    <img src="/public/img/post2.jpg" alt="">
                 </div>
 
-                <div class="eye"><img src="images/eye-xl.png" alt=""></div>
+                <div class="eye"><img src="/public/img/eye-xl.png" alt=""></div>
                 <div class="after">
                 </div>
 
@@ -91,9 +92,9 @@
                 </div>
                 <div class="action">
                     <p class="number_heart">6</p>
-                    <img class="heart" src="images/icons8-heart-26.png" alt="">
+                    <img class="heart" src="/public/img/icons8-heart-26.png" alt="">
                     <p class="number_cmt">9</p>
-                    <img class="cmt" src="images/icons8-topic-26.png" alt="">
+                    <img class="cmt" src="/public/img/icons8-topic-26.png" alt="">
                 </div>
                 <div class="all-cmt">
                     <div class="title-cmt cmts ">
@@ -118,7 +119,7 @@
         <div class="post">
             <div class="header-container">
                 <div class="avata">
-                    <img src="images/avata1.jpg" alt="">
+                    <img src="/public/img/avata1.jpg" alt="">
                 </div>
                 <div class="descrip">
                     <b>nestkp</b>
@@ -128,10 +129,10 @@
             </div>
             <div class="container-img">
                 <div class="img">
-                    <img src="images/post3.jpg" alt="">
+                    <img src="/public/img/post3.jpg" alt="">
                 </div>
 
-                <div class="eye"><img src="images/eye-xl.png" alt=""></div>
+                <div class="eye"><img src="/public/img/eye-xl.png" alt=""></div>
                 <div class="after">
                 </div>
 
@@ -144,9 +145,9 @@
                 </div>
                 <div class="action">
                     <p class="number_heart">6</p>
-                    <img class="heart" src="images/icons8-heart-26.png" alt="">
+                    <img class="heart" src="/public/img/icons8-heart-26.png" alt="">
                     <p class="number_cmt">9</p>
-                    <img class="cmt" src="images/icons8-topic-26.png" alt="">
+                    <img class="cmt" src="/public/img/icons8-topic-26.png" alt="">
                 </div>
                 <div class="all-cmt">
                     <div class="title-cmt cmts ">
@@ -171,7 +172,7 @@
         <div class="post">
             <div class="header-container">
                 <div class="avata">
-                    <img src="images/avata1.jpg" alt="">
+                    <img src="/public/img/avata1.jpg" alt="">
                 </div>
                 <div class="descrip">
                     <b>nestkp</b>
@@ -181,10 +182,10 @@
             </div>
             <div class="container-img">
                 <div class="img">
-                    <img src="images/post4.jpg" alt="">
+                    <img src="/public/img/post4.jpg" alt="">
                 </div>
 
-                <div class="eye"><img src="images/eye-xl.png" alt=""></div>
+                <div class="eye"><img src="/public/img/eye-xl.png" alt=""></div>
                 <div class="after">
                 </div>
 
@@ -197,9 +198,9 @@
                 </div>
                 <div class="action">
                     <p class="number_heart">6</p>
-                    <img class="heart" src="images/icons8-heart-26.png" alt="">
+                    <img class="heart" src="/public/img/icons8-heart-26.png" alt="">
                     <p class="number_cmt">9</p>
-                    <img class="cmt" src="images/icons8-topic-26.png" alt="">
+                    <img class="cmt" src="/public/img/icons8-topic-26.png" alt="">
                 </div>
                 <div class="all-cmt">
                     <div class="title-cmt cmts ">
@@ -227,7 +228,7 @@
         <div class="profile ">
             <div class="row-avata">
                 <div class="img-avata">
-                    <img src="images/avata.jpg" alt="">
+                    <img src="/public/img/avata.jpg" alt="">
                 </div>
                 <div class="name-avata">Lalalisa</div>
                 <div class="transfer">
@@ -241,7 +242,7 @@
                 </div>
                 <div class="add">
                     <div class="img-avata">
-                        <img src="images/avata.jpg" alt="">
+                        <img src="/public/img/avata.jpg" alt="">
                     </div>
                     <div class="name-avata">Lalalisa</div>
                     <div class="transfer">
@@ -250,7 +251,7 @@
                 </div>
                 <div class="add">
                     <div class="img-avata">
-                        <img src="images/avata.jpg" alt="">
+                        <img src="/public/img/avata.jpg" alt="">
                     </div>
                     <div class="name-avata">Lalalisa</div>
                     <div class="transfer">
@@ -259,7 +260,7 @@
                 </div>
                 <div class="add">
                     <div class="img-avata">
-                        <img src="images/avata.jpg" alt="">
+                        <img src="/public/img/avata.jpg" alt="">
                     </div>
                     <div class="name-avata">Lalalisa</div>
                     <div class="transfer">

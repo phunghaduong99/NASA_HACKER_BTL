@@ -10,32 +10,11 @@
 </head>
 
 <body>
-<div class="header">
-    <div class="left">
-        <div class="img"> <img class="img" src="images/logo.png" alt=""></div>
-        <div class="center">
-            <p>|</p>
-        </div>
-        <a class="home btn btn-2 color-green" href="">OUTstagram</a>
-    </div>
-
-    <div class="right">
-        <div class=" right dropdown">
-            <div class="dropbtn">
-                <p>lalalisa</p>
-                <img src="images/icon.jpg" alt="">
-            </div>
-            <div class="dropdown-content">
-                <a href="#">Log Out</a>
-            </div>
-        </div>
-    </div>
-</div>
-
+<?php include("header_user.php") ?>
 <div class="container">
     <div class="information">
         <div class="avata">
-            <img src="images/avata.jpg" alt="">
+            <img src="/public/img/avata.jpg" alt="">
         </div>
 
         <div class="text">
@@ -65,7 +44,7 @@
             <div class="row des-nick"><b>Bigcityboy</b></div>
             <div class="row des-decrip">
                 <a
-                    href="https://www.facebook.com/profile.php?id=100015874368540">https://www.facebook.com/dinhthuyha</a>
+                        href="https://www.facebook.com/profile.php?id=100015874368540">https://www.facebook.com/dinhthuyha</a>
             </div>
             <div class="row description">
 
@@ -81,29 +60,29 @@
         <div class="image-parent">
             <div class="image-row">
                 <div class="image-left image-container ">
-                    <img src="images/lisa3.jpg" />
+                    <img src="/public/img/lisa3.jpg"/>
                     <div class="after"></div>
                 </div>
                 <div class="image-center image-container">
-                    <img src="images/lisa2.jpg" />
+                    <img src="/public/img/lisa2.jpg"/>
                     <div class="after"></div>
                 </div>
                 <div class="image-right image-container">
-                    <img src="images/lisa1.jpg" />
+                    <img src="/public/img/lisa1.jpg"/>
                     <div class="after"></div>
                 </div>
             </div>
             <div class="image-row">
                 <div class="image-left image-container ">
-                    <img src="images/lisa4.jpg" />
+                    <img src="/public/img/lisa4.jpg"/>
                     <div class="after"></div>
                 </div>
                 <div class="image-center image-container">
-                    <img src="images/lisa5.jpg" />
+                    <img src="/public/img/lisa5.jpg"/>
                     <div class="after"></div>
                 </div>
                 <div class="image-right image-container">
-                    <img src="images/lisa1.jpg" />
+                    <img src="/public/img/lisa1.jpg"/>
                     <div class="after"></div>
                 </div>
             </div>
