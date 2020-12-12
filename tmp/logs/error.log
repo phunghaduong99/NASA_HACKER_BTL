@@ -1,0 +1,120 @@
+[12-Dec-2020 00:47:02 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 00:47:02 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 00:47:02 Asia/Krasnoyarsk] PHP Warning:  move_uploaded_file() expects exactly 2 parameters, 1 given in /var/www/html/application/controllers/userscontroller.php on line 135
+[12-Dec-2020 00:47:02 Asia/Krasnoyarsk] PHP Warning:  A non-numeric value encountered in /var/www/html/application/controllers/userscontroller.php on line 139
+[12-Dec-2020 00:48:37 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 00:48:37 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 00:48:37 Asia/Krasnoyarsk] PHP Warning:  move_uploaded_file() expects exactly 2 parameters, 1 given in /var/www/html/application/controllers/userscontroller.php on line 135
+[12-Dec-2020 00:49:10 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 00:49:10 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 00:49:10 Asia/Krasnoyarsk] PHP Warning:  move_uploaded_file() expects exactly 2 parameters, 1 given in /var/www/html/application/controllers/userscontroller.php on line 135
+[12-Dec-2020 00:49:10 Asia/Krasnoyarsk] PHP Warning:  move_uploaded_file(uploads/quyensdfsdf): failed to open stream: No such file or directory in /var/www/html/application/controllers/userscontroller.php on line 139
+[12-Dec-2020 00:49:10 Asia/Krasnoyarsk] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/php1gCATh' to 'uploads/quyensdfsdf' in /var/www/html/application/controllers/userscontroller.php on line 139
+[12-Dec-2020 00:49:42 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 00:49:42 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 00:49:42 Asia/Krasnoyarsk] PHP Warning:  move_uploaded_file() expects exactly 2 parameters, 1 given in /var/www/html/application/controllers/userscontroller.php on line 135
+[12-Dec-2020 00:50:14 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 00:50:14 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 00:50:56 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 00:50:56 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 00:53:23 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 00:53:23 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 01:03:08 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 01:03:08 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 01:03:32 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 01:03:32 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 01:04:50 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 01:04:50 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 01:04:55 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 01:04:55 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 01:05:22 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 01:05:22 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 01:05:46 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 01:05:46 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 01:06:00 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 01:06:00 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 01:08:00 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 01:08:00 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 09:01:39 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 09:01:39 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 09:03:21 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 09:03:21 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 09:12:07 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 09:12:07 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 09:13:25 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 09:13:25 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 09:13:26 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 09:13:26 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 09:15:42 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 09:15:42 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 09:21:21 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 09:21:21 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:10:37 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:10:37 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:11:05 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:11:05 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:15:26 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:15:26 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:15:45 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:15:45 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:19:12 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:19:12 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:19:12 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 367
+[12-Dec-2020 10:19:12 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 367
+[12-Dec-2020 10:20:07 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:20:07 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:20:07 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 367
+[12-Dec-2020 10:20:07 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 367
+[12-Dec-2020 10:22:10 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:22:10 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:22:10 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 366
+[12-Dec-2020 10:22:10 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 366
+[12-Dec-2020 10:22:36 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:22:36 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:22:36 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 366
+[12-Dec-2020 10:22:36 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 366
+[12-Dec-2020 10:22:36 Asia/Krasnoyarsk] PHP Warning:  mysqli_query() expects parameter 2 to be string, array given in /var/www/html/library/sqlquery.class.php on line 373
+[12-Dec-2020 10:23:00 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:23:00 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:23:00 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 366
+[12-Dec-2020 10:23:00 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 366
+[12-Dec-2020 10:23:00 Asia/Krasnoyarsk] PHP Warning:  mysqli_query() expects parameter 2 to be string, array given in /var/www/html/library/sqlquery.class.php on line 373
+[12-Dec-2020 10:23:56 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:23:56 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:23:56 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 366
+[12-Dec-2020 10:23:56 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 366
+[12-Dec-2020 10:23:56 Asia/Krasnoyarsk] PHP Warning:  mysqli_query() expects parameter 2 to be string, array given in /var/www/html/library/sqlquery.class.php on line 373
+[12-Dec-2020 10:25:26 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:25:26 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:25:26 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 366
+[12-Dec-2020 10:25:26 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 366
+[12-Dec-2020 10:25:41 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:25:41 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:25:41 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 366
+[12-Dec-2020 10:25:41 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 366
+[12-Dec-2020 10:26:40 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:26:40 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:26:40 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 366
+[12-Dec-2020 10:26:40 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 366
+[12-Dec-2020 10:27:05 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:27:05 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:27:05 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 366
+[12-Dec-2020 10:27:05 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 366
+[12-Dec-2020 10:27:26 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:27:26 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:27:26 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 366
+[12-Dec-2020 10:27:26 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 366
+[12-Dec-2020 10:27:43 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:27:43 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:27:43 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 366
+[12-Dec-2020 10:27:43 Asia/Krasnoyarsk] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /var/www/html/library/sqlquery.class.php on line 366
+[12-Dec-2020 10:27:59 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:27:59 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:28:23 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:28:23 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:28:50 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:28:50 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:31:21 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:31:21 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163
+[12-Dec-2020 10:31:28 Asia/Krasnoyarsk] PHP Deprecated:  Function get_magic_quotes_gpc() is deprecated in /var/www/html/library/shared.php on line 28
+[12-Dec-2020 10:31:28 Asia/Krasnoyarsk] PHP Notice:  Undefined index: Authorization in /var/www/html/library/shared.php on line 163

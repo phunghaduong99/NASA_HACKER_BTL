@@ -33,7 +33,7 @@
 </div>
 
 <div class="container ">
-    <div class="form" id="form" onsubmit="logSubmit()">
+    <div class="form" id="form" >
         <div class="logo">
             <div class="img">
                 <img src="/public/img/logo.png" alt="">
@@ -54,7 +54,7 @@
                 <input class="check" type="checkbox" name="isRemember" value=""> Rememeber me <br>
             </div>
             <div class="">
-                <button class="btn-hover color-1  " type="submit" value="Login">Login
+                <button class="btn-hover color-1  " type="submit"   value="Login">Login
             </div>
             <div class="forgot title">
                 <a class="forgot" href="">Forgot Your Password</a>
@@ -68,17 +68,20 @@
 
 
 <script type="text/javascript">
-    const log = document.getElementById('log');
-    document.getElementById('form').addEventListener(function (event) {
+    // const log = document.getElementById('log');
+    document.getElementById('form').onsubmit = function (event) {
         event.preventDefault();
         var xhttp = new XMLHttpRequest();
+        var xhttp_self = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("log").innerHTML = this.responseText;
+                // document.getElementById("log").innerHTML = this.responseText;
+                console.log( this.responseText);
             }
         };
-        var   myURL ="http://localhost/users/register";
-        xhttp.open("GET", myURL, true);
+        var   myURL ="/users/register";
+        xhttp.open("POST", myURL, true);
         xhttp.send();
-    })
+    }
+
 </script>

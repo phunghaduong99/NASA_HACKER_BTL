@@ -58,6 +58,7 @@ class VanillaController {
                 $data = $post;
             }
         }
+
         return $data;
     }
 
