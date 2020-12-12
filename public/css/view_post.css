@@ -1,148 +1,26 @@
-body {
-    margin-top: 0px;
-    width: 100%;
-    height: 100%;
-    background-size: 400% 400%;
-}
-
-/* -----------------------Header---------------------- */
-
-.header {
-    width: 100%;
-    height: 45px;
-    display: flex;
-    border-bottom: 2px solid #d2cacd;
-}
-
-.header .left {
-    width: 50%;
-    display: flex;
-    margin: auto;
-}
-
-.header .right {
-    width: 50%;
-    margin: auto;
-    margin-left: 107px;
-    text-align: center;
-}
-
-.header .left .img {
-    width: 50%;
-    text-align: right;
-    margin-right: 0.8%;
-}
-
-.header .left .img img {
-    width: 30px;
-    height: 30px;
-}
-
-.header .left a.home {
-    padding-top: 4px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: black;
-    text-decoration: none
-}
-
-.header .left:hover a {
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 1);
-}
-
-/* The dropdown container */
-
-.dropdown {
-    margin-left: 20px;
-    position: relative;
-    display: inline-block;
-}
-
-/* Dropdown button */
-
-.dropdown .dropbtn {
-    /* margin-left: 20px; */
-    width: 40%;
-    height: 31px;
-    margin-bottom: auto;
-    margin-top: auto;
-    font-size: 17px;
-    border: none;
-    cursor: pointer;
-}
-
-.dropdown img {
-    width: 23px;
-}
-
-/* Add a red background color to navbar links on hover */
-
-.dropdown .dropbtn:hover {
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 1);
-    z-index: 2;
-}
-
-/* Dropdown content (hidden by default) */
-
-.dropdown-content {
-    font-size: 16px;
-    margin-top: -4px;
-    display: none;
-    position: absolute;
-    min-width: 40%;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-/* Links inside the dropdown */
-
-.dropdown-content a {
-    color: black;
-    margin-top: 8px;
-    padding: 5px 10px;
-    text-decoration: none;
-    display: block;
-}
-
-/* Add a grey background color to dropdown links on hover */
-
-.dropdown-content a:hover {
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 1);
-}
-
-/* Show the dropdown menu on hover */
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-*/ .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
-}
-
-/* ----------- body------------------------------------------------------ */
 
 .container {
-    margin-top: 5%;
-    width: 58%;
+    margin-top: 5rem;
+    width: 992px;
     height: 100%;
     margin-left: auto;
     margin-right: auto;
-    /* background-color: burlywood; */
+    display: flex;
 }
+
 .container-post {
-    
-    width: 100%;
+    width: 600px;
     height: 100%;
     margin-left: auto;
     margin-right: auto;
 }
+
 .container .post {
     margin-bottom: 60px;
     margin-left: auto;
     margin-right: auto;
     width: 600px;
-    height: 693px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(var(--ce3, 239, 239, 239), 1);
 }
 
 .container .post .header-container {
@@ -231,7 +109,7 @@ img {
 }
 
 .container-img:hover img {
-    transform:scale(1.2);
+    transform: scale(1.2);
 }
 
 .container-img .after .eye img {
@@ -239,11 +117,9 @@ img {
     height: 100%;
 }
 
- .context {
-  
-}
+.context {}
 
- .context .caption {
+.context .caption {
     padding: 10px 10px 3px 10px;
     text-align: center;
     font-size: 13px;
@@ -252,12 +128,13 @@ img {
     font-weight: 300;
 }
 
-
-.context .action{
-    width:100%;
+.context .action {
+    margin-bottom: 0.4rem;
+    width: 100%;
     height: 24px;
     display: inline-flex;
 }
+
 
 /* .action .heart{
     width:25px;
@@ -265,49 +142,362 @@ img {
     display: flex;
 
 } */
-.action  p.number_heart{
+
+.action p.number_heart {
     width: 23px;
     margin-top: 3px;
     margin-left: 24px;
     margin-right: -12px;
 }
+
 .action img.heart {
     width: 25px;
 }
 
-.action  p.number_cmt{
+.action p.number_cmt {
     width: 23px;
     margin-top: 3px;
     margin-left: 11px;
     margin-right: -12px;
 }
-.action img.cmt{
+
+.action img.cmt {
     margin-top: 4px;
     width: 15px;
     height: 17px;
 }
 
-img:hover{
-/* transform:scale(1.2); */
-transform: translateX(2px);
-transition:0.5s;
-
+img:hover {
+    /* transform:scale(1.2); */
+    transform: translateX(2px);
+    transition: 0.5s;
 }
 
-form{
-    margin-top:7px;
+.all-cmt {
+    margin-left: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.all-cmt .cmts {
+    margin-bottom: 0.5rem;
+    /* opacity: -0.1; */
+    color: #7f7f75;
+}
+
+.title-cmt {
+    line-height: 1rem;
+}
+
+.all-cmt .cmt {
+    display: inline-flex;
+}
+
+.cmt b.name-cmt {}
+
+.cmt p.text-cmt {}
+
+.title-cmt.cmt {
+    margin-bottom: 0.4rem;
+}
+
+.name-cmt {
+    font-weight: bold;
+}
+
+form {
     width: 100%;
     display: flex;
 }
-input{
-    width:85% ;
-    height:50px;
-    border:none;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.6);
+
+a {
+    text-decoration: none;
 }
-button{
-    margin-top:0.5px;
-    width:15%;
-    height:53px;
-    color:#1877f2;
+
+.post .context input[type=text] {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-size: contain;
+    background-image: url('images/send.png');
+    background-position: 34rem 0rem;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+}
+
+input[type="text"] :focus {
+    width: 100%;
+}
+
+.profile-parent {
+    width: 300px;
+    /* margin-left: auto; */
+    margin-right: auto;
+    margin-top: 2rem;
+}
+
+.profile {
+    position: fixed;
+}
+
+.row-avata {
+    height: 56px;
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.row-avata .img-avata {
+    width: 56px;
+    height: 100%;
+}
+
+.row-avata .img-avata img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+}
+
+.row-avata .name-avata {
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 200px;
+    margin-left: 1rem;
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.transfer {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.transfer a {
+    color: #0095f6;
+;
+}
+
+.suggest-add {
+    width: 100%;
+}
+
+.suggest-add .suggest-text {
+    display: flex;
+    width: 100%;
+    margin-bottom: 0.6rem;
+}
+
+.suggest-text .text-1 {
+    width: 50%;
+    font-weight: bold;
+    color: #7f7f75;
+}
+
+.suggest-text a.text-all {
+    width: 50%;
+    text-align: right;
+    color: black;
+    font-weight: bold;
+}
+
+.suggest-add .add {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.add .img-avata {
+    width: 20%;
+    height: 42px;
+}
+
+.add .img-avata img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+
+.add .name-avata {
+    width: 70%;
+    margin-bottom: auto;
+    margin-top: auto;
+    margin-left: 0.5rem;
+}
+
+.add .transfer {
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+.action p.number_cmt {
+    width: 23px;
+    margin-top: 3px;
+    margin-left: 11px;
+    margin-right: -12px;
+}
+
+.action img.cmt {
+    margin-top: 4px;
+    width: 15px;
+    height: 17px;
+}
+
+img:hover {
+    /* transform:scale(1.2); */
+    transform: translateX(2px);
+    transition: 0.5s;
+}
+
+.all-cmt {
+    margin-left: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.all-cmt .cmts {
+    margin-bottom: 0.5rem;
+    /* opacity: -0.1; */
+    color: #7f7f75;
+}
+
+.title-cmt {
+    line-height: 1rem;
+}
+
+.all-cmt .cmt {
+    display: inline-flex;
+}
+
+.cmt b.name-cmt {}
+
+.cmt p.text-cmt {}
+
+.title-cmt.cmt {
+    margin-bottom: 0.4rem;
+}
+
+.name-cmt {
+    font-weight: bold;
+}
+
+form {
+    width: 100%;
+    display: flex;
+}
+
+a {
+    text-decoration: none;
+}
+
+.context input[type=text] {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-size: contain;
+    background-image: url('images/send.png');
+    background-position: 34rem 0rem;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+}
+
+input[type="text"] :focus {
+    width: 100%;
+}
+
+.profile-parent {
+    width: 300px;
+    /* margin-left: auto; */
+    margin-right: auto;
+    margin-top: 2rem;
+}
+
+.profile {
+    position: fixed;
+}
+
+.row-avata {
+    height: 56px;
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.row-avata .img-avata {
+    width: 56px;
+    height: 100%;
+}
+
+.row-avata .img-avata img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+}
+
+.row-avata .name-avata {
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 200px;
+    margin-left: 1rem;
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.transfer {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.transfer a {
+    color: #0095f6;
+;
+}
+
+.suggest-add {
+    width: 100%;
+}
+
+.suggest-add .suggest-text {
+    display: flex;
+    width: 100%;
+    margin-bottom: 0.6rem;
+}
+
+.suggest-text .text-1 {
+    width: 50%;
+    font-weight: bold;
+    color: #7f7f75;
+}
+
+.suggest-text a.text-all {
+    width: 50%;
+    text-align: right;
+    color: black;
+    font-weight: bold;
+}
+
+.suggest-add .add {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.add .img-avata {
+    width: 20%;
+    height: 42px;
+}
+
+.add .img-avata img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+
+.add .name-avata {
+    width: 70%;
+    margin-bottom: auto;
+    margin-top: auto;
+    margin-left: 0.5rem;
+}
+
+.add .transfer {
+    margin-bottom: auto;
+    margin-top: auto;
 }
