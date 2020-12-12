@@ -28,9 +28,29 @@ class UsersController extends VanillaController {
         global $method;
         $this->doNotRenderHeader=1;
         if ($method == 'GET') {
-            $this->sendJson(" for used email");
+//            $this->sendJson(" for used email");
         }elseif ($method == 'POST') {
-            $this->sendJson("checking for used email");
+//            $this->sendJson("checking for used email");
+        }
+    }
+
+    function view_profile($queryString = "") {
+        global $method;
+        $this->doNotRenderHeader=1;
+        if ($method == 'GET') {
+
+        }elseif ($method == 'POST') {
+
+        }
+    }
+
+    function view_post($queryString = "") {
+        global $method;
+        $this->doNotRenderHeader=1;
+        if ($method == 'GET') {
+
+        }elseif ($method == 'POST') {
+
         }
     }
 
@@ -88,16 +108,30 @@ class UsersController extends VanillaController {
             // check for password
             $this->User->where('email',$this->body["email"]);
             $users = $this->User->search();
+            // them truong image_users
+            $user[image_user] = null;
+//            var_dump($users) ; die();
             if (!empty($users)) {
                 $user = $users[0]["User"];
+
+
                 if ($user["password"] == $this->body["password"]) {
+                    if($user[images_users_id] != null){
+                        $this->User->where('email',$this->body["email"]);
+                        // them dong nay de lay them image cho Users
+                        $this->User->showHasOne();
+                        $users = $this->User->search();
+                        $image_user = $users[0]["Images_users"];
+                        $user[image_user] = $image_user[content];
+                    }
                     $jwtHelper = new Jwt();
                     unset($user["password"]);
                     unset($user["created_at"]);
                     unset($user["update_at"]);
+
                     $this->sendJson([
                         "Authorization"=>$jwtHelper->encode(["email"=>$this->body["email"]]),
-                        "user" => $user
+                        "user" => $user,
                     ]);
                     return;
                 }
@@ -116,6 +150,7 @@ class UsersController extends VanillaController {
         if ($method == "POST") {
             // find ID
             $this->User->where('id', $this->body["id"]);
+
             $users = $this->User->search();
             if (empty($users)) {
                 $this->sendJson(["error" => "Not found user"]);
@@ -124,7 +159,7 @@ class UsersController extends VanillaController {
                 // set fields need to be updated
                 $this->User->id = $this->body["id"];
                 $this->User->profile_title = $this->body["profile_title"];
-//                var_dump([$this->body["profile_title"], $_FILES]);die();
+
                 if ($_FILES["profile_url"]["name"] != null) {
                     $targetDir = "";
                     $name = basename($_FILES["profile_url"]["name"]);
@@ -139,10 +174,10 @@ class UsersController extends VanillaController {
 //                        $this->User->profile_url = $image;
 //                    };
 //                    var_dump([move_uploaded_file($tmp_name, $name), $_FILES , $tmp_name, $image]);die();
-                    $this->Images_User = new Images_Users();
-                    $this->Images_User->user_id = $this->body["id"];
-                    $this->Images_User->content = $image;
-                    $this->Images_User->save();
+                    $this->Images_users = new Images_users();
+                    $this->Images_users->user_id = $this->body["id"];
+                    $this->Images_users->content = $image;
+                    $this->Images_users->save();
 //                    var_dump($this->Images_Users);die();
                 }
                 $this->User->save();
