@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public/css/header_user.css">
+    <link rel="stylesheet" href="/public/css/login.css">
     <title></title>
 </head>
 
 <body>
 <div class="header">
     <div class="left">
-        <div class="img"> <img class="img" src="images/logo.png" alt=""></div>
+        <div class="img"> <img class="img" src="/public/img/logo.png" alt=""></div>
         <div class="center">
             <p>|</p>
         </div>
@@ -26,7 +27,7 @@
         <div class=" right dropdown">
             <div class="dropbtn">
                 <p>lalalisa</p>
-                <img src="images/icon.jpg" alt="">
+                <img src="/public/img/icon.jpg" alt="">
             </div>
             <div class="dropdown-content">
                 <a href="#">Log Out</a>
@@ -34,9 +35,3 @@
         </div>
     </div>
 </div>
-
-
-
-</body>
-
-</html>

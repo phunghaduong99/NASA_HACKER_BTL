@@ -7,6 +7,8 @@ class VanillaController {
 	protected $_template;
 	protected $body;
 	protected $curUser;
+    protected $headerPath;
+    protected $footerPath;
 
 	public $doNotRenderHeader;
 	public $render;
@@ -64,6 +66,12 @@ class VanillaController {
 
 	function __destruct() {
 		if ($this->render) {
+            if ($this->headerPath) {
+                $this->_template->setHeaderPath($this->headerPath);
+            }
+		    if ($this->footerPath) {
+		        $this->_template->setFooterPath($this->footerPath);
+            }
 			$this->_template->render($this->doNotRenderHeader);
 		}
 	}
