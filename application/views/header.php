@@ -111,4 +111,4 @@ background-color:#FFFF33
 </head>
 
 <body>
-<div class="navigation"><h1>My E-Commerce Website</h1>
+<!--<div class="navigation"><h1>My E-Commerce Website</h1>-->

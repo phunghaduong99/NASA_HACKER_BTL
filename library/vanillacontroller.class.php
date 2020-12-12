@@ -40,10 +40,10 @@ class VanillaController {
         if (is_array($data)) {
             $data = json_encode($data);
         }
-        echo htmlentities($data, ENT_QUOTES, 'UTF-8');
+        echo $data;
     }
 
-    private function getBodyData()
+    public function getBodyData()
     {
         $data = [];
         if (!empty($_POST)) {
@@ -58,7 +58,8 @@ class VanillaController {
                 $data = $post;
             }
         }
-        return strip_tags($data);
+
+        return $data;
     }
 
 	function __destruct() {
