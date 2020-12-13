@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/public/css/header_user.css">
       <link rel="stylesheet" href="/public/css/view_profile.css">
     <link rel="stylesheet" href="/public/css/view_post.css">
+      <link rel="stylesheet" href="/public/css/edit.css">
     <title></title>
 </head>
 
