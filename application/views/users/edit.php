@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 
 <div class="container ">
     <div class="form">
