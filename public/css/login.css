@@ -79,14 +79,17 @@ img {
     box-shadow: 0 0 0 3px rgba(164, 202, 254, 0.45);
     border-color: #a4cafe;
 }
-.forgot{
-    margin-top:1rem;
-    width:100%;
-    text-align:center;
+
+.forgot {
+    width: 100%;
+    text-align: center;
+    ;
 }
+
 a.forgot {
     color: #374151;
     font-size: 0.875rem;
+    justify-content: center;
     text-decoration: none;
 }
 
