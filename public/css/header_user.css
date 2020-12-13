@@ -1,10 +1,23 @@
-body {
-    margin-top: 0px;
+body { margin-top: 0px;
     width: 100%;
     height: 100%;
+    background: linear-gradient(45deg, #ee7752, #e4749f, #23a6d5, #23d5ab);
     background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    /* gradient */
 }
 
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
 
 /* -----------------------Header---------------------- --------------------------------------------------*/
 
@@ -13,30 +26,34 @@ body {
     background-color: white;
     width: 100%;
     height: 45px;
-    display: flex;
+left:0;
     border-bottom: 2px solid #d2cacd;
     position: fixed;
     z-index: 9;
 }
-
-.header .left {
+.header-container{
+    display: flex;
+    margin: auto;
+    width: 992px;
+}
+.header-container .left {
     width: 30%;
-    padding-left: 6em;
+    padding-left: 1rem;
     height: 100%;
     display: flex;
     /* padding-left: 13rem; */
     margin: auto;
 }
 
-.header .right {
+.header-container .right {
     width: 30%;
     height: 100%;
     margin: auto;
     /* margin-left: 107px; */
-    text-align: center;
+    text-align: right;
 }
 
-.header .center-search {
+.header-container .center-search {
     width: 40%;
 }
 
@@ -68,7 +85,7 @@ body {
 }
 
 .header .left .img {
-    width: 32%;
+    width: 16%;
     text-align: right;
     margin-right: 0.3rem;
     margin-bottom: auto;
@@ -87,7 +104,7 @@ body {
 }
 
 .header .left a.home {
-    width: 37%;
+    width: 42%;
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 0.35rem;

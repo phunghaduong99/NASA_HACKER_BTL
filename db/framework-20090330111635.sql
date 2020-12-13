@@ -20,7 +20,7 @@ CREATE TABLE `users` (
   `profile_title` varchar(255) default NULL ,
   `profile_description` varchar(255) default NULL,
   `profile_url` longblob default NULL,
-  `profile_image_id` int(40) unsigned default NULL,
+  `images_users_id` int(40) unsigned default NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY  (`id`)

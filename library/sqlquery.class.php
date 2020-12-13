@@ -89,7 +89,7 @@ class SQLQuery {
 		$fromChild = '';
 
 		if ($this->_hO == 1 && isset($this->hasOne)) {
-			
+
 			foreach ($this->hasOne as $alias => $model) {
 				$table = strtolower($inflect->pluralize($model));
 				$singularAlias = strtolower($alias);
@@ -97,7 +97,7 @@ class SQLQuery {
 				$from .= 'ON `'.$this->_model.'`.`'.$singularAlias.'_id` = `'.$alias.'`.`id`  ';
 			}
 		}
-	
+//	    var_dump([$from, $this->_hO, $this->hasOne]); die();
 		if ($this->id) {
 			$conditions .= '`'.$this->_model.'`.`id` = \''.mysqli_real_escape_string($this->_dbHandle,$this->id).'\' AND ';
 		}
@@ -118,10 +118,12 @@ class SQLQuery {
 		}
 		
 		$this->_query = 'SELECT * FROM '.$from.' WHERE '.$conditions;
-//		echo "$this->_query</br>";
+
+
+//        var_dump($this->_query) ; die();
 		$this->_result = mysqli_query( $this->_dbHandle, $this->_query);
 
-//        echo var_dump($this->_result)."//<br/>";
+
 		$result = array();
 		$table = array();
 		$field = array();

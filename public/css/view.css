@@ -1,0 +1,180 @@
+* ----------- body-------------- */
+
+.container {
+    width: 992px;
+    height: 100%;
+    margin: auto;
+}
+
+.information {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    width: 992px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px 0px 5px 0px;
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.avata {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: auto;
+    margin-top: auto;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+
+.avata img {
+    width: 150px;
+    height: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    cursor: pointer;
+}
+
+.row {
+    line-height: 1rem;
+}
+
+.text {
+    width: 50%;
+    flex-grow: 8;
+    margin-top: -1rem;
+}
+
+.post {
+    width: 20%;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+.text .row1 {
+    display: flex;
+    margin-bottom: 0.5rem;
+}
+
+p.nick-name {
+    width: 20%;
+    font-size: 23px;
+}
+
+.text .row1 .unfollow {
+    width: 60%;
+    margin: auto;
+    margin-left: 19rem;
+}
+
+.text .row1 .unfollow button {
+    background-color: #1877f2;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 2rem;
+    min-width: 72px;
+    cursor: pointer;
+    color: wheat;
+}
+
+.edit-profile {
+    margin-bottom: 0.5rem;
+}
+
+.text .number {
+    display: inline-flex;
+    width: 62%;
+}
+
+.post_number {
+    width: 16%;
+    margin-right: 2rem;
+}
+
+.text .number .followers {
+    width: 25%;
+    margin-right: 2rem;
+}
+
+.following {
+    width: 29%;
+    margin-right: 2rem;
+}
+
+.row.des-nick {
+    margin-bottom: 0.6rem;
+}
+
+.row.des-decrip {
+    margin-bottom: 0.5rem;
+}
+
+.row.description {
+    margin-bottom: 0.5rem;
+}
+
+
+/* ------------------------------------------------------------ */
+
+.image {
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    width: 992px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image-row {
+    display: flex;
+}
+
+.image-left.image-container {
+    width: 35%;
+}
+
+.image-center.image-container {
+    width: 35%;
+}
+
+.image-right.image-container {
+    width: 35%;
+}
+
+.image-container {
+    position: relative;
+    margin: 0.5rem;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.image-container img {
+    width: 100%;
+    transition: 2s;
+}
+
+.image-container .after {
+    position: absolute;
+    background-color: rgba(255, 255, 255, .3)!important;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    transition: 1.5s;
+}
+
+.image-container:hover .after {
+    visibility: visible;
+}
+
+.image-container:hover img {
+    transform: scale(1.2);
+}
