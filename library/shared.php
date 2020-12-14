@@ -165,8 +165,8 @@ function getSession()
         $jwtHelper = new Jwt();
         $tokenValidate = $jwtHelper->validate($token);
 
-        if ($tokenValidate && $tokenValidate->email) {
-            $loginUserId = $tokenValidate->email;
+        if ($tokenValidate && $tokenValidate->id) {
+            $loginUserId = $tokenValidate->id;
         }
     }
 }

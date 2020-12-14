@@ -15,6 +15,11 @@ class VanillaModel extends SQLQuery {
 		}
 	}
 
+	public function search() {
+	    $result = parent::search();
+//	    var_dump($result);
+    }
+
 	function __destruct() {
 	}
 }

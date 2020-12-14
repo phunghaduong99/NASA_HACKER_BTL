@@ -43,6 +43,7 @@ class VanillaController {
             $data = json_encode($data);
         }
         echo $data;
+        die;
     }
 
     public function getBodyData()

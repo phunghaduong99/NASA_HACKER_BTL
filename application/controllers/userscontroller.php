@@ -101,6 +101,7 @@ class UsersController extends VanillaController {
                 $validateError["password"] = $validateResult["error"];
             }
             if (!empty($validateError)) {
+                http_response_code(403);
                 $this->sendJson(["validateError"=>$validateError]);
             }
 
@@ -112,7 +113,6 @@ class UsersController extends VanillaController {
 //            var_dump($users) ; die();
             if (!empty($users)) {
                 $user = $users[0]["User"];
-
 
                 if ($user["password"] == $this->body["password"]) {
                     if($user[images_users_id] != null){
@@ -129,17 +129,19 @@ class UsersController extends VanillaController {
                     unset($user["update_at"]);
 
                     $this->sendJson([
-                        "Authorization"=>$jwtHelper->encode(["email"=>$this->body["email"]]),
+                        "Authorization"=>$jwtHelper->encode(["id"=>$user["id"]]),
                         "user" => $user,
                     ]);
                     return;
                 }
             }
+
+            http_response_code(401);
             $this->sendJson([
                 "loginError" => "Wrong email or password"
             ]);
         } else {
-            header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
+            http_response_code(404);
         }
     }
 
