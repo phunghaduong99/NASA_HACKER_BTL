@@ -52,7 +52,7 @@ body {
 .post-vp {
     width: 20%;
     text-align: center;
-    margin-top: 1rem;
+
     text-align: right;
     /* margin-left: 0rem; */
     margin-right: 2rem;
@@ -68,22 +68,24 @@ a {
 }
 
 p.nick-name-vp {
-    width: 20%;
+margin-top: auto;
+    margin-bottom: auto;
     font-size: 23px;
     margin-right: 13px;
 }
 
 .text-vp .row1-vp .unfollow-vp {
-    width: 60%;
-    margin: auto;
-    margin-left: 19rem;
+
+
+
 }
 
 .text-vp .row1-vp .unfollow-vp button {
     background-color: #1877f2;
     border: none;
     border-radius: 6px;
-    font-size: 13px;
+    padding: 2px 15px;
+    font-size: 18px;
     line-height: 2rem;
     min-width: 72px;
     cursor: pointer;
@@ -96,22 +98,12 @@ p.nick-name-vp {
 
 .text-vp .number-vp {
     display: inline-flex;
-    width: 62%;
 }
 
-.post_number-vp {
-    width: 18%;
-    /* margin-right: 2rem; */
-}
 
-.text-vp .number-vp .followers-vp {
-    width: 26%;
-    margin-right: 2rem;
-}
-
-.following-vp {
-    width: 29%;
-    margin-right: 2rem;
+.text_vp {
+    white-space: nowrap;
+    margin: 0px 20px 10px 0px;
 }
 
 .row-vp.des-nick-vp {

@@ -219,11 +219,16 @@ a {
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
-    background-size: contain;
-    background-image: url('images/send.png');
-    background-position: 34rem 0rem;
-    background-repeat: no-repeat;
     padding: 12px 20px 12px 40px;
+}
+.sendCmt {
+    background-color: white;
+    border: white;
+    margin-right: -6px;
+    width: 60px;
+    background-size: contain;
+    background-image: url(/img/send.png);
+    background-repeat: no-repeat;
 }
 
 input[type="text"] :focus {
@@ -394,8 +399,8 @@ a {
     border-radius: 4px;
     font-size: 16px;
     background-size: contain;
-    background-image: url('images/send.png');
-    background-position: 34rem 0rem;
+    background-image: url('public/img/send.png');
+    background-position: 3rem 0rem;
     background-repeat: no-repeat;
     padding: 12px 20px 12px 40px;
 }

@@ -50,6 +50,7 @@
                 </div>
                 <form action="">
                     <input type="text" name="search" placeholder="Comment..">
+                    <button type="submit" class="sendCmt" ></button>
                 </form>
             </div>
 
@@ -103,6 +104,8 @@
                 </div>
                 <form action="">
                     <input type="text" name="search" placeholder="Comment..">
+                    <button type="submit" class="sendCmt" ></button>
+
                 </form>
             </div>
 
@@ -156,6 +159,8 @@
                 </div>
                 <form action="">
                     <input type="text" name="search" placeholder="Comment..">
+                    <button type="submit" class="sendCmt" ></button>
+
                 </form>
             </div>
 
@@ -209,6 +214,9 @@
                 </div>
                 <form action="">
                     <input type="text" name="search" placeholder="Comment..">
+                    <button type="submit" class="sendCmt" ></button>
+
+
                 </form>
             </div>
 

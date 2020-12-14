@@ -9,6 +9,7 @@ $routing = array(
 
     '/^users\/login(.*?)/i' => "users/login", //GET
     '/^users\/view_post(.*?)/i' => "users/view_post", //GET
+    '/^users\/view_profile(.*?)/i' => "users/view_profile", //GET
 
     '/^users\/register(.*?)/i' => "users/register", //GET, POST
     '/^users\/edit(.*?)/i' => "users/edit", //GET, POST
