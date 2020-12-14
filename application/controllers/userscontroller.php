@@ -36,7 +36,7 @@ class UsersController extends VanillaController {
 
     function view_profile($queryString = "") {
         global $method;
-        $this->doNotRenderHeader=1;
+        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users". DS . 'header.php';
 //        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users". DS . 'header.php';
         if ($method == 'GET') {
 
@@ -47,7 +47,7 @@ class UsersController extends VanillaController {
 
     function view_post($queryString = "") {
         global $method;
-        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . 'header.php';
+        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users". DS . 'header.php';
         if ($method == 'GET') {
 
         }elseif ($method == 'POST') {

@@ -8,7 +8,6 @@
       <link rel="stylesheet" href="/public/css/login.css">
     <link rel="stylesheet" href="/public/css/edit.css">
     <link rel="stylesheet" href="/public/css/registers.css">
-    <link rel="stylesheet" href="/public/css/view_post.css">
     <title>Document</title>
 </head>
 

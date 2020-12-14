@@ -1,7 +1,8 @@
-
-body{
+body {
     background-color: White;
 }
+
+
 /* ----------- body-------------- */
 
 .information-vp {
@@ -146,26 +147,32 @@ p.nick-name-vp {
     width: 35%;
     height: 315px;
 }
+
 .image-left-vp.image-container-vp img {
     width: 100%;
     height: 100%;
 }
+
 .image-center-vp.image-container-vp {
     width: 35%;
     height: 315px;
 }
+
 .image-center-vp.image-container-vp img {
     width: 100%;
     height: 100%;
 }
+
 .image-right-vp.image-container-vp {
     width: 35%;
     height: 315px;
 }
+
 .image-right-vp.image-container-vp img {
     width: 100%;
     height: 100%;
 }
+
 .image-container-vp {
     position: relative;
     margin: 0.5rem;
