@@ -9,39 +9,50 @@ p, div {
     margin: 0px;
     padding: 0px;
 }
+body {
+    margin-top: 0px;
+    width: 100%;
+    height: 100%;
+    background-size: 400% 400%;
+}
+
 
 /* -----------------------Header---------------------- --------------------------------------------------*/
 
 .header {
     top: 0px;
-    left: 0px;
-    background-color: whitesmoke;
+    background-color: white;
     width: 100%;
-    height: 45px;
-    display: flex;
-    border-bottom: 1px solid #d2cacd;
+    height: 51px;
+    left: 0;
+    border-bottom: 2px solid #d2cacd;
     position: fixed;
     z-index: 9;
 }
-
-.header .left {
+.header-container{
+    display: flex;
+    margin: auto;
+    width: 992px;
+    height: inherit;
+}
+.header-container .left {
     width: 30%;
-    padding-left: 6em;
+    padding-left: 1rem;
     height: 100%;
     display: flex;
     /* padding-left: 13rem; */
     margin: auto;
 }
 
-.header .right {
+.header-container .right {
     width: 30%;
     height: 100%;
     margin: auto;
     /* margin-left: 107px; */
-    text-align: center;
+    text-align: right;
 }
 
-.header .center-search {
+.header-container .center-search {
     width: 40%;
 }
 
@@ -73,7 +84,7 @@ p, div {
 }
 
 .header .left .img {
-    width: 32%;
+    width: 16%;
     text-align: right;
     margin-right: 0.3rem;
     margin-bottom: auto;
@@ -82,6 +93,7 @@ p, div {
 
 .center {
     width: 1%;
+    margin-top: 0.5rem;
     margin-left: 0.1rem;
     margin-right: 0.1rem;
 }
@@ -92,7 +104,7 @@ p, div {
 }
 
 .header .left a.home {
-    width: 37%;
+    width: 42%;
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 0.35rem;

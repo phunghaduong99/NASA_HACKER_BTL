@@ -21,6 +21,7 @@
     margin-right: auto;
     width: 600px;
     border: 1px solid rgba(var(--ce3, 239, 239, 239), 1);
+    border-radius: 1%;
 }
 
 .container .post .header-container {
@@ -234,13 +235,7 @@ a {
 input[type="text"] :focus {
     width: 100%;
 }
-
-.profile-parent {
-    width: 300px;
-    /* margin-left: auto; */
-    margin-right: auto;
-    margin-top: 2rem;
-}
+*/
 
 .profile {
     position: fixed;
@@ -411,13 +406,15 @@ input[type="text"] :focus {
 
 .profile-parent {
     width: 300px;
-    /* margin-left: auto; */
-    margin-right: auto;
-    margin-top: 2rem;
+
 }
 
 .profile {
+    width: 280px;
     position: fixed;
+    padding: 10px 10px;
+    border: 1px solid rgba(var(--ce3, 239, 239, 239), 1);
+    border-radius: 1%;
 }
 
 .row-avata {
