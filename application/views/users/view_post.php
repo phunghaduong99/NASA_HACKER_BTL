@@ -1,13 +1,4 @@
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/public/css/view_post.css">
-    <title>View </title>
-</head>
-<?php include ("header_user.php")?>
 <div class="container">
     <div class="container-post">
         <div class="post">
@@ -272,7 +263,4 @@
     </div>
 
 </div>
-</body>
 
-</html>
-<body>

@@ -36,7 +36,7 @@ class UsersController extends VanillaController {
 
     function view_profile($queryString = "") {
         global $method;
-        $this->doNotRenderHeader=1;
+        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users". DS . 'header_login.php';
         if ($method == 'GET') {
 
         }elseif ($method == 'POST') {
@@ -46,7 +46,7 @@ class UsersController extends VanillaController {
 
     function view_post($queryString = "") {
         global $method;
-        $this->doNotRenderHeader=1;
+        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users". DS . 'header_login.php';
         if ($method == 'GET') {
 
         }elseif ($method == 'POST') {
@@ -56,10 +56,7 @@ class UsersController extends VanillaController {
 
     function login($queryString = "") {
         global $method;
-
-
-        $this->doNotRenderHeader=1;
-
+        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . 'header.php';
         if ($method == 'GET') {
 
         } elseif ($method == 'POST') {
@@ -71,13 +68,13 @@ class UsersController extends VanillaController {
 
     function edit($queryString = "") {
         global $method;
-        $this->doNotRenderHeader=1;
+        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users". DS . 'header_login.php';
         if ($method == 'GET') {
-            if ($this->curUser) {
-                $this->sendJson("Current user " . $this->curUser);
-            } else {
-                $this->sendJson("Not login");
-            }
+//            if ($this->curUser) {
+//                $this->sendJson("Current user " . $this->curUser);
+//            } else {
+//                $this->sendJson("Not login");
+//            }
 //            $this->sendJson("Sent get profile data");
         }elseif ($method == 'POST') {
             $this->sendJson("Sent edit profile data");

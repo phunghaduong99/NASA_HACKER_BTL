@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/css/login.css">
-    <title>Login</title>
-</head>
-
-<body>
 <?php include ("")?>
 <div class="container ">
     <div class="form" id="form" >
@@ -41,8 +30,6 @@
         </form>
         <div id="log"></div>
     </div>
-</body>
-</html>
 
 
 <script type="text/javascript">
@@ -63,3 +50,4 @@
     }
 
 </script>
+
