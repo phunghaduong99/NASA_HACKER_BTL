@@ -87,19 +87,7 @@ class UsersController extends VanillaController {
         global $method;
         if ($method == "POST") {
             // Validate input
-            include_once(ROOT . DS . 'helpers/validate.php');
-            $validator = new Validator();
-            $validateError = [];
-
-            $validateResult = $validator->validateEmail($this->body["email"]);
-            if ($validateResult["error"]) {
-                $validateError["email"] = $validateResult["error"];
-            }
-
-            $validateResult = $validator->validatePassword($this->body["password"]);
-            if ($validateResult["error"]) {
-                $validateError["password"] = $validateResult["error"];
-            }
+            $validateError = $this->validateLoginInput($this->body["email"], $this->body["password"]);
             if (!empty($validateError)) {
                 http_response_code(403);
                 $this->sendJson(["validateError"=>$validateError]);
@@ -110,11 +98,11 @@ class UsersController extends VanillaController {
             $users = $this->User->search();
             // them truong image_users
             $user[image_user] = null;
-//            var_dump($users) ; die();
+
             if (!empty($users)) {
                 $user = $users[0]["User"];
 
-                if ($user["password"] == $this->body["password"]) {
+                if (password_verify($this->body["password"], $user["password"])) {
                     if($user[images_users_id] != null){
                         $this->User->where('email',$this->body["email"]);
                         // them dong nay de lay them image cho Users
@@ -143,6 +131,24 @@ class UsersController extends VanillaController {
         } else {
             http_response_code(404);
         }
+    }
+
+    function validateLoginInput($email, $password) {
+        include_once(ROOT . DS . 'helpers/validate.php');
+
+        $validator = new Validator();
+
+        $validateResult = $validator->validateEmail($email);
+        if ($validateResult["error"]) {
+            $validateError["email"] = $validateResult["error"];
+        }
+
+        $validateResult = $validator->validatePassword($password);
+        if ($validateResult["error"]) {
+            $validateError["password"] = $validateResult["error"];
+        }
+
+        return $validateError;
     }
 
     //API update Users of table users
