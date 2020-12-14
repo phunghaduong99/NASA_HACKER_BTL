@@ -1,39 +1,39 @@
 <?php
 
 class VanillaController {
-	
-	protected $_controller;
-	protected $_action;
-	protected $_template;
-	protected $body;
-	protected $curUser;
+
+    protected $_controller;
+    protected $_action;
+    protected $_template;
+    protected $body;
+    protected $curUser;
     protected $headerPath;
     protected $footerPath;
 
-	public $doNotRenderHeader;
-	public $render;
+    public $doNotRenderHeader;
+    public $render;
 
-	function __construct($controller, $action) {
-		global $loginUserId;
-		global $inflect;
+    function __construct($controller, $action) {
+        global $loginUserId;
+        global $inflect;
 
-		$this->_controller = ucfirst($controller);
-		$this->_action = $action;
-		$model = ucfirst($inflect->singularize($controller));
+        $this->_controller = ucfirst($controller);
+        $this->_action = $action;
+        $model = ucfirst($inflect->singularize($controller));
 
-		$this->doNotRenderHeader = 0;
-		$this->render = 1;
+        $this->doNotRenderHeader = 0;
+        $this->render = 1;
         $this->body = $this->getBodyData();
-		$this->$model = new $model();
+        $this->$model = new $model();
         $this->curUser = $loginUserId;
 
-		$this->_template = new Template($controller,$action);
+        $this->_template = new Template($controller,$action);
 
-	}
+    }
 
-	function set($name,$value) {
-		$this->_template->set($name,$value);
-	}
+    function set($name,$value) {
+        $this->_template->set($name,$value);
+    }
 
     function sendJson($data) {
         header('Content-type: application/json');
@@ -64,16 +64,16 @@ class VanillaController {
         return $data;
     }
 
-	function __destruct() {
-		if ($this->render) {
+    function __destruct() {
+        if ($this->render) {
             if ($this->headerPath) {
                 $this->_template->setHeaderPath($this->headerPath);
             }
-		    if ($this->footerPath) {
-		        $this->_template->setFooterPath($this->footerPath);
+            if ($this->footerPath) {
+                $this->_template->setFooterPath($this->footerPath);
             }
-			$this->_template->render($this->doNotRenderHeader);
-		}
-	}
-		
+            $this->_template->render($this->doNotRenderHeader);
+        }
+    }
+
 }

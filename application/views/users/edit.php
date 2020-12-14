@@ -1,49 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/css/edit_profile.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Edit Profile</title>
-</head>
-
-<body>
-<?php include ("")?>
-<div class="container ">
-    <div class="form">
-        <div class="logo">
-            <div class="img">
+<div class="container-edit ">
+    <div class="form-edit">
+        <div class="logo-edit">
+            <div class="img-edit">
                 <img src="/public/img/logo.png" alt="">
             </div>
 
-            <h1 class="title">OutSta</h1>
+            <h1 class="title-edit">OutSta</h2>
         </div>
 
-        <form>
-            <div class="title ">
-                <label class="title">Title</label> <br>
-                <input class="form-input" type="text" name="" id=""><br>
+        <form class="edit-edit">
+            <div class="title-edit ">
+                <label class="title-edit">Title</label> <br>
+                <input class="form-input-edit" type="text" name="" id=""><br>
             </div>
-            <div class="description">
-                <label class="title">Description</label> <br>
-                <input class="form-input" type="text" name="" id=""><br>
+            <div class="description-edit">
+                <label class="title-edit">Description</label> <br>
+                <input class="form-input-edit" type="text" name="" id=""><br>
             </div>
-            <div class="url">
-                <label class="title">URL</label> <br>
-                <input class="form-input" type="url" name="" id=""><br>
+            <div class="url-edit">
+                <label class="title-edit">URL</label> <br>
+                <input class="form-input-edit" type="url" name="" id=""><br>
             </div>
-            <div class="image">
-                <label class="title">Profile Image</label> <br>
+            <div class="image-edit">
+                <label class="title-edit">Profile Image</label> <br>
 
             </div>
 
-            <div class="check title">
-                <input type="file" id="myfile" name="" ><br>
+            <div class="check-edit title-edit">
+                <input type="file" id="myfile" name=""><br>
             </div>
             <div class="">
-                <button class="btn-hover color-1  " type="submit" value="Login">Save Profile
+                <button class="btn-hover-edit color-1-edit  " type="submit" value="Login">Save Profile
             </div>
 
 
@@ -51,8 +38,3 @@
     </div>
 
 </div>
-
-
-</body>
-
-</html>

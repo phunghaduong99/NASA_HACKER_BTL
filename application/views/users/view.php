@@ -1,106 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/public/css/view_profile.css">
-    <title>View Profile</title>
-</head>
-
-<body>
-<div class="header">
-    <div class="left">
-        <div class="img"> <img class="img" src="/public/img/logo.png" alt=""></div>
-        <a class="home" href=""> | OUTstagram</a>
-    </div>
-    <div class="right">
-        <div class=" right dropdown">
-            <p class="dropbtn"> dinhthuyha
-                <img src="/public/img/icon.jpg" alt="">
-            </p>
-            <div class="dropdown-content">
-                <a href="#">Log Out</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="information">
-        <div class="avata">
+<div class="container-vp">
+    <div class="information-vp">
+        <div class="avata-vp">
             <img src="/public/img/avata.jpg" alt="">
         </div>
 
-        <div class="text">
-            <div class="row1">
+        <div class="text-vp">
+            <div class="row-vp row1-vp">
 
-                <p class="nick-name">dinhthuyha</p>
+                <p class=" nick-name-vp">lalalisa</p>
 
-                <div class="unfollow">
-                    <button type="submit">Unfollow</button>
+                <div class="unfollow-vp">
+                    <button type="submit-vp">Unfollow</button>
                 </div>
             </div>
 
-            <div class="edit-profile">
+            <div class=" row-vp edit-profile-vp">
                 <a href="edit_profile.html">Edit Profile</a>
             </div>
-            <div class="number">
-                <div class="post_number">
+            <div class="row-vp number-vp">
+                <div class="post_number-vp">
                     <p>5 posts</p>
                 </div>
-                <div class="followers">
+                <div class="followers-vp">
                     <p>2 followers</p>
                 </div>
-                <div class="following">
+                <div class="following-vp">
                     <p>2 following</p>
                 </div>
             </div>
-            <div class="description">
-                <b>Bigcityboy</b>
+            <div class="row-vp des-nick-vp"><b>Bigcityboy</b></div>
+            <div class="row-vp des-decrip-vp">
+                <a href="https://www.facebook.com/profile.php?id=100015874368540">https://www.facebook.com/dinhthuyha</a>
+            </div>
+            <div class="row-vp description-vp">
+
                 <p>Hoa phượng đỏ -Hải phòng city- Người ở đây không ngán một ai</p>
-                <a
-                    href="https://www.facebook.com/profile.php?id=100015874368540">https://www.facebook.com/dinhthuyha</a>
+
             </div>
         </div>
-        <div class="post">
+        <div class="post-vp">
             <a href="#">Add New Post</a>
         </div>
     </div>
-    <div class="image">
-        <div class="image-parent">
-            <div class="image-container">
-                <img src="/public/img/lisa3.jpg" />
-                <div class="after"></div>
+    <div class="image-vp">
+        <div class="image-parent-vp">
+            <div class="image-row-vp">
+                <div class="image-left-vp image-container-vp ">
+                    <img src="/public/img/lisa3.jpg" />
+                    <div class="after-vp"></div>
+                </div>
+                <div class="image-center-vp image-container-vp">
+                    <img src="/public/img/lisa2.jpg" />
+                    <div class="after-vp"></div>
+                </div>
+                <div class="image-right-vp image-container-vp">
+                    <img src="/public/img/lisa1.jpg" />
+                    <div class="after-vp"></div>
+                </div>
             </div>
-            <div class="image-container">
-                <img src="/public/img/lisa2.jpg" />
-                <div class="after"></div>
-            </div>
-            <div class="image-container">
-                <img src="/public/img/lisa1.jpg" />
-                <div class="after"></div>
-            </div>
-            <div class="image-container">
-                <img src="/public/img/lisa4.jpg" />
-                <div class="after"></div>
-            </div>
-            <div class="image-container">
-                <img src="/public/img/lisa5.jpg" />
-                <div class="after"></div>
-            </div>
-            <div class="image-container">
-                <img src="/public/img/lisa6.jpg" />
-                <div class="after"></div>
-            </div>
-            <div class="image-container">
-                <img src="/public/img/lisa7.jpg" />
-                <div class="after"></div>
-            </div>
-            <div class="image-container">
-                <img src="/public/img/lisa8.jpg" />
-                <div class="after"></div>
+            <div class="image-row-vp">
+                <div class="image-left-vp image-container-vp ">
+                    <img src="/public/img/lisa4.jpg" />
+                    <div class="after-vp"></div>
+                </div>
+                <div class="image-center-vp image-container-vp">
+                    <img src="/public/img/lisa5.jpg" />
+                    <div class="after-vp"></div>
+                </div>
+                <div class="image-right-vp image-container-vp">
+                    <img src="/public/img/lisa1.jpg" />
+                    <div class="after-vp"></div>
+                </div>
             </div>
 
         </div>
@@ -108,6 +79,3 @@
 
     </div>
 </div>
-</body>
-
-</html>
