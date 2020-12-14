@@ -160,27 +160,33 @@ class UsersController extends VanillaController {
                 $this->User->profile_title = $this->body["profile_title"];
 
                 if ($_FILES["profile_url"]["name"] != null) {
-                    $targetDir = "";
-                    $name = basename($_FILES["profile_url"]["name"]);
-                    $tmp_name = $_FILES["profile_url"]["tmp_name"];
 
                     $image_base64 = base64_encode(file_get_contents($_FILES['profile_url']['tmp_name']));
-
                     $image = 'data:image/png;base64,'.$image_base64;
 
-                    $this->User->profile_url = $image;
-//                    if(move_uploaded_file($tmp_name, $name)){
-//                        $this->User->profile_url = $image;
-//                    };
 //                    var_dump([move_uploaded_file($tmp_name, $name), $_FILES , $tmp_name, $image]);die();
-                    $this->Images_users = new Images_users();
-                    $this->Images_users->user_id = $this->body["id"];
-                    $this->Images_users->content = $image;
-                    $this->Images_users->save();
-//                    var_dump($this->Images_Users);die();
+                    $this->Image = new Image();
+                    $this->Image->content = $image;
+                    $this->Image->save();
+                    $image_id = $this->Image->insert_id;
+                    $this->Image->insert_id = null;
+                    if(is_numeric($image_id) && intval($image_id) >0){
+                        //cap nhat images_id trong table User
+                        $this->User->image_id = $image_id;
+//                        var_dump( $this->User); die();
+                    }
+//
                 }
-                $this->User->save();
 
+                //Test phan trang
+                $this->Image = new Image();
+                $this->Image->setLimit(7);
+                $this->Image->setPage(1);
+                $images = $this->Image->search() ;
+                $totalPages = $this->Image->totalPages();
+
+                var_dump([$totalPages, $images]);die();
+                $this->User->save();
                 $this->User->where('id',$this->body["id"]);
                 $user = $this->User->search();
                 unset($user["password"]);

@@ -17,7 +17,7 @@ define('BASE_PATH','http://localhost:80/');
 //define('BASE_PATH','http://localhost:81/');
 //----------------------------------------------------------------------------------
 
-define ('DEVELOPMENT_ENVIRONMENT', false);
+define ('DEVELOPMENT_ENVIRONMENT', false );
 define('PAGINATE_LIMIT', '5');
 
 define("SECRET", "982@1kns%sdf323faDd@3sdafAasdfKgdFffA");

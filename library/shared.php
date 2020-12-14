@@ -161,7 +161,6 @@ function getSession()
     include_once(ROOT . DS . 'helpers/jwt.php');
 
     $token = $_COOKIE["Authorization"];
-//    var_dump($token);die;
     if ($token) {
         $jwtHelper = new Jwt();
         $tokenValidate = $jwtHelper->validate($token);
