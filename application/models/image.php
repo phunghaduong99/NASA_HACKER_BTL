@@ -1,5 +1,5 @@
 <?php
 
-class Images_users extends VanillaModel {
+class Image extends VanillaModel {
     var $hasOne = array('User' => 'User');
 }
