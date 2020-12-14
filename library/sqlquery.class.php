@@ -6,6 +6,7 @@ class SQLQuery {
 	protected $_query;
 	protected $_table;
 
+
 	protected $_describe = array();
 
 	protected $_orderBy;
@@ -16,6 +17,7 @@ class SQLQuery {
 	protected $_hMABTM;
 	protected $_page;
 	protected $_limit;
+
 
     /** Connects to database **/
 	
@@ -271,7 +273,7 @@ class SQLQuery {
 //        echo "custom";
 		global $inflect;
 
-		$this->_result = mysqli_query($query, $this->_dbHandle);
+		$this->_result = mysqli_query( $this->_dbHandle, $query);
 
 		$result = array();
 		$table = array();
@@ -304,9 +306,9 @@ class SQLQuery {
 
 	protected function _describe() {
 		global $cache;
-//        echo "describe $this->_table";
-		$this->_describe = $cache->get('describe'.$this->_table);
-
+		$this->_describe = null;
+//        khong tu update cache
+//        $cache->get('describe'.$this->_table)
 		if (!$this->_describe) {
 			$this->_describe = array();
 			$query = 'DESCRIBE '.$this->_table;
@@ -316,12 +318,13 @@ class SQLQuery {
 			}
 
 			mysqli_free_result($this->_result);
-			$cache->set('describe'.$this->_table,$this->_describe);
+			$cache->set('describe'.$this->_table, $this->_describe);
 		}
 
 		foreach ($this->_describe as $field) {
 			$this->$field = null;
 		}
+//        var_dump(["des", $this->_describe, $cache]);
 	}
 
     /** Delete an Object **/
@@ -358,6 +361,7 @@ class SQLQuery {
 
 			$updates = substr($updates,0,-1);
 			$query = 'UPDATE '.$this->_table.' SET '.$updates.' WHERE `id`=\''.mysqli_real_escape_string($this->_dbHandle, $this->id).'\'';
+//            var_dump([$this->_describe,   $query]);die();
 
         } else {
 			$fields = '';
@@ -374,8 +378,11 @@ class SQLQuery {
 			$query = 'INSERT INTO '.$this->_table.' ('.$fields.') VALUES ('.$values.')';
 
 		}
+
+
 		$this->_result = mysqli_query($this->_dbHandle, $query);
-//        var_dump([mysqli_error($this->_dbHandle), $this->_describe,$values, $query]); die();
+		if($this->_dbHandle->insert_id != null) $this->insert_id =  $this->_dbHandle->insert_id ;
+//        var_dump([ $this->_result, $query]);
 		$this->clear();
 		if ($this->_result == 0) {
             /** Error Generation **/
@@ -407,10 +414,13 @@ class SQLQuery {
 			$pattern = '/SELECT (.*?) FROM (.*)LIMIT(.*)/i';
 			$replacement = 'SELECT COUNT(*) FROM $2';
 			$countQuery = preg_replace($pattern, $replacement, $this->_query);
-			$this->_result = mysqli_query($countQuery, $this->_dbHandle);
+//            var_dump([$this->_query,  $countQuery]); die();
+			$this->_result = mysqli_query( $this->_dbHandle, $countQuery);
 			$count = mysqli_fetch_row($this->_result);
 			$totalPages = ceil($count[0]/$this->_limit);
-			return $totalPages;
+
+
+            return $totalPages;
 		} else {
 			/* Error Generation Code Here */
 			return -1;

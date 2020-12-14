@@ -20,7 +20,7 @@ CREATE TABLE `users` (
   `profile_title` varchar(255) default NULL ,
   `profile_description` varchar(255) default NULL,
   `profile_url` longblob default NULL,
-  `images_users_id` int(40) unsigned default NULL,
+  `image_id` int(40) unsigned default NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY  (`id`)
@@ -65,21 +65,13 @@ INSERT INTO `posts` VALUES(2, 6, 'Product C', '32', null, null);
 -- Table structure for table `image`
 --
 
-CREATE TABLE `images_users` (
+CREATE TABLE `images` (
   `id` int(40) unsigned NOT NULL auto_increment,
-  `user_id` int(40) unsigned NOT NULL,
   `content` longblob NOT NULL,
-  PRIMARY KEY  (`id`, `user_id`)
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `image`
 --
 
--- ADD FOREIGN KEY
--- ALTER TABLE users
---     ADD CONSTRAINT fk_img_user
---         FOREIGN KEY (profile_image_id)
---             REFERENCES images (id);
--- ALTER TABLE users
--- DROP FOREIGN KEY fk_img_user;
