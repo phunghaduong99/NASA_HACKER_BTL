@@ -132,49 +132,20 @@ p.nick-name-vp {
 }
 
 .image-child-vp {
-    width: 318px;
-    padding: 5px;
+    width: 317px;
+    margin: 5px;
     height: 315px;
-}
-
-.image-left-vp.image-container-vp img {
-    width: 100%;
-    height: 100%;
-}
-
-.image-center-vp.image-container-vp {
-    width: 35%;
-    height: 315px;
-}
-
-.image-center-vp.image-container-vp img {
-    width: 100%;
-    height: 100%;
-}
-
-.image-right-vp.image-container-vp {
-    width: 35%;
-    height: 315px;
-}
-
-.image-right-vp.image-container-vp img {
-    width: 100%;
-    height: 100%;
-}
-
-.image-container-vp {
     position: relative;
-    margin: 0.5rem;
     overflow: hidden;
     justify-content: center;
 }
 
-.image-container-vp img {
+.image-child-vp img {
     width: 100%;
     transition: 2s;
 }
 
-.image-container-vp .after-vp {
+.image-child-vp .after-vp {
     position: absolute;
     background-color: rgba(255, 255, 255, .3)!important;
     visibility: hidden;
@@ -186,10 +157,10 @@ p.nick-name-vp {
     transition: 1.5s;
 }
 
-.image-container-vp:hover .after-vp {
+.image-child-vp:hover .after-vp {
     visibility: visible;
 }
 
-.image-container-vp:hover img {
+.image-child-vp:hover img {
     transform: scale(1.2);
 }

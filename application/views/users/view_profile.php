@@ -55,8 +55,6 @@
                     <img src="/public/img/lisa1.jpg" />
                     <div class="after-vp"></div>
                 </div>
-
-
                 <div class="image-child-vp">
                     <img src="/public/img/lisa4.jpg" />
                     <div class="after-vp"></div>
