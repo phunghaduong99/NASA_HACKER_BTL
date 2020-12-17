@@ -7,7 +7,7 @@
         <div class="text-vp">
             <div class="row-vp row1-vp">
 
-                <p class=" nick-name-vp"> <?php echo $user["username"]?></p>
+                <p class=" nick-name-vp">lalalisa</p>
 
                 <div class="unfollow-vp">
                     <button type="submit-vp">Unfollow</button>
@@ -30,11 +30,11 @@
             </div>
             <div class="row-vp des-nick-vp"><b>Bigcityboy</b></div>
             <div class="row-vp des-decrip-vp">
-                <a href="https://www.facebook.com/profile.php?id=100015874368540"><?php echo $user["profile_url"]?></a>
+                <a href="https://www.facebook.com/profile.php?id=100015874368540">https://www.facebook.com/dinhthuyha</a>
             </div>
             <div class="row-vp description-vp">
 
-                <p><?php echo $user["profile_description"]?></p>
+                <p>Hoa phượng đỏ -Hải phòng city- Người ở đây không ngán một ai</p>
 
             </div>
         </div>
@@ -43,37 +43,33 @@
         </div>
     </div>
     <div class="image-vp">
-        <div class="image-parent-vp">
-            <div class="image-row-vp">
-                <div class="image-left-vp image-container-vp ">
+                <div class="image-child-vp ">
                     <img src="/public/img/lisa3.jpg" />
                     <div class="after-vp"></div>
                 </div>
-                <div class="image-center-vp image-container-vp">
+                <div class="image-child-vp">
                     <img src="/public/img/lisa2.jpg" />
                     <div class="after-vp"></div>
                 </div>
-                <div class="image-right-vp image-container-vp">
+                <div class="image-child-vp">
                     <img src="/public/img/lisa1.jpg" />
                     <div class="after-vp"></div>
                 </div>
-            </div>
-            <div class="image-row-vp">
-                <div class="image-left-vp image-container-vp ">
+                <div class="image-child-vp">
                     <img src="/public/img/lisa4.jpg" />
                     <div class="after-vp"></div>
                 </div>
-                <div class="image-center-vp image-container-vp">
+                <div class="image-child-vp">
                     <img src="/public/img/lisa5.jpg" />
                     <div class="after-vp"></div>
                 </div>
-                <div class="image-right-vp image-container-vp">
+                <div class="image-child-vp">
                     <img src="/public/img/lisa1.jpg" />
                     <div class="after-vp"></div>
                 </div>
-            </div>
 
-        </div>
+
+
 
 
     </div>
