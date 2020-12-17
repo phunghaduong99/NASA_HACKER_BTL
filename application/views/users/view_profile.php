@@ -45,29 +45,29 @@
     <div class="image-vp">
         <div class="image-parent-vp">
             <div class="image-row-vp">
-                <div class="image-left-vp image-container-vp ">
+                <div class="image-child-vp ">
                     <img src="/public/img/lisa3.jpg" />
                     <div class="after-vp"></div>
                 </div>
-                <div class="image-center-vp image-container-vp">
+                <div class="image-child-vp">
                     <img src="/public/img/lisa2.jpg" />
                     <div class="after-vp"></div>
                 </div>
-                <div class="image-right-vp image-container-vp">
+                <div class="image-child-vp">
                     <img src="/public/img/lisa1.jpg" />
                     <div class="after-vp"></div>
                 </div>
             </div>
             <div class="image-row-vp">
-                <div class="image-left-vp image-container-vp ">
+                <div class="image-child-vp">
                     <img src="/public/img/lisa4.jpg" />
                     <div class="after-vp"></div>
                 </div>
-                <div class="image-center-vp image-container-vp">
+                <div class="image-child-vp">
                     <img src="/public/img/lisa5.jpg" />
                     <div class="after-vp"></div>
                 </div>
-                <div class="image-right-vp image-container-vp">
+                <div class="image-child-vp">
                     <img src="/public/img/lisa1.jpg" />
                     <div class="after-vp"></div>
                 </div>
