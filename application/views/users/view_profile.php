@@ -43,8 +43,6 @@
         </div>
     </div>
     <div class="image-vp">
-        <div class="image-parent-vp">
-            <div class="image-row-vp">
                 <div class="image-child-vp ">
                     <img src="/public/img/lisa3.jpg" />
                     <div class="after-vp"></div>
@@ -57,8 +55,8 @@
                     <img src="/public/img/lisa1.jpg" />
                     <div class="after-vp"></div>
                 </div>
-            </div>
-            <div class="image-row-vp">
+
+
                 <div class="image-child-vp">
                     <img src="/public/img/lisa4.jpg" />
                     <div class="after-vp"></div>
@@ -71,9 +69,9 @@
                     <img src="/public/img/lisa1.jpg" />
                     <div class="after-vp"></div>
                 </div>
-            </div>
 
-        </div>
+
+
 
 
     </div>
