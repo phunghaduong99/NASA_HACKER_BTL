@@ -15,11 +15,11 @@
             </div>
 
             <div class=" row-vp edit-profile-vp">
-                <a href="edit_profile.html">Edit Profile</a>
+                <a href="/users/edit">Edit Profile</a>
             </div>
             <div class="row-vp number-vp ">
                 <div class="post_number-vp text_vp">
-                    <p>4 posts</p>
+                    <p><?php echo count($posts)?> posts</p>
                 </div>
                 <div class="followers-vp text_vp">
                     <p>2 followers</p>
