@@ -30,11 +30,11 @@
             </div>
             <div class="row-vp des-nick-vp"><b>Bigcityboy</b></div>
             <div class="row-vp des-decrip-vp">
-                <a href="https://www.facebook.com/profile.php?id=100015874368540">https://www.facebook.com/dinhthuyha</a>
+                <a href="https://www.facebook.com/profile.php?id=100015874368540"><?php echo $user["profile_url"]?></a>
             </div>
             <div class="row-vp description-vp">
 
-                <p>Hoa phượng đỏ -Hải phòng city- Người ở đây không ngán một ai</p>
+                <p><?php echo $user["profile_description"]?></p>
 
             </div>
         </div>
@@ -43,30 +43,30 @@
         </div>
     </div>
     <div class="image-vp">
-                <div class="image-child-vp ">
-                    <img src="/public/img/lisa3.jpg" />
-                    <div class="after-vp"></div>
-                </div>
-                <div class="image-child-vp">
-                    <img src="/public/img/lisa2.jpg" />
-                    <div class="after-vp"></div>
-                </div>
-                <div class="image-child-vp">
-                    <img src="/public/img/lisa1.jpg" />
-                    <div class="after-vp"></div>
-                </div>
-                <div class="image-child-vp">
-                    <img src="/public/img/lisa4.jpg" />
-                    <div class="after-vp"></div>
-                </div>
-                <div class="image-child-vp">
-                    <img src="/public/img/lisa5.jpg" />
-                    <div class="after-vp"></div>
-                </div>
-                <div class="image-child-vp">
-                    <img src="/public/img/lisa1.jpg" />
-                    <div class="after-vp"></div>
-                </div>
+        <div class="image-child-vp ">
+            <img src="/public/img/lisa3.jpg" />
+            <div class="after-vp"></div>
+        </div>
+        <div class="image-child-vp">
+            <img src="/public/img/lisa2.jpg" />
+            <div class="after-vp"></div>
+        </div>
+        <div class="image-child-vp">
+            <img src="/public/img/lisa1.jpg" />
+            <div class="after-vp"></div>
+        </div>
+        <div class="image-child-vp">
+            <img src="/public/img/lisa4.jpg" />
+            <div class="after-vp"></div>
+        </div>
+        <div class="image-child-vp">
+            <img src="/public/img/lisa5.jpg" />
+            <div class="after-vp"></div>
+        </div>
+        <div class="image-child-vp">
+            <img src="/public/img/lisa1.jpg" />
+            <div class="after-vp"></div>
+        </div>
 
 
 
