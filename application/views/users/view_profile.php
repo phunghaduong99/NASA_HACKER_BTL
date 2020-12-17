@@ -1,7 +1,7 @@
 <div class="container-vp">
     <div class="information-vp">
         <div class="avata-vp">
-            <img src=" <?php echo $image_user?>" alt="">
+            <img src="/public/img/avata.jpg" alt="">
         </div>
 
         <div class="text-vp">
@@ -45,27 +45,29 @@
     <div class="image-vp">
         <div class="image-parent-vp">
             <div class="image-row-vp">
-                <div class="image-child-vp ">
-                    <img src="<?php echo $posts[0]["Post"]["image"]?>" />
+                <div class="image-left-vp image-container-vp ">
+                    <img src="/public/img/lisa3.jpg" />
                     <div class="after-vp"></div>
                 </div>
-                <div class="image-child-vp">
-                    <img src="<?php echo $posts[1]["Post"]["image"]?>" />
+                <div class="image-center-vp image-container-vp">
+                    <img src="/public/img/lisa2.jpg" />
                     <div class="after-vp"></div>
                 </div>
-                <div class="image-child-vp">
+                <div class="image-right-vp image-container-vp">
                     <img src="/public/img/lisa1.jpg" />
                     <div class="after-vp"></div>
                 </div>
-                <div class="image-child-vp">
+            </div>
+            <div class="image-row-vp">
+                <div class="image-left-vp image-container-vp ">
                     <img src="/public/img/lisa4.jpg" />
                     <div class="after-vp"></div>
                 </div>
-                <div class="image-child-vp">
+                <div class="image-center-vp image-container-vp">
                     <img src="/public/img/lisa5.jpg" />
                     <div class="after-vp"></div>
                 </div>
-                <div class="image-child-vp">
+                <div class="image-right-vp image-container-vp">
                     <img src="/public/img/lisa1.jpg" />
                     <div class="after-vp"></div>
                 </div>
