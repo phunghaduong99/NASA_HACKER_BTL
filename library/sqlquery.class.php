@@ -122,7 +122,7 @@ class SQLQuery {
 		$this->_query = 'SELECT * FROM '.$from.' WHERE '.$conditions;
 
 
-//        var_dump($this->_query) ; die();
+//        var_dump($this->_query) ;
 		$this->_result = mysqli_query( $this->_dbHandle, $this->_query);
 
 
@@ -382,7 +382,7 @@ class SQLQuery {
 
 		$this->_result = mysqli_query($this->_dbHandle, $query);
 		if($this->_dbHandle->insert_id != null) $this->insert_id =  $this->_dbHandle->insert_id ;
-//        var_dump([ $this->_result, $query]);
+//        var_dump([ $query]);
 		$this->clear();
 		if ($this->_result == 0) {
             /** Error Generation **/

@@ -56,7 +56,7 @@
                     responseData = JSON.parse(xhr.responseText);
                     if (responseData.Authorization) {
                         document.cookie = "Authorization=" + responseData.Authorization + "; path=/"
-                        window.location.href = "/posts/view";
+                        window.location.href = "/users/view";
                     } else {
                         alert("Bad response (no token)");
                     }

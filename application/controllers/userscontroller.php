@@ -14,6 +14,7 @@ class UsersController extends VanillaController {
 
     function view($queryString="") {
         global $method;
+        var_dump($this->User); die();
 //        $this->User->where('id',1);
 //        $this->User->showHasMany();
 //        $user = $this->User->search();
@@ -37,7 +38,29 @@ class UsersController extends VanillaController {
     function view_profile($queryString = "") {
         global $method;
         $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users". DS . 'header.php';
-//        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users". DS . 'header.php';
+
+        $this->User->where('id',1);
+        $this->User->showHasMany();
+        $this->User->showHasOne();
+        $user = $this->User->search();
+        $this->set('user',$user[0]["User"]);
+        $this->set('image_user',$user[0]["Image"]["content"]);
+        $posts = $user[0]["Post"];
+        // lay image cho cac post trong posts
+        if(count($posts) >0 ){
+            $this->Post = new Post();
+            foreach ($posts as &$post) {
+                if($post["Post"]["id"] != null){
+                    $this->Post->where('id', $post["Post"]["id"]);
+                    $this->Post->showHasOne();
+                    $result = $this->Post->search();
+                    $post["Post"]["image"] = $result[0]["Image"]["content"];
+                }
+
+            }
+        }
+        $this->set('posts',$posts);
+
         if ($method == 'GET') {
 
         }elseif ($method == 'POST') {
@@ -47,7 +70,18 @@ class UsersController extends VanillaController {
 
     function view_post($queryString = "") {
         global $method;
+
         $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users". DS . 'header.php';
+        $this->User->where('id',1);
+        $this->User->showHasMany();
+        $user = $this->User->search();
+        // pass data to view
+        $this->set('user',$user[0]["User"]);
+        $this->set('posts',$user[0]["Post"]);
+//        echo json_encode($user);
+//        echo json_encode($user[0]["User"]["username"]);
+//        echo json_encode($user[0]["Post"][0]["Post"]["id"]);
+//        $this->sendJson("Current user " );
         if ($method == 'GET') {
 
         }elseif ($method == 'POST') {
@@ -155,57 +189,59 @@ class UsersController extends VanillaController {
     function vEdit($queryString = "") {
         global $method;
         if ($method == "POST") {
-            // find ID
             $this->User->where('id', $this->body["id"]);
-
             $users = $this->User->search();
             if (empty($users)) {
                 $this->sendJson(["error" => "Not found user"]);
 
             } else {
                 // set fields need to be updated
-                $this->User->id = $this->body["id"];
-                $this->User->profile_title = $this->body["profile_title"];
-
-                if ($_FILES["profile_url"]["name"] != null) {
-
-                    $image_base64 = base64_encode(file_get_contents($_FILES['profile_url']['tmp_name']));
-                    $image = 'data:image/png;base64,'.$image_base64;
-
-//                    var_dump([move_uploaded_file($tmp_name, $name), $_FILES , $tmp_name, $image]);die();
-                    $this->Image = new Image();
-                    $this->Image->content = $image;
-                    $this->Image->save();
-                    $image_id = $this->Image->insert_id;
-                    $this->Image->insert_id = null;
-                    if(is_numeric($image_id) && intval($image_id) >0){
-                        //cap nhat images_id trong table User
-                        $this->User->image_id = $image_id;
-//                        var_dump( $this->User); die();
+                if(isset($this->body["id"])){
+                    $this->User->id = $this->body["id"];
+                    // update fields of User
+                    if(isset($this->body["profile_title"]))
+                        $this->User->profile_title = $this->body["profile_title"];
+                    if(isset($this->body["profile_description"]))
+                        $this->User->profile_description = $this->body["profile_description"];
+                    if(isset($this->body["username"]))
+                        $this->User->username = $this->body["username"];
+                    if(isset($this->body["password"])){
+                        $this->User->setPassword($this->body["password"]) ;
                     }
-//
+                    // update image of User
+                    if ($_FILES["image"]["name"] != null) {
+                        $image_base64 = base64_encode(file_get_contents($_FILES['image']['tmp_name']));
+                        $image = 'data:image/png;base64,'.$image_base64;
+                        // call Image table
+                        $this->Image = new Image();
+                        $this->Image->content = $image;
+                        $this->Image->save();
+                        // get image_id inserted
+                        $image_id = $this->Image->insert_id;
+                        $this->Image->insert_id = null;
+                        if(is_numeric($image_id) && intval($image_id) >0){
+                            //set image of User
+                            $this->User->image_id = $image_id;
+                        }
+                    }
+                    $this->User->save();
+                    //get User
+                    $this->User->where('id',$this->body["id"]);
+                    $this->User->showHasOne();
+                    $user = $this->User->search();
+                    $image_user = $user[0]["Image"];
+                    $user[0]["User"]["image_user"] = $image_user["content"];
+                    $user = $user[0]["User"];
+//                    unset($user["password"]);
+                    unset($user["created_at"]);
+                    unset($user["updated_at"]);
+                    $this->sendJson([
+                        "status" => "OK" ,
+                        "user" =>  $user
+                    ]);
                 }
 
-                //Test phan trang
-                $this->Image = new Image();
-                $this->Image->setLimit(7);
-                $this->Image->setPage(1);
-                $images = $this->Image->search() ;
-                $totalPages = $this->Image->totalPages();
-
-                var_dump([$totalPages, $images]);die();
-                $this->User->save();
-                $this->User->where('id',$this->body["id"]);
-                $user = $this->User->search();
-                unset($user["password"]);
-                unset($user["created_at"]);
-                unset($user["update_at"]);
-                $this->sendJson([
-                    "status" => "OK" ,
-                    "user" =>  $user
-                ]);
             }
-//            var_dump([empty($users),$users ]); die();
         } else {
             header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
         }
@@ -248,6 +284,11 @@ class UsersController extends VanillaController {
     function afterAction() {
 
     }
-
+    //Test phan trang
+//$this->Image = new Image();
+//$this->Image->setLimit(7);
+//$this->Image->setPage(1);
+//$images = $this->Image->search() ;
+//$totalPages = $this->Image->totalPages();
 
 }

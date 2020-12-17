@@ -44,7 +44,7 @@ CREATE TABLE `posts` (
   `id` int(40) unsigned NOT NULL auto_increment,
   `user_id` int(40) unsigned NOT NULL,
   `post_description` varchar(255) NOT NULL ,
-  `post_image_id` int(40) unsigned NOT NULL,
+  `image_id` int(40) unsigned NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY  (`id`)

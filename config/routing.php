@@ -7,16 +7,20 @@ $routing = array(
     '/^v1\/users\/edit(.*?)/i' => "users/vEdit", //GET, POST
     '/^v1\/users\/register(.*?)/i' => "users/vRegister", //GET, POST
 
+    '/^v1\/posts\/add(.*?)/i' => "posts/vAdd",
+
     '/^users\/login(.*?)/i' => "users/login", //GET
-    '/^users\/view_post(.*?)/i' => "users/view_post", //GET
     '/^users\/view_profile(.*?)/i' => "users/view_profile", //GET
+    '/^users\/view(.*?)/i' => "users/view_post", //GET
+
 
     '/^users\/register(.*?)/i' => "users/register", //GET, POST
     '/^users\/edit(.*?)/i' => "users/edit", //GET, POST
     '/^users\/(.*)/i' => "users/view", //GET
 
 
-    '/^posts\/new(.*?)/i' => "posts/new", // GET, POST
+
+    '/^posts\/add(.*?)/i' => "posts/add", // GET, POST
     '/^posts\/edit(.*?)/i' => "posts/edit", // GET, POST
     '/^posts\/view(.*?)/i' => "posts/view"
 );

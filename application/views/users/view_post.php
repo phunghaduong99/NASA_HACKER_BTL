@@ -1,14 +1,16 @@
 
 <div class="container">
     <div class="container-post">
+        <?php if (!empty($posts)): ?>
+<!--        --><?php //foreach ($posts as $posts):?>
         <div class="post">
             <div class="header-container">
                 <div class="avata">
                     <img src="/public/img/avata1.jpg" alt="">
                 </div>
                 <div class="descrip">
-                    <b>nestkp</b>
-                    <p>TARA VILLA</p>
+                    <b><?php echo $posts['product'];?></b>
+                    <p>DUong VILLA</p>
 
                 </div>
             </div>
@@ -55,6 +57,7 @@
             </div>
 
         </div>
+        <?php endif?>
         <div class="post">
             <div class="header-container">
                 <div class="avata">

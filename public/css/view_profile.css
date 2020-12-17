@@ -122,15 +122,17 @@ margin-top: auto;
 /* ------------------------------------------------------------ */
 
 .image-vp {
+    display: flex;
+    flex-wrap: wrap;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     width: 992px;
     height: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 7px;
-    background-color: cadetblue;
 }
-
+.image-child-vp {
+    width: 318px;
+    padding: 5px;
+    height: 315px;
+}
 .image-row-vp {
     display: flex;
 }

@@ -7,7 +7,7 @@ class User extends VanillaModel {
 //       echo "model";
 //       parent::__construct();
 //    }
-    protected function setPassword($password) {
+    public function setPassword($password) {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
         $this->password = $hashedPassword;
     }
