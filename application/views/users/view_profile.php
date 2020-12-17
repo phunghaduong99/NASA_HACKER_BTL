@@ -39,38 +39,21 @@
             </div>
         </div>
         <div class="post-vp">
-            <a href="#">Add New Post</a>
+            <a href="/posts/add">Add New Post</a>
         </div>
     </div>
     <div class="image-vp">
-        <div class="image-child-vp ">
-            <img src="/public/img/lisa3.jpg" />
-            <div class="after-vp"></div>
-        </div>
-        <div class="image-child-vp">
-            <img src="/public/img/lisa2.jpg" />
-            <div class="after-vp"></div>
-        </div>
-        <div class="image-child-vp">
-            <img src="/public/img/lisa1.jpg" />
-            <div class="after-vp"></div>
-        </div>
-        <div class="image-child-vp">
-            <img src="/public/img/lisa4.jpg" />
-            <div class="after-vp"></div>
-        </div>
-        <div class="image-child-vp">
-            <img src="/public/img/lisa5.jpg" />
-            <div class="after-vp"></div>
-        </div>
-        <div class="image-child-vp">
-            <img src="/public/img/lisa1.jpg" />
-            <div class="after-vp"></div>
-        </div>
-
-
-
-
-
+        <?php if (!empty($posts)): ?>
+            <?php foreach ($posts as $post):?>
+                <div class="image-child-vp ">
+                    <img src="<?php echo $post["Post"]["image"]?>" />
+                    <div class="after-vp"></div>
+                </div>
+            <?php endforeach?>
+<!--            <div class="image-child-vp ">-->
+<!--                <img src="/public/img/lisa5.jpg" />-->
+<!--                <div class="after-vp"></div>-->
+<!--            </div>-->
+        <?php endif?>
     </div>
 </div>

@@ -77,7 +77,7 @@
             case 200:
                 responseData = JSON.parse(xhr.responseText);
                 console.log(responseData)
-                window.location.href = "/users/view";
+                window.location.href = "/users/view_profile";
                 break;
             case 401:
                 responseData = JSON.parse(xhr.responseText);
