@@ -71,6 +71,19 @@ CREATE TABLE `images` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB CHARSET=utf8mb4 ;
 
+
+CREATE TABLE `follows` (
+    `id` int(40) unsigned NOT NULL auto_increment,
+    `user_id` int(40) unsigned NOT NULL,
+    `follower_id` int(40) unsigned NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4  ;
+
+INSERT INTO `follows` (user_id, follower_id) VALUES(1, 2)
+INSERT INTO `follows` (user_id, follower_id) VALUES(1, 6)
+    INSERT INTO `follows` (user_id, follower_id) VALUES(6, 1)
 --
 -- Dumping data for table `image`
 --

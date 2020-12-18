@@ -122,7 +122,7 @@ class SQLQuery {
 		$this->_query = 'SELECT * FROM '.$from.' WHERE '.$conditions;
 
 
-//        var_dump($this->_query) ;
+//        var_dump($this->_query) ;die();
 		$this->_result = mysqli_query( $this->_dbHandle, $this->_query);
 
 
@@ -157,7 +157,7 @@ class SQLQuery {
 						$conditionsChild .= '`'.$aliasChild.'`.`'.strtolower($this->_model).'_id` = \''.$tempResults[$this->_model]['id'].'\'';
 	
 						$queryChild =  'SELECT * FROM '.$fromChild.' WHERE '.$conditionsChild;	
-						#echo '<!--'.$queryChild.'-->';
+//						var_dump($queryChild);
 						$resultChild = mysqli_query( $this->_dbHandle, $queryChild);
 //                        echo "$queryChild";
 
@@ -213,10 +213,10 @@ class SQLQuery {
 						$conditionsChild .= '`'.$joinTable.'`.`'.strtolower($this->_model).'_id` = \''.$tempResults[$this->_model]['id'].'\'';
 						$fromChild = substr($fromChild,0,-1);
 
-						$queryChild =  'SELECT * FROM '.$fromChild.' WHERE '.$conditionsChild;	
-						#echo '<!--'.$queryChild.'-->';
+						$queryChild =  'SELECT * FROM '.$fromChild.' WHERE '.$conditionsChild;
+//                        var_dump($queryChild);
 						$resultChild = mysqli_query( $this->_dbHandle, $queryChild );
-//                        echo var_dump($resultChild);
+//                         var_dump($resultChild);
 //
 						$tableChild = array();
 						$fieldChild = array();

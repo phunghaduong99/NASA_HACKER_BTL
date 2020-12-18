@@ -12,7 +12,7 @@ class UsersController extends VanillaController {
         exit();
     }
 
-    function view($queryString="") {
+    function view( $idQuery = "") {
         global $method;
         var_dump($this->User); die();
 //        $this->User->where('id',1);
@@ -35,31 +35,105 @@ class UsersController extends VanillaController {
         }
     }
 
-    function view_profile($queryString = "") {
+    function view_profile($queryString = "", $idQuery= "") {
         global $method;
+        global $loginUserId;
         $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users". DS . 'header.php';
+        $isEdit = false;
+        $getId = null;
+        if($idQuery == null || is_numeric($idQuery)){
+            if($idQuery == null){
+                $getId = $loginUserId;
+                $this->User->where('id', $loginUserId);
+            }
+            else {
+                $getId = $idQuery;
+                $this->User->where('id', $idQuery);
+            }
+            $this->User->showHasMany();
+            $this->User->showHasOne();
+            $user = $this->User->search();
 
-        $this->User->where('id',1);
-        $this->User->showHasMany();
-        $this->User->showHasOne();
-        $user = $this->User->search();
-        $this->set('user',$user[0]["User"]);
-        $this->set('image_user',$user[0]["Image"]["content"]);
-        $posts = $user[0]["Post"];
-        // lay image cho cac post trong posts
-        if(count($posts) >0 ){
-            $this->Post = new Post();
-            foreach ($posts as &$post) {
-                if($post["Post"]["id"] != null){
-                    $this->Post->where('id', $post["Post"]["id"]);
-                    $this->Post->showHasOne();
-                    $result = $this->Post->search();
-                    $post["Post"]["image"] = $result[0]["Image"]["content"];
+            //tra ve du lieu cua user
+            $this->set('user',$user[0]["User"]);
+
+            $this->Follow = new Follow();
+
+            //lay followings cua user
+            $this->Follow->where('user_id', $getId);
+            $followings = $this->Follow->search();
+
+            if(count($followings) >0 ){
+                foreach ($followings as &$following) {
+                    if($following["Follow"]["follower_id"] != null){
+                        $this->User->where('id', $following["Follow"]["follower_id"]);
+                        $result = $this->User->search();
+                        $following["Follow"]["username"] = $result[0]["User"]["username"];
+                    }
+                }
+            }
+            //tra ve followers cua user
+            $this->set('followings', $followings);
+
+            //check following
+            if($getId != $loginUserId){
+                $this->Follow->where('user_id', $loginUserId);
+                $this->Follow->where('follower_id', $getId);
+                $result = $this->Follow->search();
+                if(count($result) == 1){
+                    $this->set('isFollowing',  'UnFollow');
+                }
+                else {
+                    $this->set('isFollowing',  'Follow');
                 }
 
             }
+
+            //lay followers cua user
+            $this->Follow->where('follower_id', $getId);
+            $followers = $this->Follow->search();
+//            var_dump([$this->Follow, $getId]);die();
+            $this->set('followings', $followings);
+            if(count($followers) >0 ){
+                foreach ($followers as &$follower) {
+                    if($follower["Follow"]["user_id"] != null){
+                        $this->User->where('id', $follower["Follow"]["user_id"]);
+                        $result = $this->User->search();
+                        $follower["Follow"]["username"] = $result[0]["User"]["username"];
+                    }
+                }
+            }
+            //tra ve followers cua user
+            $this->set('followers', $followers);
+
+//            var_dump($followers);die();
+
+            //image cua user
+            $this->set('image_user',$user[0]["Image"]["content"]);
+            $posts = $user[0]["Post"];
+            // lay image cho cac post trong posts
+            if(count($posts) >0 ){
+                $this->Post = new Post();
+                foreach ($posts as &$post) {
+                    if($post["Post"]["id"] != null){
+                        $this->Post->where('id', $post["Post"]["id"]);
+                        $this->Post->showHasOne();
+                        $result = $this->Post->search();
+                        $post["Post"]["image"] = $result[0]["Image"]["content"];
+                    }
+                }
+            }
+            $this->set('posts',$posts);
+            //check quyen edit profile
+            if($this->checkLogin() == true && $idQuery == $loginUserId){
+                $isEdit = true;
+            }
+            $this->set('isEdit',$isEdit);
         }
-        $this->set('posts',$posts);
+        else {
+            header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
+        }
+
 
         if ($method == 'GET') {
 
@@ -279,6 +353,16 @@ class UsersController extends VanillaController {
         } else {
             header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
         }
+    }
+
+    function checkLogin(){
+        global $loginUserId;
+        if($loginUserId != null){
+            if(is_numeric($loginUserId) && $loginUserId > 0){
+                return true;
+            }
+        }
+        return false;
     }
 
     function afterAction() {

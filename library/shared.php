@@ -82,7 +82,7 @@ function callHook()
     global $request_uri;
     global $default;
     $queryString = [parse_url($request_uri, PHP_URL_QUERY)];
-
+    $idQuery = null;
     if (!isset($url)) {
         $controller = $default['controller'];
         $action = $default['action'];
@@ -95,12 +95,16 @@ function callHook()
         if (isset($urlArray[0])) {
             $action = $urlArray[0];
             array_shift($urlArray);
+            if(isset($urlArray[0]) ){
+                $idQuery = $urlArray[0];
+                array_shift($urlArray);
+            }
         } else {
             $action = 'index'; // Default Action
         }
     }
 
-
+    array_push($queryString, $idQuery);
     $controllerName = ucfirst($controller) . 'Controller';
 //	var_dump([$url, $request_uri, $controllerName, $action]);die;
 //    var_dump((int)method_exists($controllerName, $action));die;
