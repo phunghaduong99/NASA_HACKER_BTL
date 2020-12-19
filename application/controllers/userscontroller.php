@@ -50,10 +50,9 @@ class UsersController extends VanillaController {
                 $getId = $idQuery;
                 $this->User->where('id', $idQuery);
             }
-            $this->User->showHasMany();
-            $this->User->showHasOne();
+//            $this->User->showHasMany();
+//            $this->User->showHasOne();
             $user = $this->User->search();
-
             //tra ve du lieu cua user
             $this->set('user',$user[0]["User"]);
 
