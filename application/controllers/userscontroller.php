@@ -59,7 +59,6 @@ class UsersController extends VanillaController
             $this->User->showHasMany();
             $this->User->showHasOne();
             $user = $this->User->search();
-
             //tra ve du lieu cua user
             $this->set('user', $user[0]["User"]);
 
