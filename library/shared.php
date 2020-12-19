@@ -82,6 +82,7 @@ function callHook()
     global $request_uri;
     global $default;
     $queryString = [parse_url($request_uri, PHP_URL_QUERY)];
+    parse_str($queryString[0], $queryString);
     $idQuery = null;
     if (!isset($url)) {
         $controller = $default['controller'];
@@ -104,7 +105,7 @@ function callHook()
         }
     }
 
-    array_push($queryString, $idQuery);
+    $actionParams = [$queryString, $idQuery];
     $controllerName = ucfirst($controller) . 'Controller';
 //	var_dump([$url, $request_uri, $controllerName, $action]);die;
 //    var_dump((int)method_exists($controllerName, $action));die;
@@ -114,9 +115,9 @@ function callHook()
 
         $dispatch = new $controllerName($controller, $action);
 //        var_dump(call_user_func_array($queryString));die;
-        call_user_func_array(array($dispatch, "beforeAction"), $queryString);
-        call_user_func_array(array($dispatch, $action), $queryString);
-        call_user_func_array(array($dispatch, "afterAction"), $queryString);
+        call_user_func_array(array($dispatch, "beforeAction"), $actionParams);
+        call_user_func_array(array($dispatch, $action), $actionParams);
+        call_user_func_array(array($dispatch, "afterAction"), $actionParams);
     } else {
         header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
     }

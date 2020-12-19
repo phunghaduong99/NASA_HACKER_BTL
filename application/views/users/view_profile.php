@@ -46,18 +46,53 @@
         </div>
         <?php endif?>
     </div>
-    <div class="image-vp">
-        <?php if (!empty($posts)): ?>
-            <?php foreach ($posts as $post):?>
-                <div class="image-child-vp ">
-                    <img src="<?php echo $post["Post"]["image"]?>" />
-                    <div class="after-vp"></div>
-                </div>
-            <?php endforeach?>
+    <div class="image-vp" id="posts-container">
 <!--            <div class="image-child-vp ">-->
 <!--                <img src="/public/img/lisa5.jpg" />-->
 <!--                <div class="after-vp"></div>-->
 <!--            </div>-->
-        <?php endif?>
     </div>
 </div>
+<script type="text/javascript">
+    window.onload = function() {
+        getPosts()
+    }
+    function getPosts()
+    {
+        let xhr = new XMLHttpRequest();
+
+        xhr.open('GET', "/v1/users/<?php echo $user['id']?>/posts?limit=2page=1");
+
+        // request state change event
+        xhr.onreadystatechange = function() {
+
+            // request completed?
+            if (xhr.readyState !== 4) return;
+
+            if (xhr.status === 200) {
+                // request successful - show response
+                let data = JSON.parse(xhr.responseText);
+                console.log(data)
+                let postsContainer = document.getElementById("posts-container")
+                if (data.posts) {
+                    for (let postIndex in data.posts){
+                        postsContainer.innerHTML+=
+                            '<div class="image-child-vp ">'
+                            + '<img src="'
+                            + data.posts[postIndex].image
+                            + '" />'
+                            + '<div class="after-vp"></div>'
+                            + ' </div>'
+                    }
+                }
+            }
+            else {
+                // request error
+                console.log('HTTP error', xhr.status, xhr.statusText);
+            }
+        };
+
+// start request
+        xhr.send();
+    }
+</script>

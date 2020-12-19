@@ -1,20 +1,25 @@
 <?php
 include_once(ROOT . DS . 'helpers/jwt.php');
 
-class UsersController extends VanillaController {
+class UsersController extends VanillaController
+{
 
-    function beforeAction () {
+    function beforeAction()
+    {
 
     }
 
-    function index($queryString="") {
-        header("Location: " . BASE_PATH . "users/view",true, 302);
+    function index($queryString = "")
+    {
+        header("Location: " . BASE_PATH . "users/view", true, 302);
         exit();
     }
 
-    function view( $idQuery = "") {
+    function view($idQuery = "")
+    {
         global $method;
-        var_dump($this->User); die();
+        var_dump($this->User);
+        die();
 //        $this->User->where('id',1);
 //        $this->User->showHasMany();
 //        $user = $this->User->search();
@@ -25,28 +30,29 @@ class UsersController extends VanillaController {
 //        $this->sendJson($user);
     }
 
-    function register($queryString = "") {
+    function register($queryString = "")
+    {
         global $method;
         $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . 'header.php';
         if ($method == 'GET') {
 //            $this->sendJson(" for used email");
-        }elseif ($method == 'POST') {
+        } elseif ($method == 'POST') {
 //            $this->sendJson("checking for used email");
         }
     }
 
-    function view_profile($queryString = "", $idQuery= "") {
+    function view_profile($queryString = "", $idQuery = "")
+    {
         global $method;
         global $loginUserId;
-        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users". DS . 'header.php';
+        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users" . DS . 'header.php';
         $isEdit = false;
         $getId = null;
-        if($idQuery == null || is_numeric($idQuery)){
-            if($idQuery == null){
+        if ($idQuery == null || is_numeric($idQuery)) {
+            if ($idQuery == null) {
                 $getId = $loginUserId;
                 $this->User->where('id', $loginUserId);
-            }
-            else {
+            } else {
                 $getId = $idQuery;
                 $this->User->where('id', $idQuery);
             }
@@ -55,7 +61,7 @@ class UsersController extends VanillaController {
             $user = $this->User->search();
 
             //tra ve du lieu cua user
-            $this->set('user',$user[0]["User"]);
+            $this->set('user', $user[0]["User"]);
 
             $this->Follow = new Follow();
 
@@ -63,9 +69,9 @@ class UsersController extends VanillaController {
             $this->Follow->where('user_id', $getId);
             $followings = $this->Follow->search();
 
-            if(count($followings) >0 ){
+            if (count($followings) > 0) {
                 foreach ($followings as &$following) {
-                    if($following["Follow"]["follower_id"] != null){
+                    if ($following["Follow"]["follower_id"] != null) {
                         $this->User->where('id', $following["Follow"]["follower_id"]);
                         $result = $this->User->search();
                         $following["Follow"]["username"] = $result[0]["User"]["username"];
@@ -76,15 +82,14 @@ class UsersController extends VanillaController {
             $this->set('followings', $followings);
 
             //check following
-            if($getId != $loginUserId){
+            if ($getId != $loginUserId) {
                 $this->Follow->where('user_id', $loginUserId);
                 $this->Follow->where('follower_id', $getId);
                 $result = $this->Follow->search();
-                if(count($result) == 1){
-                    $this->set('isFollowing',  'UnFollow');
-                }
-                else {
-                    $this->set('isFollowing',  'Follow');
+                if (count($result) == 1) {
+                    $this->set('isFollowing', 'UnFollow');
+                } else {
+                    $this->set('isFollowing', 'Follow');
                 }
 
             }
@@ -94,9 +99,9 @@ class UsersController extends VanillaController {
             $followers = $this->Follow->search();
 //            var_dump([$this->Follow, $getId]);die();
             $this->set('followings', $followings);
-            if(count($followers) >0 ){
+            if (count($followers) > 0) {
                 foreach ($followers as &$follower) {
-                    if($follower["Follow"]["user_id"] != null){
+                    if ($follower["Follow"]["user_id"] != null) {
                         $this->User->where('id', $follower["Follow"]["user_id"]);
                         $result = $this->User->search();
                         $follower["Follow"]["username"] = $result[0]["User"]["username"];
@@ -109,13 +114,13 @@ class UsersController extends VanillaController {
 //            var_dump($followers);die();
 
             //image cua user
-            $this->set('image_user',$user[0]["Image"]["content"]);
+            $this->set('image_user', $user[0]["Image"]["content"]);
             $posts = $user[0]["Post"];
             // lay image cho cac post trong posts
-            if(count($posts) >0 ){
+            if (count($posts) > 0) {
                 $this->Post = new Post();
                 foreach ($posts as &$post) {
-                    if($post["Post"]["id"] != null){
+                    if ($post["Post"]["id"] != null) {
                         $this->Post->where('id', $post["Post"]["id"]);
                         $this->Post->showHasOne();
                         $result = $this->Post->search();
@@ -123,47 +128,99 @@ class UsersController extends VanillaController {
                     }
                 }
             }
-            $this->set('posts',$posts);
+            $this->set('posts', $posts);
             //check quyen edit profile
-            if($this->checkLogin() == true && $idQuery == $loginUserId){
+            if ($this->checkLogin() == true && $idQuery == $loginUserId) {
                 $isEdit = true;
             }
-            $this->set('isEdit',$isEdit);
-        }
-        else {
+            $this->set('isEdit', $isEdit);
+        } else {
             header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
         }
 
 
         if ($method == 'GET') {
 
-        }elseif ($method == 'POST') {
+        } elseif ($method == 'POST') {
 
         }
     }
 
-    function view_post($queryString = "") {
+    function vGetPosts($queries = [], $idQuery = "")
+    {
+        // Luon co $idQuery
+        global $method;
+        global $loginUserId;
+        if ($method == "GET") {
+            if (is_numeric($idQuery)) {
+                $this->User->where('id', $idQuery);
+                $this->User->setLimit(2);
+                $this->User->setPage(1);
+                if ($queries["limit"] && is_numeric($queries["limit"])) {
+                    $this->User->setHasManyLimit("Post", $queries["limit"]);
+                }
+
+                if ($queries["page"] && is_numeric($queries["page"])) {
+                    $this->User->setHasManyPage("Post", $queries["page"]);
+                }
+                $this->User->showHasMany();
+                $users = $this->User->search();
+                if (empty($users)) {
+                    http_response_code(403);
+                    $this->sendJson(["error" => "User with id: " . $idQuery . " does not exist"]);
+                }
+                $user = $users[0];
+                $posts = $user["Post"];
+                // lay image cho cac post trong posts
+                if (count($posts) > 0) {
+                    $this->Post = new Post();
+                    foreach ($posts as &$post) {
+                        if ($post["Post"]["id"] != null) {
+                            $this->Post->where('id', $post["Post"]["id"]);
+                            $this->Post->showHasOne();
+                            $result = $this->Post->search();
+                            $post["Post"]["image"] = $result[0]["Image"]["content"];
+                        }
+                        $post = $post["Post"];
+                    }
+                } else {
+                    $posts = [];
+                }
+                $this->sendJson(["posts" => $posts]);
+
+            } else {
+                http_response_code(403);
+                $this->sendJson(["error" => "Invalid request"]);
+            }
+        } else {
+            http_response_code(404);
+        }
+    }
+
+    function view_post($queryString = "")
+    {
         global $method;
 
-        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users". DS . 'header.php';
-        $this->User->where('id',1);
+        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users" . DS . 'header.php';
+        $this->User->where('id', 1);
         $this->User->showHasMany();
         $user = $this->User->search();
         // pass data to view
-        $this->set('user',$user[0]["User"]);
-        $this->set('posts',$user[0]["Post"]);
+        $this->set('user', $user[0]["User"]);
+        $this->set('posts', $user[0]["Post"]);
 //        echo json_encode($user);
 //        echo json_encode($user[0]["User"]["username"]);
 //        echo json_encode($user[0]["Post"][0]["Post"]["id"]);
 //        $this->sendJson("Current user " );
         if ($method == 'GET') {
 
-        }elseif ($method == 'POST') {
+        } elseif ($method == 'POST') {
 
         }
     }
 
-    function login($queryString = "") {
+    function login($queryString = "")
+    {
         global $method;
 
         $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . 'header.php';
@@ -174,9 +231,8 @@ class UsersController extends VanillaController {
         }
     }
 
-
-
-    function edit($queryString = "") {
+    function edit($queryString = "")
+    {
         global $method;
         $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . 'header.php';
         if ($method == 'GET') {
@@ -186,23 +242,24 @@ class UsersController extends VanillaController {
 //                $this->sendJson("Not login");
 //            }
 //            $this->sendJson("Sent get profile data");
-        }elseif ($method == 'POST') {
+        } elseif ($method == 'POST') {
             $this->sendJson("Sent edit profile data");
         }
     }
 
-    function vLogin($queryString = "") {
+    function vLogin($queryString = "")
+    {
         global $method;
         if ($method == "POST") {
             // Validate input
             $validateError = $this->validateLoginInput($this->body["email"], $this->body["password"]);
             if (!empty($validateError)) {
                 http_response_code(403);
-                $this->sendJson(["validateError"=>$validateError]);
+                $this->sendJson(["validateError" => $validateError]);
             }
 
             // check for password
-            $this->User->where('email',$this->body["email"]);
+            $this->User->where('email', $this->body["email"]);
             $users = $this->User->search();
             // them truong image_users
             $user[image_user] = null;
@@ -211,8 +268,8 @@ class UsersController extends VanillaController {
                 $user = $users[0]["User"];
 
                 if (password_verify($this->body["password"], $user["password"])) {
-                    if($user[images_users_id] != null){
-                        $this->User->where('email',$this->body["email"]);
+                    if ($user[images_users_id] != null) {
+                        $this->User->where('email', $this->body["email"]);
                         // them dong nay de lay them image cho Users
                         $this->User->showHasOne();
                         $users = $this->User->search();
@@ -225,7 +282,7 @@ class UsersController extends VanillaController {
                     unset($user["update_at"]);
 
                     $this->sendJson([
-                        "Authorization"=>$jwtHelper->encode(["id"=>$user["id"]]),
+                        "Authorization" => $jwtHelper->encode(["id" => $user["id"]]),
                         "user" => $user,
                     ]);
                     return;
@@ -241,7 +298,8 @@ class UsersController extends VanillaController {
         }
     }
 
-    function validateLoginInput($email, $password) {
+    function validateLoginInput($email, $password)
+    {
         include_once(ROOT . DS . 'helpers/validate.php');
 
         $validator = new Validator();
@@ -260,7 +318,8 @@ class UsersController extends VanillaController {
     }
 
     //API update Users of table users
-    function vEdit($queryString = "") {
+    function vEdit($queryString = "")
+    {
         global $method;
         if ($method == "POST") {
             $this->User->where('id', $this->body["id"]);
@@ -270,22 +329,22 @@ class UsersController extends VanillaController {
 
             } else {
                 // set fields need to be updated
-                if(isset($this->body["id"])){
+                if (isset($this->body["id"])) {
                     $this->User->id = $this->body["id"];
                     // update fields of User
-                    if(isset($this->body["profile_title"]))
+                    if (isset($this->body["profile_title"]))
                         $this->User->profile_title = $this->body["profile_title"];
-                    if(isset($this->body["profile_description"]))
+                    if (isset($this->body["profile_description"]))
                         $this->User->profile_description = $this->body["profile_description"];
-                    if(isset($this->body["username"]))
+                    if (isset($this->body["username"]))
                         $this->User->username = $this->body["username"];
-                    if(isset($this->body["password"])){
-                        $this->User->setPassword($this->body["password"]) ;
+                    if (isset($this->body["password"])) {
+                        $this->User->setPassword($this->body["password"]);
                     }
                     // update image of User
                     if ($_FILES["image"]["name"] != null) {
                         $image_base64 = base64_encode(file_get_contents($_FILES['image']['tmp_name']));
-                        $image = 'data:image/png;base64,'.$image_base64;
+                        $image = 'data:image/png;base64,' . $image_base64;
                         // call Image table
                         $this->Image = new Image();
                         $this->Image->content = $image;
@@ -293,14 +352,14 @@ class UsersController extends VanillaController {
                         // get image_id inserted
                         $image_id = $this->Image->insert_id;
                         $this->Image->insert_id = null;
-                        if(is_numeric($image_id) && intval($image_id) >0){
+                        if (is_numeric($image_id) && intval($image_id) > 0) {
                             //set image of User
                             $this->User->image_id = $image_id;
                         }
                     }
                     $this->User->save();
                     //get User
-                    $this->User->where('id',$this->body["id"]);
+                    $this->User->where('id', $this->body["id"]);
                     $this->User->showHasOne();
                     $user = $this->User->search();
                     $image_user = $user[0]["Image"];
@@ -310,8 +369,8 @@ class UsersController extends VanillaController {
                     unset($user["created_at"]);
                     unset($user["updated_at"]);
                     $this->sendJson([
-                        "status" => "OK" ,
-                        "user" =>  $user
+                        "status" => "OK",
+                        "user" => $user
                     ]);
                 }
 
@@ -322,32 +381,32 @@ class UsersController extends VanillaController {
     }
 
     //API register User of table users
-    function vRegister($queryString = "") {
+    function vRegister($queryString = "")
+    {
         global $method;
         if ($method == "POST") {
             // find ID
-            $this->User->where('id',$this->body["id"]);
+            $this->User->where('id', $this->body["id"]);
             $users = $this->User->search();
-            if(empty($users)){
+            if (empty($users)) {
                 // set fields need to be updated
-                $this->User->id =  $this->body["id"];
-                $this->User->profile_title =  $this->body["profile_title"];
+                $this->User->id = $this->body["id"];
+                $this->User->profile_title = $this->body["profile_title"];
                 $this->User->save();
 
 
-                $this->User->where('id',$this->body["id"]);
+                $this->User->where('id', $this->body["id"]);
                 $user = $this->User->search();
                 unset($user["password"]);
                 unset($user["created_at"]);
                 unset($user["update_at"]);
                 $this->sendJson([
-                    "status" => "OK" ,
-                    "user" =>  $user
+                    "status" => "OK",
+                    "user" => $user
                 ]);
 
-            }
-            else {
-                $this->sendJson(["error"=>"User existed!"]);
+            } else {
+                $this->sendJson(["error" => "User existed!"]);
             }
 //            var_dump([empty($users),$users ]); die();
         } else {
@@ -355,17 +414,19 @@ class UsersController extends VanillaController {
         }
     }
 
-    function checkLogin(){
+    function checkLogin()
+    {
         global $loginUserId;
-        if($loginUserId != null){
-            if(is_numeric($loginUserId) && $loginUserId > 0){
+        if ($loginUserId != null) {
+            if (is_numeric($loginUserId) && $loginUserId > 0) {
                 return true;
             }
         }
         return false;
     }
 
-    function afterAction() {
+    function afterAction()
+    {
 
     }
     //Test phan trang

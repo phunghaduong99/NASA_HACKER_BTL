@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/public/css/header_user.css">
       <link rel="stylesheet" href="/public/css/view_profile.css">
     <link rel="stylesheet" href="/public/css/view_post.css">
-
+    <script src="/public/js/header.js"></script>
     <title></title>
 </head>
 
@@ -29,11 +29,11 @@
         <div class="right">
             <div class=" right dropdown">
                 <div class="dropbtn">
-                    <p>lalalisa</p>
+                    <p onclick="goToProfile()">lalalisa</p>
                     <img src="/public/img/icon.jpg" alt="">
                 </div>
                 <div class="dropdown-content">
-                    <a href="#">Log Out</a>
+                    <a href="#" onclick="logout()">Log Out</a>
                 </div>
             </div>
         </div>

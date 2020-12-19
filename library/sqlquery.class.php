@@ -17,6 +17,8 @@ class SQLQuery {
 	protected $_hMABTM;
 	protected $_page;
 	protected $_limit;
+	protected $_hMPage;
+	protected $_hMLimit;
 
 
     /** Connects to database **/
@@ -77,6 +79,14 @@ class SQLQuery {
 		$this->_page = $page;
 	}
 
+    function setHasManyLimit($child, $limit) {
+        $this->_hMlimit[$child] = $limit;
+    }
+
+    function setHasManyPage($child, $page) {
+        $this->_hMpage[$child] = $page;
+    }
+
 	function orderBy($orderBy, $order = 'ASC') {
 		$this->_orderBy = $orderBy;
 		$this->_order = $order;
@@ -118,7 +128,7 @@ class SQLQuery {
 			$offset = ($this->_page-1)*$this->_limit;
 			$conditions .= ' LIMIT '.$this->_limit.' OFFSET '.$offset;
 		}
-		
+
 		$this->_query = 'SELECT * FROM '.$from.' WHERE '.$conditions;
 
 
@@ -145,7 +155,7 @@ class SQLQuery {
 				if ($this->_hM == 1 && isset($this->hasMany)) {
 					foreach ($this->hasMany as $aliasChild => $modelChild) {
 						$queryChild = '';
-						$conditionsChild = '';
+                        $conditionsChild = '';
 						$fromChild = '';
 
 						$tableChild = strtolower($inflect->pluralize($modelChild));
@@ -155,8 +165,13 @@ class SQLQuery {
 						$fromChild .= '`'.$tableChild.'` as `'.$aliasChild.'`';
 						
 						$conditionsChild .= '`'.$aliasChild.'`.`'.strtolower($this->_model).'_id` = \''.$tempResults[$this->_model]['id'].'\'';
-	
-						$queryChild =  'SELECT * FROM '.$fromChild.' WHERE '.$conditionsChild;	
+
+                        if (isset($this->_hMpage[$aliasChild])) {
+                            $offset = ($this->_hMpage[$aliasChild]-1)*$this->_hMlimit[$aliasChild];
+                            $conditionsChild .= ' LIMIT '.$this->_hMlimit[$aliasChild].' OFFSET '.$offset;
+                        }
+
+						$queryChild =  'SELECT * FROM '.$fromChild.' WHERE '.$conditionsChild;
 //						var_dump($queryChild);
 						$resultChild = mysqli_query( $this->_dbHandle, $queryChild);
 //                        echo "$queryChild";
