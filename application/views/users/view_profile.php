@@ -91,9 +91,13 @@
 
 <script type="text/javascript">
     window.onload = function() {
-        alert(345)
-        getPosts()
+        sessionStorage.setItem("user_profile_post_page", 0)
     }
+    window.onscroll = function(ev) {
+        if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+            getPosts(parseInt(sessionStorage.getItem("user_profile_post_page"))+1)
+        }
+    };
     // Get the modal
     var modal = document.getElementById("myModal");
 
@@ -114,11 +118,14 @@
     }
 
 
-    function getPosts()
+    function getPosts(page=1, limit = 9)
     {
+        if (page<= parseInt(sessionStorage.getItem("user_profile_post_page"))) {
+            return;
+        }
         let xhr = new XMLHttpRequest();
 
-        xhr.open('GET', "/v1/users/<?php echo $user['id']?>/posts?limit=2page=1");
+        xhr.open('GET', "/v1/users/<?php echo $user['id']?>/posts?limit="+limit+"&page="+page);
 
         // request state change event
         xhr.onreadystatechange = function() {
@@ -129,12 +136,13 @@
             if (xhr.status === 200) {
                 // request successful - show response
                 let data = JSON.parse(xhr.responseText);
-                console.log(data)
+                sessionStorage.setItem("user_profile_post_page", page)
+                // console.log(data)
                 let postsContainer = document.getElementById("posts-container")
                 if (data.posts) {
                     for (let postIndex in data.posts){
                         postsContainer.innerHTML+=
-                            '<div id="myBtn class="image-child-vp ">'
+                            '<div id="myBtn" class="image-child-vp ">'
                             + '<img src="'
                             + data.posts[postIndex].image
                             + '" />'
