@@ -172,3 +172,167 @@ p.nick-name-vp {
 .image-child-vp:hover img {
     transform: scale(1.2);
 }
+
+
+/* ----------------moi----------- */
+
+.after-vp-tym {
+    position: absolute;
+    display: flex;
+    top: 48%;
+    left: 44%;
+    width: 40px;
+    height: 40px;
+    opacity: 0.5;
+    transition: 0s;
+    visibility: hidden;
+}
+
+.after-vp-tym img {
+    width: 30px;
+    height: 30px;
+    margin: auto;
+    transition: 0s !important;
+}
+
+.after-vp-tym p {
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+.image-child-vp:hover .after-vp-tym {
+    visibility: visible;
+}
+
+
+/* -------dialog---------------- */
+
+
+/* The Modal (background) */
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+
+/* Modal Content */
+
+.modal-content {
+    /* background-color: #fefefe; */
+    margin: auto;
+    padding: 20px;
+    /* border: 1px solid #888; */
+    width: 67%;
+}
+
+
+/* The Close Button */
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: -8px;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+p,
+div {
+    margin: 0px;
+    padding: 0px;
+}
+
+.model {
+    z-index: 1;
+    /* position: fixed; */
+    width: 818px;
+    background-color: teal;
+    margin: auto;
+    overflow: hidden;
+}
+
+.model-content {
+    width: 100%;
+    display: flex;
+}
+
+.model-content .model-image {
+    width: 483px;
+}
+
+.model-image img {
+    width: 483px;
+    height: 483px;
+}
+
+.model-infor {
+    width: 335px;
+    background-color: #ece3ec;
+    padding: 11px;
+}
+
+.model-content .model-caption {
+    width: 100%;
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.model-caption .avata {
+    width: 42px;
+    height: 42px;
+}
+
+.model-caption .avata img {
+    width: 42px;
+    height: 42px;
+    -webkit-border-radius: 50%;
+}
+
+.model-caption .name {
+    padding-left: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.model-caption .model-action {}
+
+.caption-content {
+    font-size: 14px;
+    margin-bottom: 1rem;
+}
+
+.model-action {
+    display: inline-flex;
+}
+
+p.number_heart {
+    margin-bottom: auto;
+    margin-top: auto;
+    margin-right: 5px;
+}

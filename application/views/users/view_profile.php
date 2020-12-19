@@ -49,9 +49,13 @@
     <div class="image-vp">
         <?php if (!empty($posts)): ?>
             <?php foreach ($posts as $post):?>
-                <div class="image-child-vp ">
+                <div id="myBtn" class="image-child-vp ">
                     <img src="<?php echo $post["Post"]["image"]?>" />
                     <div class="after-vp"></div>
+                    <div class="after-vp-tym">
+                        <p>8</p>
+                        <img src="images/icons8-heart-26.png" alt="">
+                    </div>
                 </div>
             <?php endforeach?>
 <!--            <div class="image-child-vp ">-->
@@ -60,4 +64,61 @@
 <!--            </div>-->
         <?php endif?>
     </div>
+
 </div>
+
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="model" id="myModel">
+            <div class="model-content">
+                <div class="model-image">
+                    <img src="images/post2.jpg" alt="">
+                </div>
+                <div class="model-infor">
+                    <div class="model-caption">
+                        <div class="avata">
+                            <img src="images/avata1.jpg" alt="">
+                        </div>
+                        <div class="name">
+                            <p>TARA VILLA</p>
+                        </div>
+                    </div>
+                    <div class="caption-content">
+                        <p>Tôi sẽ đi đến cuối con đường và chờ bạn ở đó. Hãy chờ tôi đừng để tôi phải tìm bạn</p>
+                    </div>
+                    <div class="model-action">
+                        <p class="number_heart">6</p>
+                        <img class="heart" src="images/icons8-heart-26.png" alt="">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+</script>
