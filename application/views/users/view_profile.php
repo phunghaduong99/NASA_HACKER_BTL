@@ -90,13 +90,18 @@
 </div>
 
 <script type="text/javascript">
-    window.onload = function() {
-        sessionStorage.setItem("user_profile_post_page", 0)
-    }
+    var busy = false;
+    var page =1;
+    var limit=9;
     window.onscroll = function(ev) {
-        if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-            getPosts(parseInt(sessionStorage.getItem("user_profile_post_page"))+1)
+        if(((window.innerHeight + window.scrollY) >= document.body.offsetHeight))
+        {
+            if(busy)
+                return;
+            busy = true;
+            getPosts(()=>{busy=false})
         }
+        return false;
     };
     // Get the modal
     var modal = document.getElementById("myModal");
@@ -118,11 +123,8 @@
     }
 
 
-    function getPosts(page=1, limit = 9)
+    function getPosts(callback=()=>{})
     {
-        if (page<= parseInt(sessionStorage.getItem("user_profile_post_page"))) {
-            return;
-        }
         let xhr = new XMLHttpRequest();
 
         xhr.open('GET', "/v1/users/<?php echo $user['id']?>/posts?limit="+limit+"&page="+page);
@@ -136,8 +138,12 @@
             if (xhr.status === 200) {
                 // request successful - show response
                 let data = JSON.parse(xhr.responseText);
-                sessionStorage.setItem("user_profile_post_page", page)
-                // console.log(data)
+                if (data.posts.length == 0) {
+                    setTimeout(callback, 5000)
+                } else {
+                    page++
+                    callback()
+                }
                 let postsContainer = document.getElementById("posts-container")
                 if (data.posts) {
                     for (let postIndex in data.posts){

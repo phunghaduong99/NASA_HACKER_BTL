@@ -153,8 +153,6 @@ class UsersController extends VanillaController
         if ($method == "GET") {
             if (is_numeric($idQuery)) {
                 $this->User->where('id', $idQuery);
-                $this->User->setLimit(2);
-                $this->User->setPage(1);
                 if ($queries["limit"] && is_numeric($queries["limit"])) {
                     $this->User->setHasManyLimit("Post", $queries["limit"]);
                 }
