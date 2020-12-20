@@ -241,7 +241,7 @@ p.nick-name-vp {
     margin: auto;
     padding: 20px;
     /* border: 1px solid #888; */
-    width: 67%;
+    width: 45%;
 }
 
 
@@ -272,7 +272,6 @@ div {
     z-index: 1;
     /* position: fixed; */
     width: 818px;
-    background-color: teal;
     margin: auto;
     overflow: hidden;
 }
@@ -288,7 +287,6 @@ div {
 
 .model-image img {
     width: 483px;
-    height: 483px;
 }
 
 .model-infor {

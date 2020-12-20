@@ -345,19 +345,32 @@ class SQLQuery {
     /** Delete an Object **/
 
 	function delete() {
-//        echo "delete";
+
 		if ($this->id) {
 			$query = 'DELETE FROM '.$this->_table.' WHERE `id`=\''.mysqli_real_escape_string($this->id).'\'';
-			$this->_result = mysqli_query($query, $this->_dbHandle);
+			$this->_result = mysqli_query($this->_dbHandle, $query );
 			$this->clear();
 			if ($this->_result == 0) {
 			    /** Error Generation **/
 				return -1;
 		   }
 		} else {
-			/** Error Generation **/
-			return -1;
+            if($this->_extraConditions){
+                $from = '`'.$this->_table.'` as `'.$this->_model.'` ';
+                $conditions = '\'1\'=\'1\' AND ';
+                $conditions.= $this->_extraConditions;
+                $conditions = substr($conditions,0,-4);
+                $query = 'DELETE FROM '.$from. ' WHERE ' .$conditions;
+                $this->_result = mysqli_query($this->_dbHandle, $query );
+                $this->clear();
+                if ($this->_result == 0) {
+                    /** Error Generation **/
+                    return -1;
+                }
+            }
+
 		}
+        return 0;
 		
 	}
 

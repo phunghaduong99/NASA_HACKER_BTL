@@ -6,6 +6,7 @@ $routing = array(
     '/^v1\/users\/login(.*?)/i' => "users/vLogin", //GET, POST
     '/^v1\/users\/edit(.*?)/i' => "users/vEdit", //GET, POST
     '/^v1\/users\/register(.*?)/i' => "users/vRegister", //GET, POST
+    '/^v1\/users\/follow(.*?)/i' => "users/vFollow", //GET, POST
 
     '/^v1\/posts\/add(.*?)/i' => "posts/vAdd",
 

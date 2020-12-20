@@ -129,7 +129,7 @@ class UsersController extends VanillaController
             }
             $this->set('posts', $posts);
             //check quyen edit profile
-            if ($this->checkLogin() == true && $idQuery == $loginUserId) {
+            if ($this->checkLogin() == true && ($idQuery == $loginUserId || $idQuery== null) ) {
                 $isEdit = true;
             }
             $this->set('isEdit', $isEdit);
@@ -142,6 +142,41 @@ class UsersController extends VanillaController
 
         } elseif ($method == 'POST') {
 
+        }
+    }
+
+    function vFollow($queries = [], $idQuery = ""){
+        global $method;
+        global $loginUserId;
+        if($method == 'GET' && is_numeric($idQuery) && $idQuery != $loginUserId && $this->checkLogin() == true){
+            $isFollow = null;
+            $this->Follow = new Follow();
+            //lay followings cua user
+            $this->Follow->where('user_id', $loginUserId);
+            $this->Follow->where('follower_id', $idQuery);
+            $result = $this->Follow->search();
+
+            $this->Follow->where('user_id', $loginUserId);
+            $this->Follow->where('follower_id', $idQuery);
+            $this->Follow->delete();
+            if (count($result) == 1) {
+                $this->Follow->where('user_id', $loginUserId);
+                $this->Follow->where('follower_id', $idQuery);
+                $this->Follow->delete();
+
+                $isFollow = "Follow";
+            } else {
+                $this->Follow->user_id =  $loginUserId;
+                $this->Follow->follower_id = $idQuery;
+                $this->Follow->save();
+                $isFollow = "UnFollow";
+            }
+//            var_dump([ $isFollow]); die();
+            $this->sendJson(["follow" => $isFollow]);
+
+
+        }else {
+            http_response_code(404);
         }
     }
 
@@ -160,6 +195,7 @@ class UsersController extends VanillaController
                 if ($queries["page"] && is_numeric($queries["page"])) {
                     $this->User->setHasManyPage("Post", $queries["page"]);
                 }
+                $this->User->showHasOne();
                 $this->User->showHasMany();
                 $users = $this->User->search();
                 if (empty($users)) {
@@ -167,6 +203,7 @@ class UsersController extends VanillaController
                     $this->sendJson(["error" => "User with id: " . $idQuery . " does not exist"]);
                 }
                 $user = $users[0];
+//                var_dump($user["Image"]["content"]);die();
                 $posts = $user["Post"];
                 // lay image cho cac post trong posts
                 if (count($posts) > 0) {
@@ -183,6 +220,7 @@ class UsersController extends VanillaController
                 } else {
                     $posts = [];
                 }
+//                var_dump($posts);die();
                 $this->sendJson(["posts" => $posts]);
 
             } else {
