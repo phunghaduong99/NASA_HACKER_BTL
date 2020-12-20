@@ -129,7 +129,7 @@ class UsersController extends VanillaController
             }
             $this->set('posts', $posts);
             //check quyen edit profile
-            if ($this->checkLogin() == true && ($idQuery == $loginUserId || $idQuery== null) ) {
+            if ($this->checkLogin() == true && ($idQuery == $loginUserId || $idQuery == null)) {
                 $isEdit = true;
             }
             $this->set('isEdit', $isEdit);
@@ -145,10 +145,11 @@ class UsersController extends VanillaController
         }
     }
 
-    function vFollow($queries = [], $idQuery = ""){
+    function vFollow($queries = [], $idQuery = "")
+    {
         global $method;
         global $loginUserId;
-        if($method == 'GET' && is_numeric($idQuery) && $idQuery != $loginUserId && $this->checkLogin() == true){
+        if ($method == 'GET' && is_numeric($idQuery) && $idQuery != $loginUserId && $this->checkLogin() == true) {
             $isFollow = null;
             $this->Follow = new Follow();
             //lay followings cua user
@@ -166,7 +167,7 @@ class UsersController extends VanillaController
 
                 $isFollow = "Follow";
             } else {
-                $this->Follow->user_id =  $loginUserId;
+                $this->Follow->user_id = $loginUserId;
                 $this->Follow->follower_id = $idQuery;
                 $this->Follow->save();
                 $isFollow = "UnFollow";
@@ -175,7 +176,7 @@ class UsersController extends VanillaController
             $this->sendJson(["follow" => $isFollow]);
 
 
-        }else {
+        } else {
             http_response_code(404);
         }
     }
@@ -235,22 +236,15 @@ class UsersController extends VanillaController
     function view_post($queryString = "")
     {
         global $method;
-
-        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users" . DS . 'header.php';
-        $this->User->where('id', 1);
-        $this->User->showHasMany();
-        $user = $this->User->search();
-        // pass data to view
-        $this->set('user', $user[0]["User"]);
-        $this->set('posts', $user[0]["Post"]);
-//        echo json_encode($user);
-//        echo json_encode($user[0]["User"]["username"]);
-//        echo json_encode($user[0]["Post"][0]["Post"]["id"]);
-//        $this->sendJson("Current user " );
+        global $loginUserId;
         if ($method == 'GET') {
+            if (empty($loginUserId)) {
+                header("Location: " . BASE_PATH . "users/login", true, 302);
+                exit();
+            }
 
-        } elseif ($method == 'POST') {
-
+        } else {
+            http_response_code(404);
         }
     }
 
@@ -269,7 +263,7 @@ class UsersController extends VanillaController
     function edit($queryString = "")
     {
         global $method;
-        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users". DS . 'header.php';
+        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users" . DS . 'header.php';
         if ($method == 'GET') {
 //            if ($this->curUser) {
 //                $this->sendJson("Current user " . $this->curUser);
