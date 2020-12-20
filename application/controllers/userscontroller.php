@@ -307,13 +307,8 @@ class UsersController extends VanillaController
                         $user[image_user] = $image_user[content];
                     }
                     $jwtHelper = new Jwt();
-                    unset($user["password"]);
-                    unset($user["created_at"]);
-                    unset($user["update_at"]);
-
                     $this->sendJson([
-                        "Authorization" => $jwtHelper->encode(["id" => $user["id"]]),
-                        "user" => $user,
+                        "Authorization" => $jwtHelper->encode(["id" => $user["id"]])
                     ]);
                     return;
                 }
@@ -411,7 +406,7 @@ class UsersController extends VanillaController
     }
 
     //API register User of table users
-    function vRegister($queryString = "")
+    function vRegister($queries = [], $idQuery = "")
     {
         global $method;
         if ($method == "POST") {
@@ -436,9 +431,18 @@ class UsersController extends VanillaController
                 http_response_code(403);
                 die;
             }
+            $newUser->clear();
+            $newUser->where("email", $this->body["email"]);
+            $foundUser = $newUser->search();
+            if (empty($foundUser)) {
+                http_response_code(403);
+                die;
+            }
+            $userId = $foundUser[0]['User']['id'];
 
+            $jwtHelper = new Jwt();
             $this->sendJson([
-                "saveEd" => "Wrong email or password"
+                "Authorization" => $jwtHelper->encode(["id" => $userId])
             ]);
         } else {
             http_response_code(404);
@@ -446,7 +450,35 @@ class UsersController extends VanillaController
     }
 
     function validateRegisterInput($email, $username, $password){
-        return true;
+        include_once(ROOT . DS . 'helpers/validate.php');
+
+        $validator = new Validator();
+
+        $validateResult = $validator->validateEmail($email);
+        if ($validateResult["error"]) {
+            $validateError["email"] = $validateResult["error"];
+        } else {
+            $user = new User();
+            $user->where("email", $email);
+            $foundUsers = $user->search();
+            if (!empty($foundUsers)) {
+                $validateError["email"] = [
+                    "error" => "Email has already been used."
+                ];
+            }
+        }
+
+        $validateResult = $validator->validatePassword($password);
+        if ($validateResult["error"]) {
+            $validateError["password"] = $validateResult["error"];
+        }
+
+        $validateResult = $validator->validateUsername($username);
+        if ($validateResult["error"]) {
+            $validateError["username"] = $validateResult["error"];
+        }
+
+        return $validateError;
     }
 
     function checkLogin()

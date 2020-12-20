@@ -7,23 +7,29 @@
 
         <h1 class="title">NasaGram</h1>
     </div>
-    <form>
+    <form method="post" action="/v1/users/register" onsubmit="submitForm(this)">
         <div class="email">
             <label class="title">E-mail Address</label> <br>
-            <input class="form-input" type="text" name="" id=""><br>
+            <input class="form-input" type="text" name="email"><br>
+            <span id="register-email-error" class="validate-error"></span><br>
         </div>
         <div class="username">
             <label class="title">Username</label> <br>
-            <input class="form-input" type="text" name="" id=""><br>
+            <input class="form-input" type="text" name="username"><br>
+            <span id="register-username-error" class="validate-error"></span><br>
+
         </div>
         <div class="password">
             <label class="title">Password</label> <br>
-            <input class="form-input" type="text" name="" id=""><br>
+            <input class="form-input" type="password" name="password" id="password" oninput="checkCPassword()"><br>
+            <span id="register-password-error" class="validate-error"></span><br>
         </div>
         <div class="confirm">
             <label class="title">Confirm Password</label> <br>
-            <input class="form-input" type="text" name="" id=""><br>
+            <input class="form-input" type="password" name="" id="cpassword" oninput="checkCPassword()"><br>
+            <span id="register-cpassword-error" class="validate-error"></span><br>
         </div>
+        <span id="login-error" class="validate-error"></span><br>
         <div>
             <button class="btn-hover color-1  " type="submit" value="Login">Register
         </div>
@@ -33,7 +39,9 @@
 <script type="text/javascript">
     function submitForm(oFormElement)
     {
-        resetErrors();
+        if (resetErrors(document.getElementById("register-cpassword-error").textContent.length > 0)) {
+            return;
+        }
         // oFormElement.preventDefault();
         var xhr = new XMLHttpRequest();
         xhr.onload = function(){ onSuccess(xhr); } // success case
@@ -45,7 +53,6 @@
 
     function onSuccess(xhr)
     {
-        console.log(xhr)
         switch (xhr.status) {
             case 200:
                 responseData = JSON.parse(xhr.responseText);
@@ -59,21 +66,28 @@
             case 403:
                 responseData = JSON.parse(xhr.responseText);
                 for ( i in responseData.validateError){
-                    document.getElementById("login-" + i + "-error").textContent=responseData.validateError[i]
+                    document.getElementById("register-" + i + "-error").textContent=responseData.validateError[i]
                 }
-                break;
-            case 401:
-                responseData = JSON.parse(xhr.responseText);
-                document.getElementById("login-error").textContent=responseData.loginError
                 break;
         }
     }
 
     function resetErrors() {
-        var errorIds = ["login-error", "login-email-error", "login-password-error"]
+        var errorIds = ["register-error", "register-email-error", "register-password-error", "register-username-error"]
         var index;
         for (index in errorIds) {
             document.getElementById(errorIds[index]).textContent = ""
+        }
+    }
+
+    function checkCPassword() {
+        let passwordInput = document.getElementById("password")
+        let cpasswordInput = document.getElementById("cpassword")
+        console.log(passwordInput)
+        if (passwordInput.value != cpasswordInput.value) {
+            document.getElementById("register-cpassword-error").textContent = "Password not match"
+        } else {
+            document.getElementById("register-cpassword-error").textContent = ""
         }
     }
 
