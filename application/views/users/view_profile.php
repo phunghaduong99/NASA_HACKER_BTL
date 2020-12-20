@@ -24,7 +24,7 @@
                     <p><?php echo count($posts) ?> posts</p>
                 </div>
                 <div class="followers-vp text_vp">
-                    <p><?php echo count($followers) ?> followers</p>
+                    <p id="numberOfFollowers"><?php echo count($followers) ?> followers</p>
                 </div>
                 <div class="following-vp text_vp">
                     <a href="#"><?php echo count($followings) ?> following</a>
@@ -229,7 +229,25 @@
         // start request
         xhr.send();
     }
+    function followClick(){
 
+        let xhr = new XMLHttpRequest();
+
+
+        xhr.onreadystatechange = function() {
+            // request completed?
+            if (xhr.readyState !== 4) return;
+            if (xhr.status === 200) {
+                let data = JSON.parse(xhr.responseText);
+                document.getElementById("follow").innerHTML = data.follow;
+                document.getElementById("numberOfFollowers").innerHTML = data.count + " followers";
+            }
+
+        }
+        xhr.open('GET', "/v1/users/follow/<?php echo $user['id']?>" );
+        // start request
+        xhr.send();
+    }
     span.onclick = function  () {
         modal.style.display = "none";
     }

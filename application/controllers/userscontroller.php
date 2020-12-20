@@ -173,7 +173,13 @@ class UsersController extends VanillaController
                 $isFollow = "UnFollow";
             }
 //            var_dump([ $isFollow]); die();
-            $this->sendJson(["follow" => $isFollow]);
+            // Dem so follower cua User_id
+            $this->Follow->where('follower_id', $idQuery);
+            $followers = $this->Follow->search();
+
+
+            $this->sendJson(["follow" => $isFollow,
+                 "count"=> count($followers)]);
 
 
         } else {
