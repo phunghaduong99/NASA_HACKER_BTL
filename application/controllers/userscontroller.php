@@ -408,7 +408,6 @@ class UsersController extends VanillaController
             header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
         }
     }
-
     function vRegister($queryString = "")
     {
         global $method;

@@ -14,23 +14,23 @@
         </div>
         <div class="email">
             <label class="title">E-mail Address</label> <br>
-            <input class="form-input" type="email" name="email" id=""><br>
-            <span id="login-email-error" class="validate-error"></span><br>
+            <input class="form-input" type="email" name="email" required="re"><br>
+            <span id="register-email-error" class="validate-error"></span><br>
         </div>
         <div class="username">
             <label class="title">Username</label> <br>
-            <input class="form-input" type="text" name="" id=""><br>
+            <input class="form-input" type="text" name="username" id=""><br>
         </div>
         <div class="password">
             <label class="title">Password</label> <br>
             <input class="form-input" type="password" name="password" id=""><br>
-            <span id="login-password-error" class="validate-error"></span><br>
+            <span id="register-password-error" class="validate-error"></span><br>
         </div>
         <div class="confirm">
             <label class="title">Confirm Password</label> <br>
-            <input class="form-input" type="password" name="" id=""><br>
+            <input class="form-input" type="password" name="" required="re" id=""><br>
         </div>
-        <span id="login-error" class="validate-error"></span><br>
+        <span id="register-error" class="validate-error"></span><br>
         <div>
             <button class="btn-hover color-1  " type="submit" value="Login">Register
         </div>
@@ -58,7 +58,7 @@
                 responseData = JSON.parse(xhr.responseText);
                 if (responseData.Authorization) {
                     document.cookie = "Authorization=" + responseData.Authorization + "; path=/"
-                    window.location.href = "/users/view";
+                    window.location.href = "/users/login";
                 } else {
                     alert("Bad response (no token)");
                 }
@@ -66,18 +66,18 @@
             case 403:
                 responseData = JSON.parse(xhr.responseText);
                 for ( i in responseData.validateError){
-                    document.getElementById("login-" + i + "-error").textContent=responseData.validateError[i]
+                    document.getElementById("register-" + i + "-error").textContent=responseData.validateError[i]
                 }
                 break;
             case 401:
                 responseData = JSON.parse(xhr.responseText);
-                document.getElementById("login-error").textContent=responseData.loginError
+                document.getElementById("register-error").textContent=responseData.registerError
                 break;
         }
     }
 
     function resetErrors() {
-        var errorIds = ["login-error", "login-email-error", "login-password-error"]
+        var errorIds = ["register-error", "register-email-error", "register-password-error"]
         var index;
         for (index in errorIds) {
             document.getElementById(errorIds[index]).textContent = ""
