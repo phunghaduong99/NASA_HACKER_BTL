@@ -7,7 +7,7 @@
 
         <h1 class="title">NasaGram</h1>
     </div>
-    <form method="post" action="/v1/users/register" onsubmit="submitForm(this)">
+    <form action="/v1/users/register" onsubmit="return submitForm(this)">
         <div class="email">
             <label class="title">E-mail Address</label> <br>
             <input class="form-input" type="text" name="email"><br>
@@ -39,7 +39,8 @@
 <script type="text/javascript">
     function submitForm(oFormElement)
     {
-        if (resetErrors(document.getElementById("register-cpassword-error").textContent.length > 0)) {
+        resetErrors()
+        if (document.getElementById("register-cpassword-error").textContent.length > 0) {
             return;
         }
         resetErrors();
