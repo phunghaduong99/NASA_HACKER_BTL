@@ -30,6 +30,25 @@ class UsersController extends VanillaController
 //        $this->sendJson($user);
     }
 
+    function vTest($queries = [], $idQuery = "")
+    {
+        global $method;
+        $this->Post = new Post();
+        $this->Post->where('id', $idQuery);
+        $this->Post->showHasMany();
+        $result = $this->Post->search();
+        var_dump($result);die();
+        die();
+//        $this->User->where('id',1);
+//        $this->User->showHasMany();
+//        $user = $this->User->search();
+//        $this->set('user',$user);
+//
+//        $this->User->where('id',1);
+//        $user = $this->User->search();
+//        $this->sendJson($user);
+    }
+
     function register($queryString = "")
     {
         global $method;
@@ -157,9 +176,6 @@ class UsersController extends VanillaController
             $this->Follow->where('follower_id', $idQuery);
             $result = $this->Follow->search();
 
-            $this->Follow->where('user_id', $loginUserId);
-            $this->Follow->where('follower_id', $idQuery);
-            $this->Follow->delete();
             if (count($result) == 1) {
                 $this->Follow->where('user_id', $loginUserId);
                 $this->Follow->where('follower_id', $idQuery);
@@ -177,6 +193,56 @@ class UsersController extends VanillaController
 
 
         } else {
+            http_response_code(404);
+        }
+    }
+
+    function vReact($queries = [], $idQuery = ""){
+        global $method;
+        global $loginUserId ;
+        // idQuery la postId
+        //&& !$this->checkLogin() == true
+
+        if($method == 'GET' && is_numeric($idQuery) ){
+            $isReact = null;
+            $this->React = new React();
+            //Check user co React post_id
+            $this->React->where('post_id', $idQuery);
+            $this->React->where('user_id', $loginUserId);
+            $result = $this->React->search();
+
+
+            if (count($result) == 1) {
+                $this->React->where('post_id', $idQuery);
+                $this->React->where('user_id', $loginUserId);
+                $this->React->delete();
+
+                $isReact = false;
+            } else {
+                $this->React->post_id =  $idQuery;
+                $this->React->user_id = $loginUserId;
+                $this->React->save();
+                $isReact = true;
+            }
+//            var_dump([ $isReact]); die();
+            $count = 0;
+            $this->Post = new Post();
+            //Lay ra  number react
+            $this->Post->where('id', $idQuery);
+            $this->Post->showHasMany();
+            $result = $this->Post->search();
+            if(count($result[0]["React"]) >0 ){
+                $count = count($result[0]["React"]);
+            }
+            else {
+                $count = 0;
+            }
+
+            $this->sendJson(["isReact" => $isReact,
+                "count" => $count]);
+
+
+        }else {
             http_response_code(404);
         }
     }
@@ -207,6 +273,154 @@ class UsersController extends VanillaController
                 $user = $users[0];
 //                var_dump($user["Image"]["content"]);die();
                 $posts = $user["Post"];
+                // lay image cho cac post trong posts
+                if (count($posts) > 0) {
+                    $this->Post = new Post();
+                    $this->React = new React();
+                    foreach ($posts as &$post) {
+                        if ($post["Post"]["id"] != null) {
+                            $this->Post->where('id', $post["Post"]["id"]);
+                            $this->Post->showHasOne();
+                            $result = $this->Post->search();
+                            $post["Post"]["image"] = $result[0]["Image"]["content"];
+
+                            //Lay ra  number react
+                            $this->Post->where('id', $post["Post"]["id"]);
+                            $this->Post->showHasMany();
+                            $result = $this->Post->search();
+                            if(count($result[0]["React"]) >0 ){
+                                $post["Post"]["number_react"] = count($result[0]["React"]);
+                            }
+                            else {
+                                $post["Post"]["number_react"] = 0;
+                            }
+
+                            // Check userLogin react?
+                            $isReact = false;
+                            $this->React->where('post_id', $post["Post"]["id"]);
+                            $this->React->where('user_id', $loginUserId);
+                            $result = $this->React->search();
+                            if(count($result[0]) == 1 ){
+                                 $isReact = true;
+                            }
+                            else {
+                                $isReact = false;
+                            }
+//                            var_dump($result); die();
+                            $post["Post"]["isReact"] = $isReact;
+                        }
+                        $post = $post["Post"];
+                    }
+                } else {
+                    $posts = [];
+                }
+//                var_dump($posts);die();
+                $this->sendJson(["posts" => $posts]);
+
+            } else {
+                http_response_code(403);
+                $this->sendJson(["error" => "Invalid request"]);
+            }
+        } else {
+            http_response_code(404);
+        }
+    }
+
+    function vGetHomePosts($queries = [], $idQuery = "")
+    {
+        // Luon co $idQuery
+        global $method;
+        $idQuery = "1";
+        global $loginUserId;
+        if ($method == "GET") {
+            // Lay Followings cua User_id
+            $this->Follow = new Follow();
+
+            //lay followings cua user
+            $this->Follow->where('user_id', $idQuery);
+            $followings = $this->Follow->search();
+            $user_followings = [];
+            if (count($followings) > 0) {
+                foreach ($followings as &$following) {
+                    if ($following["Follow"]["follower_id"] != null) {
+                        $this->User->where('id', $following["Follow"]["follower_id"]);
+                        $result = $this->User->search();
+                        $following["Follow"]["username"] = $result[0]["User"]["username"];
+                        array_push($user_followings, $result[0]["User"]);
+                    }
+                }
+            }
+            // Lay cac posts cua user_followings
+            if(count($user_followings) >0 ){
+                foreach ($user_followings as &$user_following) {
+                    // Lay tung user_id_following
+                    $id_user_following = $user_following["id"];
+
+                    $this->User->where('id', $id_user_following);
+                    if ($queries["limit"] && is_numeric($queries["limit"])) {
+                        $this->User->setHasManyLimit("Post", $queries["limit"]);
+                    }
+
+                    if ($queries["page"] && is_numeric($queries["page"])) {
+                        $this->User->setHasManyPage("Post", $queries["page"]);
+                    }
+                    $this->User->showHasOne();
+                    $this->User->showHasMany();
+                    $users = $this->User->search();
+                    if (empty($users)) {
+                        http_response_code(403);
+                        $this->sendJson(["error" => "User with id: " . $idQuery . " does not exist"]);
+                    }
+                    $user = $users[0];
+//                var_dump($user["Image"]["content"]);die();
+                    $posts = $user["Post"];
+                    $user_following["Posts"] = $posts;
+//                    var_dump([$user_following]);die();
+
+                    // lay image cho cac post trong posts
+                    if (count($posts) > 0) {
+//                        $this->Post = new Post();
+//                        foreach ($posts as &$post) {
+//                            if ($post["Post"]["id"] != null) {
+//                                $this->Post->where('id', $post["Post"]["id"]);
+//                                $this->Post->showHasOne();
+//                                $result = $this->Post->search();
+//                                $post["Post"]["image"] = $result[0]["Image"]["content"];
+//                            }
+//                            $post = $post["Post"];
+//                        }
+                        $user_following["Posts"] = $posts;
+//                        var_dump([$posts, $id_user_following]);die();
+                    } else {
+                        $posts = [];
+                        $user_following["Posts"] = [];
+                    }
+
+                }
+                var_dump($user_following);die();
+            }
+
+
+            if (is_numeric($idQuery)) {
+                $this->User->where('id', $idQuery);
+                if ($queries["limit"] && is_numeric($queries["limit"])) {
+                    $this->User->setHasManyLimit("Post", $queries["limit"]);
+                }
+
+                if ($queries["page"] && is_numeric($queries["page"])) {
+                    $this->User->setHasManyPage("Post", $queries["page"]);
+                }
+                $this->User->showHasOne();
+                $this->User->showHasMany();
+                $users = $this->User->search();
+                if (empty($users)) {
+                    http_response_code(403);
+                    $this->sendJson(["error" => "User with id: " . $idQuery . " does not exist"]);
+                }
+                $user = $users[0];
+//                var_dump($user["Image"]["content"]);die();
+                $posts = $user["Post"];
+                var_dump($posts);die();
                 // lay image cho cac post trong posts
                 if (count($posts) > 0) {
                     $this->Post = new Post();

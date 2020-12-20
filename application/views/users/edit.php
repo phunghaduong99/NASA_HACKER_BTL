@@ -2,7 +2,7 @@
     <div class="form-edit">
         <div class="logo-edit">
             <div class="img-edit">
-                <img src="/public/img/logo.png" alt="">
+                <img class="edit" src="/public/img/logo.png" alt="">
             </div>
 
             <h1 class="title-edit">NasaGram</h1>

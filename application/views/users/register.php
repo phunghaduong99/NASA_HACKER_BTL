@@ -42,6 +42,7 @@
         if (resetErrors(document.getElementById("register-cpassword-error").textContent.length > 0)) {
             return;
         }
+        resetErrors();
         // oFormElement.preventDefault();
         var xhr = new XMLHttpRequest();
         xhr.onload = function(){ onSuccess(xhr); } // success case
