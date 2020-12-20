@@ -8,7 +8,7 @@
                     <img src="/public/img/avata.jpg" alt="">
                 </div>
                 <div class="name-avata">Lalalisa</div>
-                <div class="transfer">
+                <div class="transfer" id="test">
                     <a href="#">Chuyen</a>
                 </div>
             </div>
@@ -99,6 +99,13 @@
                 let postsContainer = document.getElementById("container-post")
                 if (data.posts) {
                     for (let postIndex in data.posts) {
+                        let img;
+                        document.getElementById("test").innerHTML = data.posts[postIndex].post.isReact;
+                        if(data.posts[postIndex].post.isReact == false  ){
+                            img=  '<img id="heart_img'+ data.posts[postIndex].post.id + '"onclick="reactClick(\'' + data.posts[postIndex].post.id  + '\')" class="heart" style="width: 25px; height: 25px; " src="/public/img/heart" alt=""> ';
+                        } else if(data.posts[postIndex].post.isReact == true){
+                            img = '<img id="heart_img'+ data.posts[postIndex].post.id + '" onclick="reactClick(\'' + data.posts[postIndex].post.id   + '\')" class="heart" style="width: 25px; height: 25px; " src="/public/img/hearted" alt=""> ';
+                        }
                         postsContainer.innerHTML +=
                             '<div class="post">'
                             + '<div class="header-container">'
@@ -130,9 +137,9 @@
                             + '</p>'
                             + '</div>'
                             + '<div class="action">'
-                            + '<p class="number_heart">6</p>'
-                            + '<img class="heart" src="/public/img/icons8-heart-26.png" alt="">'
-                            + '</div>'
+                            + '<p class="number_heart" id="number_React'+data.posts[postIndex].post.id+ '">'
+                            + data.posts[postIndex].post.number_react +
+                            '</p>' + img  + '</div>'
                     }
                 }
             } else {
@@ -164,7 +171,29 @@
         xhr.send();
     }
 
+    function reactClick(id){
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            // request completed?
+            if (xhr.readyState !== 4) return;
+            if (xhr.status === 200) {
+                let number_React = "number_React" + id;
+                let heart_img = "heart_img" + id;
+                let data = JSON.parse(xhr.responseText);
+                document.getElementById(number_React).innerHTML = data.count;
+                if(data.isReact == false){
+                    document.getElementById(heart_img).src ="/public/img/heart";
+                }
+                else if(data.isReact == true){
+                    document.getElementById(heart_img).src ="/public/img/hearted";
+                }
+            }
 
+        }
+        xhr.open('GET', "/v1/users/react/"+ id );
+        // start request
+        xhr.send();
+    }
 
 
 </script>

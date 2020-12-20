@@ -158,10 +158,37 @@ class PostsController extends VanillaController
                 if (!empty($result[0]["Post"]))
                 {
                     $imageModel = new Image();
+                    $this->React = new React();
                     foreach ($result[0]["Post"] as $post) {
                         $imageModel->where("id", $post['Post']["image_id"]);
                         $foundImage = $imageModel->search()[0];
                         $post['Post']["image"] = $foundImage["Image"]["content"];
+
+                        //Lay ra  number react
+                        $this->Post->where('id', $post["Post"]["id"]);
+                        $this->Post->showHasMany();
+                        $result = $this->Post->search();
+                        if(count($result[0]["React"]) >0 ){
+                            $post["Post"]["number_react"] = count($result[0]["React"]);
+                        }
+                        else {
+                            $post["Post"]["number_react"] = 0;
+                        }
+
+                        // Check userLogin react?
+                        $isReact = false;
+                        $this->React->where('post_id', $post["Post"]["id"]);
+                        $this->React->where('user_id', $loginUserId);
+                        $result = $this->React->search();
+                        if(count($result[0]) == 1 ){
+                            $isReact = true;
+                        }
+                        else {
+                            $isReact = false;
+                        }
+//                            var_dump($result); die();
+                        $post["Post"]["isReact"] = $isReact;
+
                         $postList[] = [
                             "post" => $post['Post'],
                             "user" => $userData
