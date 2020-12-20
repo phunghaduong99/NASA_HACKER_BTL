@@ -43,9 +43,9 @@
     -webkit-border-radius: 50%;
 }
 
-img {
-    width: 100%;
-    height: 100%;
+.post-img {
+    width: 100%!important;
+    height: 100%!important;
 }
 
 .header-container .descrip {

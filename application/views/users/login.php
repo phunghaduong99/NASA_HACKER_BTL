@@ -85,12 +85,6 @@
         function onError(resp){
             console.log("** An error occurred during the transaction");
         }
-        document.getElementById
-
-
-
     </script>
-
-
-    </body>
-    </html>
+</body>
+</html>

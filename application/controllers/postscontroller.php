@@ -121,45 +121,55 @@ class PostsController extends VanillaController
             return;
         }
         if ($method == 'GET') {
-            $this->user = new User();
             //lay followings cua user
-            $this->user->where('id', $loginUserId);
-            $this->user->showHasMany();
-            if ($queries["limit"] && is_numeric($queries["limit"])) {
-                $this->user->setHasManyLimit("Follow", $queries["limit"]);
-            }
-
-            if ($queries["page"] && is_numeric($queries["page"])) {
-                $this->user->setHasManyPage("Follow", $queries["page"]);
-            }
-            $foundUsers = $this->user->search();
-            if (empty($foundUsers)) {
-                http_response_code(404);
+            $follow = new Follow();
+            $follow->where('user_id', $loginUserId);
+            $followers = $follow->search();
+            if (empty($followers)) {
+                http_response_code(403);
                 return;
             }
-            $followers = $foundUsers[0]["Follow"];
             $postList = [];
+            $user = new User();
+
+            // Với từng follower tìm được, lấy thông tin user (post, image)
             foreach ($followers as $item) {
                 $userId = $item['Follow']["follower_id"];
-                $this->user->where('id', $userId);
-                $this->user->showHasMany();
-                $this->user->showHasOne();
-                $result = $this->user->search();
+                $user->clear();
+                $user->where('id', $userId);
+                $user->showHasMany();
+                if ($queries["limit"] && is_numeric($queries["limit"])) {
+                    $user->setHasManyLimit("Post", $queries["limit"]);
+                }
+
+                if ($queries["page"] && is_numeric($queries["page"])) {
+                    $user->setHasManyPage("Post", $queries["page"]);
+                }
+                $user->hasManyOrderBy("Post", "updated_at", "DESC");
+                $user->showHasOne();
+                $result = $user->search();
                 $userData = $result[0]['User'];
                 $userData["avatar"] = $result[0]["Image"]["content"];
                 unset($userData['password']);
                 unset($userData["created_at"]);
                 unset($userData["update_at"]);
-                if ($result[0]["Post"]) {
+
+                // Nếu có post
+                if (!empty($result[0]["Post"]))
+                {
                     $imageModel = new Image();
-                    $imageModel->where("id", $result[0]["Post"][0]['Post']["image_id"]);
-                    $foundImage = $imageModel->search()[0];
-                    $result[0]["Post"][0]['Post']["image"] = $foundImage["Image"]["content"];
-                    $postList[] = [
-                        "post" => $result[0]["Post"][0]['Post'],
-                        "user" => $userData
-                    ];
+                    foreach ($result[0]["Post"] as $post) {
+                        $imageModel->where("id", $post['Post']["image_id"]);
+                        $foundImage = $imageModel->search()[0];
+                        $post['Post']["image"] = $foundImage["Image"]["content"];
+                        $postList[] = [
+                            "post" => $post['Post'],
+                            "user" => $userData
+                        ];
+                    }
                 }
+
+
             }
 
 //            var_dump([ $isFollow]); die();

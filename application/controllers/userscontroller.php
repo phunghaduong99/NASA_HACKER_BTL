@@ -196,6 +196,7 @@ class UsersController extends VanillaController
                 if ($queries["page"] && is_numeric($queries["page"])) {
                     $this->User->setHasManyPage("Post", $queries["page"]);
                 }
+                $this->User->hasManyOrderBy("Post", "updated_at", "DESC");
                 $this->User->showHasOne();
                 $this->User->showHasMany();
                 $users = $this->User->search();
@@ -414,33 +415,38 @@ class UsersController extends VanillaController
     {
         global $method;
         if ($method == "POST") {
-            // find ID
-            $this->User->where('id', $this->body["id"]);
-            $users = $this->User->search();
-            if (empty($users)) {
-                // set fields need to be updated
-                $this->User->id = $this->body["id"];
-                $this->User->profile_title = $this->body["profile_title"];
-                $this->User->save();
-
-
-                $this->User->where('id', $this->body["id"]);
-                $user = $this->User->search();
-                unset($user["password"]);
-                unset($user["created_at"]);
-                unset($user["update_at"]);
-                $this->sendJson([
-                    "status" => "OK",
-                    "user" => $user
-                ]);
-
-            } else {
-                $this->sendJson(["error" => "User existed!"]);
+            // Validate input
+            $validateError = $this->validateRegisterInput(
+                $this->body["email"],
+                $this->body["username"],
+                $this->body["password"]
+            );
+            if (!empty($validateError)) {
+                http_response_code(403);
+                $this->sendJson(["validateError" => $validateError]);
             }
-//            var_dump([empty($users),$users ]); die();
+
+            // check for password
+            $newUser = new User();
+            $newUser["email"] = $this->body["email"];
+            $newUser["username"] = $this->body["username"];
+            $newUser->setPassword($this->body["password"]);
+            $result = $newUser->save();
+            if ($result<0){
+                http_response_code(403);
+                die;
+            }
+
+            $this->sendJson([
+                "saveEd" => "Wrong email or password"
+            ]);
         } else {
-            header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
+            http_response_code(404);
         }
+    }
+
+    function validateRegisterInput($email, $username, $password){
+        return true;
     }
 
     function checkLogin()
