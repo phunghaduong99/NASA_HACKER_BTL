@@ -87,7 +87,7 @@ INSERT INTO `follows` (user_id, follower_id) VALUES(1, 6)
 
 
 
-CREATE TABLE `loves` (
+CREATE TABLE `reacts` (
     `id` int(40) unsigned NOT NULL auto_increment,
     `post_id` int(40) unsigned NOT NULL,
     `user_id` int(40) unsigned NOT NULL,
@@ -95,7 +95,9 @@ CREATE TABLE `loves` (
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4  ;
-
+INSERT INTO `reacts` (post_id, user_id) VALUES(23, 1)
+INSERT INTO `reacts` (post_id, user_id) VALUES(23, 2)
+INSERT INTO `reacts` (post_id, user_id) VALUES(24, 6)
 --
 -- Dumping data for table `image`
 --

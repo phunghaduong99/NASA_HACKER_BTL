@@ -174,6 +174,7 @@ class SQLQuery {
 						$queryChild =  'SELECT * FROM '.$fromChild.' WHERE '.$conditionsChild;
 //						var_dump($queryChild);
 						$resultChild = mysqli_query( $this->_dbHandle, $queryChild);
+//                        var_dump("ketqua    "+ $resultChild);
 //                        echo "$queryChild";
 
 

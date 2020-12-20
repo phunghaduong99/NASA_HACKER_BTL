@@ -78,8 +78,12 @@
                         <p>Tôi sẽ đi đến cuối con đường và chờ bạn ở đó. Hãy chờ tôi đừng để tôi phải tìm bạn</p>
                     </div>
                     <div class="model-action">
-                        <p class="number_heart">6</p>
-                        <img class="heart" style="width: 25px; height: 25px; " src="/public/img/hearted" alt="">
+                        <p class="number_heart" id="number_heart">6</p>
+
+                        <div id="isReact" style="height: 25px; ">
+                            <img class="heart" style="width: 25px; height: 25px; " src="/public/img/hearted" alt="">
+                        </div>
+
                     </div>
                 </div>
 
@@ -136,17 +140,19 @@
                 if (data.posts) {
                     for (let postIndex in data.posts){
                         postsContainer.innerHTML+=
-                            '<div id="myBtn" onclick="showPost(\'' + data.posts[postIndex].image  + '\', '
-                            + '\'' + data.posts[postIndex].post_description  + '\'' +
-                            '' +
+                            '<div id="myBtn" onclick="showPost(\'' + data.posts[postIndex].image  + '\'' +
+                            ', ' + '\'' + data.posts[postIndex].post_description  + '\'' +
+                            ', ' + '\'' + data.posts[postIndex].number_react  + '\'' +
+                            ', ' + '\'' + data.posts[postIndex].isReact  + '\'' +
+                            ', ' + '\'' + data.posts[postIndex].id  + '\'' +
                             ')"   class="image-child-vp ">'
                             + '<img src="'
                             + data.posts[postIndex].image
                             + '" />'
                             + '<div class="after-vp"></div>'
                             + '<div class="after-vp-tym">'
-                            + '<p style="margin-right: 4px;"> '
-                            + 8
+                            + '<p style="margin-right: 4px;" id="number_React'+  data.posts[postIndex].id+'"> '
+                            + data.posts[postIndex].number_react
                             +'</p>'
                             + '<img src="/public/img/hearted" alt="">'
                             + '</div>'
@@ -178,39 +184,52 @@
     // Get button when click follow
     var follow = document.getElementById("follow");
 
-    function followClick(){
 
-        let xhr = new XMLHttpRequest();
-
-
-        xhr.onreadystatechange = function() {
-            // request completed?
-            if (xhr.readyState !== 4) return;
-            if (xhr.status === 200) {
-                let data = JSON.parse(xhr.responseText);
-                document.getElementById("follow").innerHTML = data.follow;
-            }
-
-        }
-        xhr.open('GET', "/v1/users/follow/<?php echo $user['id']?>" );
-        // start request
-        xhr.send();
-    }
     // When the user clicks the button, open the modal
 
-    function showPost(image, post_description) {
+    function showPost(image, post_description, number_react, isReact, id) {
         document.getElementById("avaPost").innerHTML =
             '<img src="'
             + image
             + '" />';
         document.getElementById("post_description").innerHTML =
-            '<p>'+ post_description +'</p>';
-
-        modal.style.display = "block";
+            '<p>'+ post_description  + '</p>';
+        document.getElementById("number_heart").innerHTML =  number_react ;
+        if(isReact == "false")
+            document.getElementById("isReact").innerHTML =
+                '<img id="heart_img" onclick="reactClick(\'' + id  + '\')" class="heart" style="width: 25px; height: 25px; " src="/public/img/heart" alt=""> ';
+        else if(isReact == "true"){
+            document.getElementById("isReact").innerHTML =
+                '<img id="heart_img" onclick="reactClick(\'' + id  + '\')" class="heart" style="width: 25px; height: 25px; " src="/public/img/hearted" alt=""> ';
+        }
         modal.style.display = "block";
     }
 
-    // When the user clicks on <span> (x), close the modal
+
+    function reactClick(id){
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            // request completed?
+            if (xhr.readyState !== 4) return;
+            if (xhr.status === 200) {
+                let str = "number_React" + id;
+                let data = JSON.parse(xhr.responseText);
+                document.getElementById("number_heart").innerHTML = data.count;
+                document.getElementById(str).innerHTML = data.count;
+                if(data.isReact == false){
+                    document.getElementById("heart_img").src ="/public/img/heart";
+                }
+                else if(data.isReact == true){
+                    document.getElementById("heart_img").src ="/public/img/hearted";
+                }
+            }
+
+        }
+        xhr.open('GET', "/v1/users/react/"+ id );
+        // start request
+        xhr.send();
+    }
+
     span.onclick = function  () {
         modal.style.display = "none";
     }
