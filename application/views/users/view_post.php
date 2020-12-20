@@ -68,7 +68,7 @@
             // getPosts(()=>{busy=false});
             setTimeout(() => getPosts(() => {
                 busy = false
-            }), 500);
+            }), 1000);
 
 
         }

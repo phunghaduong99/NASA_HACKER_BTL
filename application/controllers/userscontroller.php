@@ -216,12 +216,38 @@ class UsersController extends VanillaController
                 // lay image cho cac post trong posts
                 if (count($posts) > 0) {
                     $this->Post = new Post();
+                    $this->React = new React();
                     foreach ($posts as &$post) {
                         if ($post["Post"]["id"] != null) {
                             $this->Post->where('id', $post["Post"]["id"]);
                             $this->Post->showHasOne();
                             $result = $this->Post->search();
                             $post["Post"]["image"] = $result[0]["Image"]["content"];
+
+                            //Lay ra  number react
+                            $this->Post->where('id', $post["Post"]["id"]);
+                            $this->Post->showHasMany();
+                            $result = $this->Post->search();
+                            if(count($result[0]["React"]) >0 ){
+                                $post["Post"]["number_react"] = count($result[0]["React"]);
+                            }
+                            else {
+                                $post["Post"]["number_react"] = 0;
+                            }
+
+                            // Check userLogin react?
+                            $isReact = false;
+                            $this->React->where('post_id', $post["Post"]["id"]);
+                            $this->React->where('user_id', $loginUserId);
+                            $result = $this->React->search();
+                            if(count($result[0]) == 1 ){
+                                $isReact = true;
+                            }
+                            else {
+                                $isReact = false;
+                            }
+//                            var_dump($result); die();
+                            $post["Post"]["isReact"] = $isReact;
                         }
                         $post = $post["Post"];
                     }
@@ -236,6 +262,55 @@ class UsersController extends VanillaController
                 $this->sendJson(["error" => "Invalid request"]);
             }
         } else {
+            http_response_code(404);
+        }
+    }
+    function vReact($queries = [], $idQuery = ""){
+        global $method;
+        global $loginUserId ;
+        // idQuery la postId
+        //&& !$this->checkLogin() == true
+
+        if($method == 'GET' && is_numeric($idQuery) ){
+            $isReact = null;
+            $this->React = new React();
+            //Check user co React post_id
+            $this->React->where('post_id', $idQuery);
+            $this->React->where('user_id', $loginUserId);
+            $result = $this->React->search();
+
+
+            if (count($result) == 1) {
+                $this->React->where('post_id', $idQuery);
+                $this->React->where('user_id', $loginUserId);
+                $this->React->delete();
+
+                $isReact = false;
+            } else {
+                $this->React->post_id =  $idQuery;
+                $this->React->user_id = $loginUserId;
+                $this->React->save();
+                $isReact = true;
+            }
+//            var_dump([ $isReact]); die();
+            $count = 0;
+            $this->Post = new Post();
+            //Lay ra  number react
+            $this->Post->where('id', $idQuery);
+            $this->Post->showHasMany();
+            $result = $this->Post->search();
+            if(count($result[0]["React"]) >0 ){
+                $count = count($result[0]["React"]);
+            }
+            else {
+                $count = 0;
+            }
+
+            $this->sendJson(["isReact" => $isReact,
+                "count" => $count]);
+
+
+        }else {
             http_response_code(404);
         }
     }
