@@ -100,7 +100,7 @@
     }
     var busy = false;
     var page =1;
-    var limit=9;
+    var limit=5;
     window.onscroll = function(ev) {
         if(((window.innerHeight + window.scrollY) >= document.body.offsetHeight))
         {
@@ -108,7 +108,7 @@
                 return;
             busy = true;
             // getPosts(()=>{busy=false});
-            setTimeout( ()=>  getPosts(()=>{busy=false}), 500);
+            setTimeout( ()=>  getPosts(()=>{busy=false}), 1000);
 
 
         }
