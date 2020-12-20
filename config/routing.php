@@ -13,6 +13,7 @@ $routing = array(
     '/^v1\/users\/test(.*?)/i' => "users/vTest", //GET, POST
 
     '/^v1\/posts\/add(.*?)/i' => "posts/vAdd",
+    '/^v1\/posts\/list(.*?)/i' => 'posts/vGetPostList',
 
     '/^users\/login(.*?)/i' => "users/login", //GET
     '/^users\/view_profile(.*?)/i' => "users/view_profile", //GET

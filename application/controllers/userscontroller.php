@@ -148,7 +148,7 @@ class UsersController extends VanillaController
             }
             $this->set('posts', $posts);
             //check quyen edit profile
-            if ($this->checkLogin() == true && ($idQuery == $loginUserId || $idQuery== null) ) {
+            if ($this->checkLogin() == true && ($idQuery == $loginUserId || $idQuery == null)) {
                 $isEdit = true;
             }
             $this->set('isEdit', $isEdit);
@@ -164,10 +164,11 @@ class UsersController extends VanillaController
         }
     }
 
-    function vFollow($queries = [], $idQuery = ""){
+    function vFollow($queries = [], $idQuery = "")
+    {
         global $method;
         global $loginUserId;
-        if($method == 'GET' && is_numeric($idQuery) && $idQuery != $loginUserId && $this->checkLogin() == true){
+        if ($method == 'GET' && is_numeric($idQuery) && $idQuery != $loginUserId && $this->checkLogin() == true) {
             $isFollow = null;
             $this->Follow = new Follow();
             //lay followings cua user
@@ -182,7 +183,7 @@ class UsersController extends VanillaController
 
                 $isFollow = "Follow";
             } else {
-                $this->Follow->user_id =  $loginUserId;
+                $this->Follow->user_id = $loginUserId;
                 $this->Follow->follower_id = $idQuery;
                 $this->Follow->save();
                 $isFollow = "UnFollow";
@@ -191,7 +192,7 @@ class UsersController extends VanillaController
             $this->sendJson(["follow" => $isFollow]);
 
 
-        }else {
+        } else {
             http_response_code(404);
         }
     }
@@ -449,22 +450,15 @@ class UsersController extends VanillaController
     function view_post($queryString = "")
     {
         global $method;
-
-        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users" . DS . 'header.php';
-        $this->User->where('id', 1);
-        $this->User->showHasMany();
-        $user = $this->User->search();
-        // pass data to view
-        $this->set('user', $user[0]["User"]);
-        $this->set('posts', $user[0]["Post"]);
-//        echo json_encode($user);
-//        echo json_encode($user[0]["User"]["username"]);
-//        echo json_encode($user[0]["Post"][0]["Post"]["id"]);
-//        $this->sendJson("Current user " );
+        global $loginUserId;
         if ($method == 'GET') {
+            if (empty($loginUserId)) {
+                header("Location: " . BASE_PATH . "users/login", true, 302);
+                exit();
+            }
 
-        } elseif ($method == 'POST') {
-
+        } else {
+            http_response_code(404);
         }
     }
 
@@ -483,7 +477,7 @@ class UsersController extends VanillaController
     function edit($queryString = "")
     {
         global $method;
-        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . 'header.php';
+        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users" . DS . 'header.php';
         if ($method == 'GET') {
 //            if ($this->curUser) {
 //                $this->sendJson("Current user " . $this->curUser);
@@ -628,36 +622,50 @@ class UsersController extends VanillaController
             header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
         }
     }
-
-    //API register User of table users
     function vRegister($queryString = "")
     {
         global $method;
         if ($method == "POST") {
-            // find ID
-            $this->User->where('id', $this->body["id"]);
+
+
+            $this->User->email = $this->body["email"];
+            $this->User->username = $this->body["username"];
+            $this->User->password = $this->body["password"];
+
+//             find ID
+            $this->User->where('email', $this->body["email"]);
             $users = $this->User->search();
+
             if (empty($users)) {
-                // set fields need to be updated
-                $this->User->id = $this->body["id"];
-                $this->User->profile_title = $this->body["profile_title"];
+                $validateError = $this->validateLoginInput($this->body["email"], $this->body["password"]);
+                if (!empty($validateError)) {
+                    http_response_code(403);
+                    $this->sendJson(["validateError" => $validateError]);
+                }
+                $this->User->email = $this->body["email"];
+                $this->User->username = $this->body["username"];
+                $this->User->setPassword($this->body["password"]);
+
+
                 $this->User->save();
+                $this->User->where('email', $this->body["email"]);
+                $users = $this->User->search();
 
-
-                $this->User->where('id', $this->body["id"]);
-                $user = $this->User->search();
+                $jwtHelper = new Jwt();
                 unset($user["password"]);
                 unset($user["created_at"]);
                 unset($user["update_at"]);
+
                 $this->sendJson([
-                    "status" => "OK",
-                    "user" => $user
+                    "Authorization" => $jwtHelper->encode(["id" => $user["id"]]),
+                    "user" => $user,
                 ]);
+                return;
 
             } else {
                 $this->sendJson(["error" => "User existed!"]);
             }
-//            var_dump([empty($users),$users ]); die();
+            //    var_dump([empty($users),$users ]); die();
         } else {
             header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
         }

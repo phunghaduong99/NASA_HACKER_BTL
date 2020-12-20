@@ -6,7 +6,7 @@
                 <img src="/public/img/logo.png" alt="">
             </div>
 
-            <h1 class="title-login">OutSta</h1>
+            <h1 class="title-login">NasaGram</h1>
         </div>
         <form id="login-form" method="post" action="/v1/users/login" onsubmit="return submitForm(this)">
             <div class="email-login ">

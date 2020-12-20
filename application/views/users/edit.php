@@ -2,10 +2,10 @@
     <div class="form-edit">
         <div class="logo-edit">
             <div class="img-edit">
-                <img src="/public/img/logo.png" alt="">
+                <img class="edit" src="/public/img/logo.png" alt="">
             </div>
 
-            <h1 class="title-edit">OutSta</h1>
+            <h1 class="title-edit">NasaGram</h1>
         </div>
 
         <form id="login-form" method="post" action="/v1/users/edit" onsubmit="return submitForm(this)" class="edit-edit">
