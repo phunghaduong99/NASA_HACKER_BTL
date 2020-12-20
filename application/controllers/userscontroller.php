@@ -269,7 +269,7 @@ class UsersController extends VanillaController
     function edit($queryString = "")
     {
         global $method;
-        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . 'header.php';
+        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users". DS . 'header.php';
         if ($method == 'GET') {
 //            if ($this->curUser) {
 //                $this->sendJson("Current user " . $this->curUser);

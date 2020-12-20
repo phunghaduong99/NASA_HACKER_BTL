@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public/css/header.css">
       <link rel="stylesheet" href="/public/css/login.css">
-    <link rel="stylesheet" href="/public/css/edit.css">
     <link rel="stylesheet" href="/public/css/registers.css">
-    <title>Document</title>
+    <link rel="icon" type="image/png" href="/public/img/logo.png">
+    <title>NasaGram</title>
 </head>
 
 <body>

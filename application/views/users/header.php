@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="/public/css/header_user.css">
       <link rel="stylesheet" href="/public/css/view_profile.css">
     <link rel="stylesheet" href="/public/css/view_post.css">
+    <link rel="stylesheet" href="/public/css/edit.css">
     <script src="/public/js/header.js"></script>
+    <link rel="icon" type="image/png" href="/public/img/logo.png">
     <title></title>
 </head>
 
@@ -19,7 +21,7 @@
             <div class="center">
                 <p>|</p>
             </div>
-            <a class="home btn btn-2 color-green" href="">OUTstagram</a>
+            <a class="home btn btn-2 color-green" href="">NasaGram</a>
         </div>
         <div class="center-search">
             <form class="search">

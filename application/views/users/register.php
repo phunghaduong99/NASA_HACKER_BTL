@@ -5,7 +5,7 @@
             <img src="/public/img/logo.png" alt="">
         </div>
 
-        <h1 class="title">OutSta</h1>
+        <h1 class="title">NasaGram</h1>
     </div>
     <form>
         <div class="name ">
