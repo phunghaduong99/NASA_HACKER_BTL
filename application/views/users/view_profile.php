@@ -146,7 +146,7 @@
                             ', ' + '\'' + data.posts[postIndex].isReact  + '\'' +
                             ', ' + '\'' + data.posts[postIndex].id  + '\'' +
                             ')"   class="image-child-vp ">'
-                            + '<img src="'
+                            + '<img class="post-img" src="'
                             + data.posts[postIndex].image
                             + '" />'
                             + '<div class="after-vp"></div>'

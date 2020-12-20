@@ -268,6 +268,7 @@ class UsersController extends VanillaController
                 if ($queries["page"] && is_numeric($queries["page"])) {
                     $this->User->setHasManyPage("Post", $queries["page"]);
                 }
+                $this->User->hasManyOrderBy("Post", "updated_at", "DESC");
                 $this->User->showHasOne();
                 $this->User->showHasMany();
                 $users = $this->User->search();
@@ -526,13 +527,8 @@ class UsersController extends VanillaController
                         $user[image_user] = $image_user[content];
                     }
                     $jwtHelper = new Jwt();
-                    unset($user["password"]);
-                    unset($user["created_at"]);
-                    unset($user["update_at"]);
-
                     $this->sendJson([
-                        "Authorization" => $jwtHelper->encode(["id" => $user["id"]]),
-                        "user" => $user,
+                        "Authorization" => $jwtHelper->encode(["id" => $user["id"]])
                     ]);
                     return;
                 }
@@ -628,53 +624,81 @@ class UsersController extends VanillaController
             header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
         }
     }
-    function vRegister($queryString = "")
+
+    //API register User of table users
+    function vRegister($queries = [], $idQuery = "")
     {
         global $method;
         if ($method == "POST") {
-
-
-            $this->User->email = $this->body["email"];
-            $this->User->username = $this->body["username"];
-            $this->User->password = $this->body["password"];
-
-//             find ID
-            $this->User->where('email', $this->body["email"]);
-            $users = $this->User->search();
-
-            if (empty($users)) {
-                $validateError = $this->validateLoginInput($this->body["email"], $this->body["password"]);
-                if (!empty($validateError)) {
-                    http_response_code(403);
-                    $this->sendJson(["validateError" => $validateError]);
-                }
-                $this->User->email = $this->body["email"];
-                $this->User->username = $this->body["username"];
-                $this->User->setPassword($this->body["password"]);
-
-
-                $this->User->save();
-                $this->User->where('email', $this->body["email"]);
-                $users = $this->User->search();
-
-                $jwtHelper = new Jwt();
-                unset($user["password"]);
-                unset($user["created_at"]);
-                unset($user["update_at"]);
-
-                $this->sendJson([
-                    "Authorization" => $jwtHelper->encode(["id" => $user["id"]]),
-                    "user" => $user,
-                ]);
-                return;
-
-            } else {
-                $this->sendJson(["error" => "User existed!"]);
+            // Validate input
+            $validateError = $this->validateRegisterInput(
+                $this->body["email"],
+                $this->body["username"],
+                $this->body["password"]
+            );
+            if (!empty($validateError)) {
+                http_response_code(403);
+                $this->sendJson(["validateError" => $validateError]);
             }
-            //    var_dump([empty($users),$users ]); die();
+
+            // check for password
+            $newUser = new User();
+            $newUser["email"] = $this->body["email"];
+            $newUser["username"] = $this->body["username"];
+            $newUser->setPassword($this->body["password"]);
+            $result = $newUser->save();
+            if ($result<0){
+                http_response_code(403);
+                die;
+            }
+            $newUser->clear();
+            $newUser->where("email", $this->body["email"]);
+            $foundUser = $newUser->search();
+            if (empty($foundUser)) {
+                http_response_code(403);
+                die;
+            }
+            $userId = $foundUser[0]['User']['id'];
+
+            $jwtHelper = new Jwt();
+            $this->sendJson([
+                "Authorization" => $jwtHelper->encode(["id" => $userId])
+            ]);
         } else {
-            header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
+            http_response_code(404);
         }
+    }
+
+    function validateRegisterInput($email, $username, $password){
+        include_once(ROOT . DS . 'helpers/validate.php');
+
+        $validator = new Validator();
+
+        $validateResult = $validator->validateEmail($email);
+        if ($validateResult["error"]) {
+            $validateError["email"] = $validateResult["error"];
+        } else {
+            $user = new User();
+            $user->where("email", $email);
+            $foundUsers = $user->search();
+            if (!empty($foundUsers)) {
+                $validateError["email"] = [
+                    "error" => "Email has already been used."
+                ];
+            }
+        }
+
+        $validateResult = $validator->validatePassword($password);
+        if ($validateResult["error"]) {
+            $validateError["password"] = $validateResult["error"];
+        }
+
+        $validateResult = $validator->validateUsername($username);
+        if ($validateResult["error"]) {
+            $validateError["username"] = $validateResult["error"];
+        }
+
+        return $validateError;
     }
 
     function checkLogin()

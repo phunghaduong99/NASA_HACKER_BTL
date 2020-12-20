@@ -59,7 +59,7 @@
     }
     var busy = false;
     var page = 1;
-    var limit = 1;
+    var limit = 2;
     window.onscroll = function (ev) {
         if (((window.innerHeight + window.scrollY) >= document.body.offsetHeight)) {
             if (busy)
@@ -115,7 +115,7 @@
                             + '</div>'
                             + '<div class="container-img">'
                             + '<div class="img">'
-                            + '<img src="'
+                            + '<img class="post-img" src="'
                             + data.posts[postIndex].post.image
                             + '" alt="">'
                             + '</div>'

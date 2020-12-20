@@ -7,30 +7,29 @@
 
         <h1 class="title">NasaGram</h1>
     </div>
-    <form method="post" onsubmit="return submitForm(this)" action="/v1/users/register">
-        <div class="name ">
-            <label class="title">Name</label> <br>
-            <input class="form-input" type="text" name="" id=""><br>
-        </div>
+    <form method="post" action="/v1/users/register" onsubmit="submitForm(this)">
         <div class="email">
             <label class="title">E-mail Address</label> <br>
-            <input class="form-input" type="email" name="email" required="re"><br>
+            <input class="form-input" type="text" name="email"><br>
             <span id="register-email-error" class="validate-error"></span><br>
         </div>
         <div class="username">
             <label class="title">Username</label> <br>
-            <input class="form-input" type="text" name="username" id=""><br>
+            <input class="form-input" type="text" name="username"><br>
+            <span id="register-username-error" class="validate-error"></span><br>
+
         </div>
         <div class="password">
             <label class="title">Password</label> <br>
-            <input class="form-input" type="password" name="password" id=""><br>
+            <input class="form-input" type="password" name="password" id="password" oninput="checkCPassword()"><br>
             <span id="register-password-error" class="validate-error"></span><br>
         </div>
         <div class="confirm">
             <label class="title">Confirm Password</label> <br>
-            <input class="form-input" type="password" name="" required="re" id=""><br>
+            <input class="form-input" type="password" name="" id="cpassword" oninput="checkCPassword()"><br>
+            <span id="register-cpassword-error" class="validate-error"></span><br>
         </div>
-        <span id="register-error" class="validate-error"></span><br>
+        <span id="login-error" class="validate-error"></span><br>
         <div>
             <button class="btn-hover color-1  " type="submit" value="Login">Register
         </div>
@@ -40,6 +39,9 @@
 <script type="text/javascript">
     function submitForm(oFormElement)
     {
+        if (resetErrors(document.getElementById("register-cpassword-error").textContent.length > 0)) {
+            return;
+        }
         resetErrors();
         // oFormElement.preventDefault();
         var xhr = new XMLHttpRequest();
@@ -52,13 +54,12 @@
 
     function onSuccess(xhr)
     {
-        console.log(xhr)
         switch (xhr.status) {
             case 200:
                 responseData = JSON.parse(xhr.responseText);
                 if (responseData.Authorization) {
                     document.cookie = "Authorization=" + responseData.Authorization + "; path=/"
-                    window.location.href = "/users/login";
+                    window.location.href = "/users/view";
                 } else {
                     alert("Bad response (no token)");
                 }
@@ -69,26 +70,30 @@
                     document.getElementById("register-" + i + "-error").textContent=responseData.validateError[i]
                 }
                 break;
-            case 401:
-                responseData = JSON.parse(xhr.responseText);
-                document.getElementById("register-error").textContent=responseData.registerError
-                break;
         }
     }
 
     function resetErrors() {
-        var errorIds = ["register-error", "register-email-error", "register-password-error"]
+        var errorIds = ["register-error", "register-email-error", "register-password-error", "register-username-error"]
         var index;
         for (index in errorIds) {
             document.getElementById(errorIds[index]).textContent = ""
         }
     }
 
+    function checkCPassword() {
+        let passwordInput = document.getElementById("password")
+        let cpasswordInput = document.getElementById("cpassword")
+        console.log(passwordInput)
+        if (passwordInput.value != cpasswordInput.value) {
+            document.getElementById("register-cpassword-error").textContent = "Password not match"
+        } else {
+            document.getElementById("register-cpassword-error").textContent = ""
+        }
+    }
+
     function onError(resp){
         console.log("** An error occurred during the transaction");
     }
-    document.getElementById
-
-
 
 </script>
