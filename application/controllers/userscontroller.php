@@ -409,35 +409,50 @@ class UsersController extends VanillaController
         }
     }
 
-    //API register User of table users
     function vRegister($queryString = "")
     {
         global $method;
         if ($method == "POST") {
-            // find ID
-            $this->User->where('id', $this->body["id"]);
+
+
+            $this->User->email = $this->body["email"];
+            $this->User->username = $this->body["username"];
+            $this->User->password = $this->body["password"];
+
+//             find ID
+            $this->User->where('email', $this->body["email"]);
             $users = $this->User->search();
+
             if (empty($users)) {
-                // set fields need to be updated
-                $this->User->id = $this->body["id"];
-                $this->User->profile_title = $this->body["profile_title"];
+                $validateError = $this->validateLoginInput($this->body["email"], $this->body["password"]);
+                if (!empty($validateError)) {
+                    http_response_code(403);
+                    $this->sendJson(["validateError" => $validateError]);
+                }
+                $this->User->email = $this->body["email"];
+                $this->User->username = $this->body["username"];
+                $this->User->setPassword($this->body["password"]);
+
+
                 $this->User->save();
+                $this->User->where('email', $this->body["email"]);
+                $users = $this->User->search();
 
-
-                $this->User->where('id', $this->body["id"]);
-                $user = $this->User->search();
+                $jwtHelper = new Jwt();
                 unset($user["password"]);
                 unset($user["created_at"]);
                 unset($user["update_at"]);
+
                 $this->sendJson([
-                    "status" => "OK",
-                    "user" => $user
+                    "Authorization" => $jwtHelper->encode(["id" => $user["id"]]),
+                    "user" => $user,
                 ]);
+                return;
 
             } else {
                 $this->sendJson(["error" => "User existed!"]);
             }
-//            var_dump([empty($users),$users ]); die();
+            //    var_dump([empty($users),$users ]); die();
         } else {
             header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
         }
