@@ -330,21 +330,23 @@ class UsersController extends VanillaController
                 $this->Follow = new Follow();
                 $this->Follow->where('follower_id', $loginUserId);
                 $followers = $this->Follow->search();
-                $followers = $followers[0];
+
+
+
                 if(count($followers) >0 ){
                     foreach ($followers as &$follower){
-                        $this->User->where('id', $follower["id"]);
+                        $this->User->where('id', $follower["Follow"]["user_id"]);
                         $this->User->showHasOne();
                         $result = $this->User->search();
-                       if(count($result) >0){
-                           $follower["username"] = $result[0]["User"]["username"];
-                           $follower["image"] = $result[0]["Image"]["content"];
-                       }
+                        $follower["Follow"]["username"] = $result[0]["User"]["username"];
+                        $follower["Follow"]["image"] = $result[0]["Image"]["content"];
                     }
+//
                 }
                 else {
                     $followers = [];
                 }
+
                 //lay info user
                 $this->User->where('id', $loginUserId);
                 $this->User->showHasOne();
@@ -352,6 +354,7 @@ class UsersController extends VanillaController
                 $myUser = $myUser[0];
 //                var_dump($myUser["User"]["username"]); die();
                 $this->set( 'myUser', $myUser);
+//                var_dump($followers); die();
                 $this->set( 'followers', $followers);
 
 

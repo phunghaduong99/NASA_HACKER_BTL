@@ -17,15 +17,15 @@
                     <div class="text-1">Goi y ket ban</div>
                     <a href="#" class="text-all">Xem tat ca</a>
                 </div>
-                <?php if (count($followers) >0): ?>
+                <?php if (!empty($followers)): ?>
                     <?php foreach ($followers as $follower):?>
                     <div class="add">
                         <div class="img-avata">
-                            <img src="<?php echo $follower["image"] ?>" alt="">
+                            <img src="<?php echo $follower["Follow"]["image"] ?>" alt="">
                         </div>
-                        <div class="name-avata"><?php echo $follower["username"] ?></div>
+                        <div class="name-avata"><?php echo $follower["Follow"]["username"] ?></div>
                         <div class="transfer">
-                            <a href="/users/view_profile/<?php echo $follower["id"] ?>">View</a>
+                            <a href="/users/view_profile/<?php echo $follower["Follow"]["user_id"] ?>">View</a>
                         </div>
                     </div>
                     <?php endforeach?>
