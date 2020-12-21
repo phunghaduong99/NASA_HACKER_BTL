@@ -1,2 +1,0 @@
-
-<h1>edit post</h1>

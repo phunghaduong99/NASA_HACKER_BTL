@@ -32,7 +32,7 @@
         <div class="right">
             <div class=" right dropdown">
                 <div class="dropbtn">
-                    <p onclick="goToProfile()" style="margin-right: 20px;"><?php echo $usernameD ?></p>
+                    <p onclick="goToProfile()" style="margin-right: 20px;"><?php echo $username ?></p>
                     <img src="/public/img/icon.jpg" alt="">
                 </div>
                 <div class="dropdown-content">

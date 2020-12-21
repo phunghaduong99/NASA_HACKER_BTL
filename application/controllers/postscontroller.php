@@ -31,6 +31,13 @@ class PostsController extends VanillaController
             header("Location: " . BASE_PATH . "users/login", true, 302);
             exit();
         }
+        $this->User = new User();
+        $this->User->where('id', $loginUserId);
+        $this->User->showHasOne();
+        $myUser = $this->User->search();
+        $myUser = $myUser[0];
+        $this->set( 'username', $myUser["User"]["username"]);
+
         $this->doNotRenderHeader = 1;
         if ($method == 'GET') {
 
