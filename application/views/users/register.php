@@ -59,7 +59,7 @@
                 responseData = JSON.parse(xhr.responseText);
                 if (responseData.Authorization) {
                     document.cookie = "Authorization=" + responseData.Authorization + "; path=/"
-                    window.location.href = "/users/view";
+                    window.location.href = "/users/edit";
                 } else {
                     alert("Bad response (no token)");
                 }

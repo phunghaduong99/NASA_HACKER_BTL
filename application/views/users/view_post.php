@@ -104,7 +104,7 @@
                             '<div class="post">'
                             + '<div class="header-container">'
                             + '<div class="avata">'
-                            + '<img src="'
+                            + '<img style="width: 40px; height: 40px; border-radius: 50%;" src="'
                             + data.posts[postIndex].user.avatar
                             + '" alt="">'
                             + '</div>'

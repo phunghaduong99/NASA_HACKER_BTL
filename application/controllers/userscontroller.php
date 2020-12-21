@@ -106,8 +106,6 @@ class UsersController extends VanillaController
                 $this->set( 'username', $myUser["User"]["username"]);
                 $this->set( 'followers', $followers);
 
-
-
             }
         } else {
             http_response_code(404);
