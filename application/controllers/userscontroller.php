@@ -536,9 +536,10 @@ class UsersController extends VanillaController
 
             // check for password
             $newUser = new User();
-            $newUser["email"] = $this->body["email"];
-            $newUser["username"] = $this->body["username"];
+            $newUser->email = $this->body["email"];
+            $newUser->username = $this->body["username"];
             $newUser->setPassword($this->body["password"]);
+            $newUser->_describe = ["email", "username", "password"];
             $result = $newUser->save();
             if ($result<0){
                 http_response_code(403);

@@ -8,7 +8,7 @@ class SQLQuery
     protected $_table;
 
 
-    protected $_describe = array();
+    public $_describe = array();
 
     protected $_orderBy;
     protected $_order;
