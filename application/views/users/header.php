@@ -21,7 +21,7 @@
             <div class="center">
                 <p>|</p>
             </div>
-            <a class="home btn btn-2 color-green" href="">NasaGram</a>
+            <a class="home btn btn-2 color-green" href="/users/view">NasaGram</a>
         </div>
         <div class="center-search">
             <form class="search">

@@ -265,6 +265,7 @@ class UsersController extends VanillaController
             http_response_code(404);
         }
     }
+
     function vReact($queries = [], $idQuery = ""){
         global $method;
         global $loginUserId ;
@@ -324,7 +325,38 @@ class UsersController extends VanillaController
                 header("Location: " . BASE_PATH . "users/login", true, 302);
                 exit();
             }
+            else{
+                // tim nhung nguoi dang following
+                $this->Follow = new Follow();
+                $this->Follow->where('follower_id', $loginUserId);
+                $followers = $this->Follow->search();
+                $followers = $followers[0];
+                if(count($followers) >0 ){
+                    foreach ($followers as &$follower){
+                        $this->User->where('id', $follower["id"]);
+                        $this->User->showHasOne();
+                        $result = $this->User->search();
+                       if(count($result) >0){
+                           $follower["username"] = $result[0]["User"]["username"];
+                           $follower["image"] = $result[0]["Image"]["content"];
+                       }
+                    }
+                }
+                else {
+                    $followers = [];
+                }
+                //lay info user
+                $this->User->where('id', $loginUserId);
+                $this->User->showHasOne();
+                $myUser = $this->User->search();
+                $myUser = $myUser[0];
+//                var_dump($myUser["User"]["username"]); die();
+                $this->set( 'myUser', $myUser);
+                $this->set( 'followers', $followers);
 
+
+
+            }
         } else {
             http_response_code(404);
         }

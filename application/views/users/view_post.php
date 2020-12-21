@@ -5,11 +5,11 @@
         <div class="profile ">
             <div class="row-avata">
                 <div class="img-avata">
-                    <img src="/public/img/avata.jpg" alt="">
+                    <img src="<?php echo $myUser["Image"]["content"] ?>" alt="">
                 </div>
-                <div class="name-avata">Lalalisa</div>
-                <div class="transfer" id="test">
-                    <a href="#">Chuyen</a>
+                <div class="name-avata"> <?php echo $myUser["User"]["username"] ?> </div>
+                <div class="transfer" >
+                    <a href="/users/view_profile/<?php echo $myUser["User"]["id"] ?>">View</a>
                 </div>
             </div>
             <div class="suggest-add">
@@ -17,33 +17,28 @@
                     <div class="text-1">Goi y ket ban</div>
                     <a href="#" class="text-all">Xem tat ca</a>
                 </div>
-                <div class="add">
-                    <div class="img-avata">
-                        <img src="/public/img/avata.jpg" alt="">
+                <?php if (count($followers) >0): ?>
+                    <?php foreach ($followers as $follower):?>
+                    <div class="add">
+                        <div class="img-avata">
+                            <img src="<?php echo $follower["image"] ?>" alt="">
+                        </div>
+                        <div class="name-avata"><?php echo $follower["username"] ?></div>
+                        <div class="transfer">
+                            <a href="/users/view_profile/<?php echo $follower["id"] ?>">View</a>
+                        </div>
                     </div>
-                    <div class="name-avata">Lalalisa</div>
-                    <div class="transfer">
-                        <a href="#">Chuyen</a>
-                    </div>
-                </div>
-                <div class="add">
-                    <div class="img-avata">
-                        <img src="/public/img/avata.jpg" alt="">
-                    </div>
-                    <div class="name-avata">Lalalisa</div>
-                    <div class="transfer">
-                        <a href="#">Chuyen</a>
-                    </div>
-                </div>
-                <div class="add">
-                    <div class="img-avata">
-                        <img src="/public/img/avata.jpg" alt="">
-                    </div>
-                    <div class="name-avata">Lalalisa</div>
-                    <div class="transfer">
-                        <a href="#">Chuyen</a>
-                    </div>
-                </div>
+                    <?php endforeach?>
+                <?php endif ?>
+<!--                <div class="add">-->
+<!--                    <div class="img-avata">-->
+<!--                        <img src="/public/img/avata.jpg" alt="">-->
+<!--                    </div>-->
+<!--                    <div class="name-avata">Lalalisa</div>-->
+<!--                    <div class="transfer">-->
+<!--                        <a href="#">Chuyen</a>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
     </div>
@@ -100,7 +95,6 @@
                 if (data.posts) {
                     for (let postIndex in data.posts) {
                         let img;
-                        document.getElementById("test").innerHTML = data.posts[postIndex].post.isReact;
                         if(data.posts[postIndex].post.isReact == false  ){
                             img=  '<img id="heart_img'+ data.posts[postIndex].post.id + '"onclick="reactClick(\'' + data.posts[postIndex].post.id  + '\')" class="heart" style="width: 25px; height: 25px; " src="/public/img/heart" alt=""> ';
                         } else if(data.posts[postIndex].post.isReact == true){
@@ -115,9 +109,9 @@
                             + '" alt="">'
                             + '</div>'
                             + '<div class="descrip">'
-                            + '<b>'
+                            + '<a style="color: #000000; font-weight: bold;" href="/users/view_profile/'+ data.posts[postIndex].user.id +'">'
                             + data.posts[postIndex].user.username
-                            +'</b>'
+                            +'</a>'
                             + '</div>'
                             + '</div>'
                             + '<div class="container-img">'
