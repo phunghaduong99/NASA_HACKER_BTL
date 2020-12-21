@@ -10,23 +10,23 @@
     <form method="post" action="/v1/users/register" onsubmit="return submitForm(this)">
         <div class="email">
             <label class="title">E-mail Address</label> <br>
-            <input class="form-input" type="text" name="email"><br>
+            <input class="form-input" type="text" name="email" required><br>
             <span id="register-email-error" class="validate-error"></span><br>
         </div>
         <div class="username">
             <label class="title">Username</label> <br>
-            <input class="form-input" type="text" name="username"><br>
+            <input class="form-input" type="text" name="username" required><br>
             <span id="register-username-error" class="validate-error"></span><br>
 
         </div>
         <div class="password">
             <label class="title">Password</label> <br>
-            <input class="form-input" type="password" name="password" id="password" oninput="checkCPassword()"><br>
+            <input class="form-input" type="password" name="password" id="password" oninput="checkCPassword()" required><br>
             <span id="register-password-error" class="validate-error"></span><br>
         </div>
         <div class="confirm">
             <label class="title">Confirm Password</label> <br>
-            <input class="form-input" type="password" name="" id="cpassword" oninput="checkCPassword()"><br>
+            <input class="form-input" type="password" name="" id="cpassword" oninput="checkCPassword()" required><br>
             <span id="register-cpassword-error" class="validate-error"></span><br>
         </div>
         <span id="register-error" class="validate-error"></span><br>

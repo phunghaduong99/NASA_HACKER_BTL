@@ -536,3 +536,9 @@ input[type="text"] :focus {
     background-color: #4CAF50;
     transform: scale(1.01);
 }
+
+.caption p {
+    color: black;
+    /* display: inline-block; */
+    font-size: 20px;
+}

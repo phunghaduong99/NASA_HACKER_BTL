@@ -11,15 +11,15 @@
         <form id="login-form" method="post" action="/v1/users/edit" onsubmit="return submitForm(this)" class="edit-edit">
             <div class="title-edit ">
                 <label class="title-edit">Title</label> <br>
-                <input class="form-input-edit" type="text" name="profile_title" id="profile_title"><br>
+                <input class="form-input-edit" type="text" name="profile_title" value="<?php echo  $cur_user["profile_title"] ?>" id="profile_title" ><br>
             </div>
             <div class="description-edit">
                 <label class="title-edit">Description</label> <br>
-                <input class="form-input-edit" type="text" name="profile_description" id="profile_description"><br>
+                <input class="form-input-edit" type="text" name="profile_description" value="<?php echo  $cur_user["profile_description"] ?>" id="profile_description"><br>
             </div>
             <div class="url-edit">
                 <label class="title-edit">URL</label> <br>
-                <input class="form-input-edit" type="url" name="profile_url" id="profile_url"><br>
+                <input class="form-input-edit" type="url" name="profile_url" value="<?php echo  $cur_user["profile_url"] ?>" id="profile_url"><br>
             </div>
             <div class="image-edit">
                 <label class="title-edit">Profile Image</label> <br>

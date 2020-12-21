@@ -30,10 +30,35 @@ class UsersController extends VanillaController
 //        $this->sendJson($user);
     }
 
+    function login($queryString = "")
+    {
+        global $method;
+        global $loginUserId;
+        if (!empty($loginUserId)) {
+            header("Location: " . BASE_PATH . "users/view", true, 302);
+            exit();
+        }
+        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . 'header.php';
+        if(is_numeric($loginUserId)){
+            header("Location: /users/view");
+            exit();
+        }
+        if ($method == 'GET') {
+
+        } elseif ($method == 'POST') {
+
+        }
+    }
+
     function register($queryString = "")
     {
         global $method;
+        global $loginUserId;
         $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . 'header.php';
+        if (!empty($loginUserId)) {
+            header("Location: " . BASE_PATH . "users/view", true, 302);
+            exit();
+        }
         if ($method == 'GET') {
 //            $this->sendJson(" for used email");
         } elseif ($method == 'POST') {
@@ -41,13 +66,72 @@ class UsersController extends VanillaController
         }
     }
 
+    function view_post($queryString = "")
+    {
+        global $method;
+        global $loginUserId;
+        if ($method == 'GET') {
+            if (empty($loginUserId)) {
+                header("Location: " . BASE_PATH . "users/login", true, 302);
+                exit();
+            }
+            else{
+                // tim nhung nguoi dang following
+                $this->Follow = new Follow();
+                $this->Follow->where('follower_id', $loginUserId);
+                $followers = $this->Follow->search();
+
+
+
+                if(count($followers) >0 ){
+                    foreach ($followers as &$follower){
+                        $this->User->where('id', $follower["Follow"]["user_id"]);
+                        $this->User->showHasOne();
+                        $result = $this->User->search();
+                        $follower["Follow"]["username"] = $result[0]["User"]["username"];
+                        $follower["Follow"]["image"] = $result[0]["Image"]["content"];
+                    }
+//
+                }
+                else {
+                    $followers = [];
+                }
+
+                //lay info user
+                $this->User->where('id', $loginUserId);
+                $this->User->showHasOne();
+                $myUser = $this->User->search();
+                $myUser = $myUser[0];
+                $this->set( 'myUser', $myUser);
+                $this->set( 'username', $myUser["User"]["username"]);
+                $this->set( 'followers', $followers);
+
+
+
+            }
+        } else {
+            http_response_code(404);
+        }
+    }
+
     function view_profile($queryString = "", $idQuery = "")
     {
         global $method;
         global $loginUserId;
+
+        if (empty($loginUserId)) {
+            header("Location: " . BASE_PATH . "users/login", true, 302);
+            exit();
+        }
         $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users" . DS . 'header.php';
         $isEdit = false;
         $getId = null;
+
+        $this->User->where('id', $loginUserId);
+        $this->User->showHasOne();
+        $myUser = $this->User->search();
+        $myUser = $myUser[0];
+        $this->set( 'username', $myUser["User"]["username"]);
         if ($idQuery == null || is_numeric($idQuery)) {
             if ($idQuery == null) {
                 $getId = $loginUserId;
@@ -144,6 +228,35 @@ class UsersController extends VanillaController
 
         }
     }
+
+    function edit($queryString = "")
+    {
+        global $method;
+        global $loginUserId;
+        if (empty($loginUserId)) {
+            header("Location: " . BASE_PATH . "users/login", true, 302);
+            exit();
+        }
+
+        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users" . DS . 'header.php';
+        if ($method == 'GET') {
+            $this->User->where('id', $loginUserId);
+            $this->User->showHasOne();
+            $myUser = $this->User->search();
+            $myUser = $myUser[0];
+
+            $cur_user["profile_title"] = $myUser["User"]["profile_title"];
+            $cur_user["profile_description"] = $myUser["User"]["profile_description"];
+            $cur_user["profile_url"] = $myUser["User"]["profile_url"];
+
+            $this->set( 'username', $myUser["User"]["username"]);
+            $this->set( 'cur_user', $cur_user);
+
+        } elseif ($method == 'POST') {
+            $this->sendJson("Sent edit profile data");
+        }
+    }
+
 
     function vFollow($queries = [], $idQuery = "")
     {
@@ -316,83 +429,6 @@ class UsersController extends VanillaController
         }
     }
 
-    function view_post($queryString = "")
-    {
-        global $method;
-        global $loginUserId;
-        if ($method == 'GET') {
-            if (empty($loginUserId)) {
-                header("Location: " . BASE_PATH . "users/login", true, 302);
-                exit();
-            }
-            else{
-                // tim nhung nguoi dang following
-                $this->Follow = new Follow();
-                $this->Follow->where('follower_id', $loginUserId);
-                $followers = $this->Follow->search();
-
-
-
-                if(count($followers) >0 ){
-                    foreach ($followers as &$follower){
-                        $this->User->where('id', $follower["Follow"]["user_id"]);
-                        $this->User->showHasOne();
-                        $result = $this->User->search();
-                        $follower["Follow"]["username"] = $result[0]["User"]["username"];
-                        $follower["Follow"]["image"] = $result[0]["Image"]["content"];
-                    }
-//
-                }
-                else {
-                    $followers = [];
-                }
-
-                //lay info user
-                $this->User->where('id', $loginUserId);
-                $this->User->showHasOne();
-                $myUser = $this->User->search();
-                $myUser = $myUser[0];
-//                var_dump($myUser["User"]["username"]); die();
-                $this->set( 'myUser', $myUser);
-//                var_dump($followers); die();
-                $this->set( 'followers', $followers);
-
-
-
-            }
-        } else {
-            http_response_code(404);
-        }
-    }
-
-    function login($queryString = "")
-    {
-        global $method;
-
-        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . 'header.php';
-        if ($method == 'GET') {
-
-        } elseif ($method == 'POST') {
-
-        }
-    }
-
-    function edit($queryString = "")
-    {
-        global $method;
-        $this->headerPath = ROOT . DS . 'application' . DS . 'views' . DS . "users" . DS . 'header.php';
-        if ($method == 'GET') {
-//            if ($this->curUser) {
-//                $this->sendJson("Current user " . $this->curUser);
-//            } else {
-//                $this->sendJson("Not login");
-//            }
-//            $this->sendJson("Sent get profile data");
-        } elseif ($method == 'POST') {
-            $this->sendJson("Sent edit profile data");
-        }
-    }
-
     function vLogin($queryString = "")
     {
         global $method;
@@ -472,7 +508,6 @@ class UsersController extends VanillaController
             $users = $this->User->search();
             if (empty($users)) {
                 $this->sendJson(["error" => "Not found user"]);
-
             } else {
                 // set fields need to be updated
                 if ($loginUserId) {
@@ -519,6 +554,21 @@ class UsersController extends VanillaController
                         "user" => $user
                     ]);
                 }
+                $this->User->save();
+                //get User
+                $this->User->where('id', $this->body["id"]);
+                $this->User->showHasOne();
+                $user = $this->User->search();
+                $image_user = $user[0]["Image"];
+                $user[0]["User"]["image_user"] = $image_user["content"];
+                $user = $user[0]["User"];
+//                    unset($user["password"]);
+                unset($user["created_at"]);
+                unset($user["updated_at"]);
+                $this->sendJson([
+                    "status" => "OK",
+                    "user" => $user
+                ]);
 
             }
         } else {

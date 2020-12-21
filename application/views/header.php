@@ -20,7 +20,7 @@
             <div class="center">
                 <p>|</p>
             </div>
-            <a class="home btn btn-2 color-green" href="">OUTstagram</a>
+            <a class="home btn btn-2 color-green" href="">NasaGram</a>
         </div>
         <div class="right">
             <div class="block">
