@@ -11,7 +11,7 @@
 <div class="header">
     <div class="left">
         <div class="img"> <img class="img" src="/public/img/logo.png" alt=""></div>
-        <a class="home" href=""> | OUTstagram</a>
+        <a class="home" href=""> | NasaGram</a>
     </div>
     <div class="right">
         <div class=" right dropdown">
@@ -33,7 +33,7 @@
                 <img src="/public/img/logo.png" alt="">
             </div>
 
-            <h1 class="title">OutSta</h1>
+            <h1 class="title">NasaGram</h1>
         </div>
 
         <form id="login-form" method="post" action="/v1/posts/add" onsubmit="return submitForm(this)">

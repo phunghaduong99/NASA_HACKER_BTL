@@ -8,7 +8,7 @@ $routing = array(
     '/^v1\/users\/register(.*?)/i' => "users/vRegister", //GET, POST
     '/^v1\/users\/follow(.*?)/i' => "users/vFollow", //GET, POST
     '/^v1\/users\/react(.*?)/i' => "users/vReact", //GET, POST
-
+    '/^v1\/users\/(.*)\/posts/i' => 'users/vgetPosts/\1',
     '/^v1\/users\/test(.*?)/i' => "users/vTest", //GET, POST
 
     '/^v1\/posts\/add(.*?)/i' => "posts/vAdd",
@@ -17,7 +17,7 @@ $routing = array(
     '/^users\/login(.*?)/i' => "users/login", //GET
     '/^users\/view_profile(.*?)/i' => "users/view_profile", //GET
     '/^users\/view(.*?)/i' => "users/view_post", //GET
-    '/^v1\/users\/(.*)\/posts/i' => 'users/vgetPosts/\1',
+
 
 
     '/^users\/register(.*?)/i' => "users/register", //GET, POST

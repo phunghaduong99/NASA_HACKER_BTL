@@ -23,6 +23,20 @@ class PostsController extends VanillaController
         }
     }
 
+    function add($queryString = "")
+    {
+        global $method;
+        global $loginUserId;
+        if (empty($loginUserId)) {
+            header("Location: " . BASE_PATH . "users/login", true, 302);
+            exit();
+        }
+        $this->doNotRenderHeader = 1;
+        if ($method == 'GET') {
+
+        }
+    }
+
     function edit($queryString = "")
     {
         global $method;
@@ -65,14 +79,6 @@ class PostsController extends VanillaController
         }
     }
 
-    function add($queryString = "")
-    {
-        global $method;
-        $this->doNotRenderHeader = 1;
-        if ($method == 'GET') {
-
-        }
-    }
 
     function afterAction()
     {

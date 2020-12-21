@@ -27,7 +27,7 @@
                     <p id="numberOfFollowers"><?php echo count($followers) ?> followers</p>
                 </div>
                 <div class="following-vp text_vp">
-                    <a href="#"><?php echo count($followings) ?> following</a>
+                    <p href="#"><?php echo count($followings) ?> following</p>
                 </div>
             </div>
             <div class="row-vp des-nick-vp"><b><?php echo $user["profile_title"] ?></b></div>

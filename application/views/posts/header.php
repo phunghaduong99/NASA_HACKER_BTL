@@ -8,6 +8,7 @@
       <link rel="stylesheet" href="/public/css/view_profile.css">
     <link rel="stylesheet" href="/public/css/view_post.css">
     <link rel="stylesheet" href="/public/css/edit.css">
+    <link rel="stylesheet" href="/public/css/add_post.css">
     <script src="/public/js/header.js"></script>
     <link rel="icon" type="image/png" href="/public/img/logo.png">
     <title></title>
@@ -31,7 +32,7 @@
         <div class="right">
             <div class=" right dropdown">
                 <div class="dropbtn">
-                    <p onclick="goToProfile()" style="margin-right: 20px"><?php echo $username ?></p>
+                    <p onclick="goToProfile()" style="margin-right: 20px;"><?php echo $usernameD ?></p>
                     <img src="/public/img/icon.jpg" alt="">
                 </div>
                 <div class="dropdown-content">
