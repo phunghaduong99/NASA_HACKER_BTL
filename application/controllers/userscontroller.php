@@ -18,8 +18,11 @@ class UsersController extends VanillaController
     function view($idQuery = "")
     {
         global $method;
-        var_dump($this->User);
-        die();
+        global $loginUserId;
+        if (empty($loginUserId)) {
+            header("Location: " . BASE_PATH . "users/login", true, 302);
+            exit();
+        }
 //        $this->User->where('id',1);
 //        $this->User->showHasMany();
 //        $user = $this->User->search();
@@ -679,11 +682,21 @@ class UsersController extends VanillaController
         $user->like("username", $queries["string"]);
 
         if ($queries["limit"] && is_numeric($queries["limit"])) {
-            $this->User->setHasManyLimit("Post", $queries["limit"]);
+            $user->setHasManyLimit("Post", $queries["limit"]);
+        } else {
+            $user->setHasManyLimit("Post", 5);
         }
 
         if ($queries["page"] && is_numeric($queries["page"])) {
-            $this->User->setHasManyPage("Post", $queries["page"]);
+            $user->setHasManyPage("Post", $queries["page"]);
+        }
+        $result = $user->search();
+        $foundUsers = [];
+
+        foreach ($result as $item) {
+            $item["Post"]["password"] = null;
+            $item["Post"]["password"] = null;
+            $item["Post"]["password"] = null;
         }
     }
 

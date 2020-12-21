@@ -37,10 +37,11 @@
 </div>
 
 <script type="text/javascript">
-    function submitForm(oFormElement)
+    let submitForm = (oFormElement) =>
     {
         resetErrors()
         if (document.getElementById("register-cpassword-error").textContent.length > 0) {
+            oFormElement.action= "/users/register"
             return;
         }
         // oFormElement.preventDefault();

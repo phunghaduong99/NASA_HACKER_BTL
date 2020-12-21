@@ -5,7 +5,11 @@ class PostsController extends VanillaController
 
     function beforeAction()
     {
-
+        global $loginUserId;
+        if (empty($loginUserId)) {
+            header("Location: " . BASE_PATH . "users/login", true, 302);
+            exit();
+        }
     }
 
     function index($queryString = "")

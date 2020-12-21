@@ -21,7 +21,7 @@ class Validator {
                 "error" => "Username is required."
             ];
         }
-        if(preg_match('/^\w{6,}$/', $username)) { // \w equals "[0-9A-Za-z_]"
+        if(preg_match('/^\w{100,}$/', $username)) { // \w equals "[0-9A-Za-z_]"
             // valid username, alphanumeric & longer than or equals 6 chars
             return [
                 "error" => "Username is invalid. Userbane only contain alphanumeric & longer than or equals 6 chars"
