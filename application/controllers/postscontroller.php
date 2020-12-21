@@ -170,6 +170,7 @@ class PostsController extends VanillaController
                 $user->hasManyOrderBy("Post", "updated_at", "DESC");
                 $user->showHasOne();
                 $result = $user->search();
+
                 $userData = $result[0]['User'];
                 $userData["avatar"] = $result[0]["Image"]["content"];
                 unset($userData['password']);
@@ -210,7 +211,6 @@ class PostsController extends VanillaController
                         }
 //                            var_dump($result); die();
                         $post["Post"]["isReact"] = $isReact;
-
                         $postList[] = [
                             "post" => $post['Post'],
                             "user" => $userData
