@@ -7,7 +7,7 @@
 
         <h1 class="title">NasaGram</h1>
     </div>
-    <form action="/v1/users/register" onsubmit="return submitForm(this)">
+    <form method="post" action="/v1/users/register" onsubmit="return submitForm(this)">
         <div class="email">
             <label class="title">E-mail Address</label> <br>
             <input class="form-input" type="text" name="email"><br>
@@ -29,7 +29,7 @@
             <input class="form-input" type="password" name="" id="cpassword" oninput="checkCPassword()"><br>
             <span id="register-cpassword-error" class="validate-error"></span><br>
         </div>
-        <span id="login-error" class="validate-error"></span><br>
+        <span id="register-error" class="validate-error"></span><br>
         <div>
             <button class="btn-hover color-1  " type="submit" value="Login">Register
         </div>
@@ -43,7 +43,6 @@
         if (document.getElementById("register-cpassword-error").textContent.length > 0) {
             return;
         }
-        resetErrors();
         // oFormElement.preventDefault();
         var xhr = new XMLHttpRequest();
         xhr.onload = function(){ onSuccess(xhr); } // success case
@@ -78,6 +77,7 @@
         var errorIds = ["register-error", "register-email-error", "register-password-error", "register-username-error"]
         var index;
         for (index in errorIds) {
+            // alert(document.getElementById(errorIds[index]))
             document.getElementById(errorIds[index]).textContent = ""
         }
     }

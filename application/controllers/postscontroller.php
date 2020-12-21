@@ -37,11 +37,16 @@ class PostsController extends VanillaController
     function vAdd($queryString = "")
     {
         global $method;
+        global $loginUserId;
+        if (empty($loginUserId)) {
+            http_response_code(403);
+            die;
+        }
 
         if ($method == "POST") {
             if (isset($this->body["post_description"]) && (isset($this->body["image"]) || $_FILES["image"])) {
                 $this->Post->post_description = $this->body["post_description"];
-                $this->Post->user_id = "1";
+                $this->Post->user_id = $loginUserId;
                 $this->updateImage();
                 $this->Post->save();
                 http_response_code(200);

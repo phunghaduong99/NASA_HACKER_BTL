@@ -462,16 +462,21 @@ class UsersController extends VanillaController
     function vEdit($queryString = "")
     {
         global $method;
+        global $loginUserId;
+        if (empty($loginUserId)) {
+            http_response_code(403);
+            die;
+        }
         if ($method == "POST") {
-            $this->User->where('id', $this->body["id"]);
+            $this->User->where('id', $loginUserId);
             $users = $this->User->search();
             if (empty($users)) {
                 $this->sendJson(["error" => "Not found user"]);
 
             } else {
                 // set fields need to be updated
-                if (isset($this->body["id"])) {
-                    $this->User->id = $this->body["id"];
+                if ($loginUserId) {
+                    $this->User->id = $loginUserId;
                     // update fields of User
                     if (isset($this->body["profile_title"]))
                         $this->User->profile_title = $this->body["profile_title"];
@@ -500,7 +505,7 @@ class UsersController extends VanillaController
                     }
                     $this->User->save();
                     //get User
-                    $this->User->where('id', $this->body["id"]);
+                    $this->User->where('id', $loginUserId);
                     $this->User->showHasOne();
                     $user = $this->User->search();
                     $image_user = $user[0]["Image"];
@@ -579,9 +584,7 @@ class UsersController extends VanillaController
             $user->where("email", $email);
             $foundUsers = $user->search();
             if (!empty($foundUsers)) {
-                $validateError["email"] = [
-                    "error" => "Email has already been used."
-                ];
+                $validateError["email"] = ["Email has already been used."];
             }
         }
 
@@ -607,6 +610,31 @@ class UsersController extends VanillaController
             }
         }
         return false;
+    }
+
+    function searchUserByUsername($queries=[], $params=[]) {
+        global $method;
+        global $loginUserId;
+        if (empty($loginUserId)) {
+            http_response_code(401);
+            return;
+        }
+
+        if (empty($queries["string"])) {
+            $this->sendJson([]);
+            return;
+        }
+
+        $user = new User();
+        $user->like("username", $queries["string"]);
+
+        if ($queries["limit"] && is_numeric($queries["limit"])) {
+            $this->User->setHasManyLimit("Post", $queries["limit"]);
+        }
+
+        if ($queries["page"] && is_numeric($queries["page"])) {
+            $this->User->setHasManyPage("Post", $queries["page"]);
+        }
     }
 
     function afterAction()

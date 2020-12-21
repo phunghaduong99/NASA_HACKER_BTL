@@ -54,7 +54,6 @@
 
     function onSuccess(xhr)
     {
-        console.log(xhr)
 
         switch (xhr.status) {
             case 200:
