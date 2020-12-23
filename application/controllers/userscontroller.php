@@ -271,12 +271,8 @@ class UsersController extends VanillaController
             $this->Follow->where('follower_id', $idQuery);
             $result = $this->Follow->search();
 
-            $this->Follow->where('user_id', $loginUserId);
-            $this->Follow->where('follower_id', $idQuery);
-            $this->Follow->delete();
             if (count($result) == 1) {
-                $this->Follow->where('user_id', $loginUserId);
-                $this->Follow->where('follower_id', $idQuery);
+                $this->Follow->id = $result[0]["Follow"]["id"];
                 $this->Follow->delete();
 
                 $isFollow = "Follow";

@@ -130,7 +130,7 @@ p.nick-name-vp {
     margin-left: auto;
     margin-right: auto;
     padding-left: 7px;
-    background-color: cadetblue;
+    background-color: blur(10);
 }
 
 .image-row-vp {

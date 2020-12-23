@@ -25,11 +25,11 @@
         <div class="right">
             <div class="block">
                 <div class="login">
-                    <a href="#" class="btn btn-2 color-green">Login</a>
+                    <a href="/Users/login" class="btn btn-2 color-green">Login</a>
 
                 </div>
                 <div class="register">
-                    <a href="#" class="btn btn-2 color-green">Register</a></div>
+                    <a href="/Users/register" class="btn btn-2 color-green">Register</a></div>
 
             </div>
 

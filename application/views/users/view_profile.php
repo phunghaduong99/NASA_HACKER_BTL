@@ -81,7 +81,7 @@
                         <p class="number_heart" id="number_heart">6</p>
 
                         <div id="isReact" style="height: 25px; ">
-                            <img class="heart" style="width: 25px; height: 25px; " src="/public/img/hearted" alt="">
+                            <img class="heart" style="width: 25px; height: 25px; " src="/public/img/hearted.svg" alt="">
                         </div>
 
                     </div>
@@ -154,7 +154,7 @@
                             + '<p style="margin-right: 4px;" id="number_React'+  data.posts[postIndex].id+'"> '
                             + data.posts[postIndex].number_react
                             +'</p>'
-                            + '<img src="/public/img/hearted" alt="">'
+                            + '<img src="/public/img/hearted.svg" alt="">'
                             + '</div>'
                             + ' </div>'
                     }
@@ -197,10 +197,10 @@
         document.getElementById("number_heart").innerHTML =  number_react ;
         if(isReact == "false")
             document.getElementById("isReact").innerHTML =
-                '<img id="heart_img" onclick="reactClick(\'' + id  + '\')" class="heart" style="width: 25px; height: 25px; " src="/public/img/heart" alt=""> ';
+                '<img id="heart_img" onclick="reactClick(\'' + id  + '\')" class="heart" style="width: 25px; height: 25px; " src="/public/img/heart.svg" alt=""> ';
         else if(isReact == "true"){
             document.getElementById("isReact").innerHTML =
-                '<img id="heart_img" onclick="reactClick(\'' + id  + '\')" class="heart" style="width: 25px; height: 25px; " src="/public/img/hearted" alt=""> ';
+                '<img id="heart_img" onclick="reactClick(\'' + id  + '\')" class="heart" style="width: 25px; height: 25px; " src="/public/img/hearted.svg" alt=""> ';
         }
         modal.style.display = "block";
     }
@@ -217,10 +217,10 @@
                 document.getElementById("number_heart").innerHTML = data.count;
                 document.getElementById(str).innerHTML = data.count;
                 if(data.isReact == false){
-                    document.getElementById("heart_img").src ="/public/img/heart";
+                    document.getElementById("heart_img").src ="/public/img/heart.svg";
                 }
                 else if(data.isReact == true){
-                    document.getElementById("heart_img").src ="/public/img/hearted";
+                    document.getElementById("heart_img").src ="/public/img/hearted.svg";
                 }
             }
 

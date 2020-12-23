@@ -96,9 +96,9 @@
                     for (let postIndex in data.posts) {
                         let img;
                         if(data.posts[postIndex].post.isReact == false  ){
-                            img=  '<img id="heart_img'+ data.posts[postIndex].post.id + '"onclick="reactClick(\'' + data.posts[postIndex].post.id  + '\')" class="heart" style="width: 25px; height: 25px; " src="/public/img/heart" alt=""> ';
+                            img=  '<img id="heart_img'+ data.posts[postIndex].post.id + '"onclick="reactClick(\'' + data.posts[postIndex].post.id  + '\')" class="heart" style="width: 25px; height: 25px; " src="/public/img/heart.svg" alt=""> ';
                         } else if(data.posts[postIndex].post.isReact == true){
-                            img = '<img id="heart_img'+ data.posts[postIndex].post.id + '" onclick="reactClick(\'' + data.posts[postIndex].post.id   + '\')" class="heart" style="width: 25px; height: 25px; " src="/public/img/hearted" alt=""> ';
+                            img = '<img id="heart_img'+ data.posts[postIndex].post.id + '" onclick="reactClick(\'' + data.posts[postIndex].post.id   + '\')" class="heart" style="width: 25px; height: 25px; " src="/public/img/hearted.svg" alt=""> ';
                         }
                         postsContainer.innerHTML +=
                             '<div class="post">'
@@ -176,10 +176,10 @@
                 let data = JSON.parse(xhr.responseText);
                 document.getElementById(number_React).innerHTML = data.count;
                 if(data.isReact == false){
-                    document.getElementById(heart_img).src ="/public/img/heart";
+                    document.getElementById(heart_img).src ="/public/img/heart.svg";
                 }
                 else if(data.isReact == true){
-                    document.getElementById(heart_img).src ="/public/img/hearted";
+                    document.getElementById(heart_img).src ="/public/img/hearted.svg";
                 }
             }
 
