@@ -36,7 +36,7 @@
             </div>
             <div class="row-vp description-vp">
 
-                <p><?php echo $user["profile_description"] ?></p>
+                <p style="line-height: 25px;"><?php echo $user["profile_description"] ?></p>
 
             </div>
         </div>
@@ -146,7 +146,7 @@
                             ', ' + '\'' + data.posts[postIndex].isReact  + '\'' +
                             ', ' + '\'' + data.posts[postIndex].id  + '\'' +
                             ')"   class="image-child-vp ">'
-                            + '<img class="post-img" src="'
+                            + '<img class="post--img" src="'
                             + data.posts[postIndex].image
                             + '" />'
                             + '<div class="after-vp"></div>'

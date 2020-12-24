@@ -2,19 +2,19 @@
 
 /** Configuration Variables **/
 //
-//define("DB_HOST", "localhost");
-//define("DB_USER", "root");
-//define("DB_PASSWORD", "Phunghaduong@1612");
-//define("DB_NAME", "Nasa_Hacker");
-//
-//define('BASE_PATH','http://localhost:80/');
-//---------------------------------------------------------------------------------
-define("DB_HOST", "database");
-define("DB_USER", "docker");
-define("DB_PASSWORD", "docker");
-define("DB_NAME", "docker");
+define("DB_HOST", "localhost");
+define("DB_USER", "root");
+define("DB_PASSWORD", "Thuyha@111");
+define("DB_NAME", "Nasa_Hacker");
 
-define('BASE_PATH','http://localhost:81/');
+define('BASE_PATH','http://localhost/');
+//---------------------------------------------------------------------------------
+//define("DB_HOST", "database");
+//define("DB_USER", "docker");
+//define("DB_PASSWORD", "docker");
+//define("DB_NAME", "docker");
+//
+//define('BASE_PATH','http://localhost:81/');
 //----------------------------------------------------------------------------------
 
 define ('DEVELOPMENT_ENVIRONMENT', false);
