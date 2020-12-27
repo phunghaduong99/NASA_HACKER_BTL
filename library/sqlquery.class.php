@@ -378,7 +378,7 @@ class SQLQuery
     {
 
         if ($this->id) {
-            $query = 'DELETE FROM ' . $this->_table . ' WHERE `id`=\'' . mysqli_real_escape_string($this->id) . '\'';
+            $query = 'DELETE FROM ' . $this->_table . ' WHERE `id`=\'' . $this->id . '\'';
             $this->_result = mysqli_query($this->_dbHandle, $query);
             $this->clear();
             if ($this->_result == 0) {
