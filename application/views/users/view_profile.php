@@ -107,7 +107,7 @@
             if(busy)
                 return;
             busy = true;
-            // getPosts(()=>{busy=false});
+            // getPosts(()=>{busy=fal   se});
             setTimeout( ()=>  getPosts(()=>{busy=false}), 1000);
 
 

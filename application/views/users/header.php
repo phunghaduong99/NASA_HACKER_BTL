@@ -11,6 +11,26 @@
     <script src="/public/js/header.js"></script>
     <link rel="icon" type="image/png" href="/public/img/logo.png">
     <title></title>
+
+    <script>
+        function showResult(str) {
+            if (str.length==0) {
+                document.getElementById("livesearch").innerHTML="";
+                document.getElementById("livesearch").style.border="0px";
+                return;
+            }
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function() {
+                if (this.readyState==4 && this.status==200) {
+                    document.getElementById("livesearch").innerHTML=JSON.parse(this.responseText).response;
+                    document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+                    document.getElementById("livesearch").style.borderRadius="5px";
+                }
+            }
+            xmlhttp.open("GET","/v1/users/search?q="+str,true);
+            xmlhttp.send();
+        }
+    </script>
 </head>
 
 <body>
@@ -24,9 +44,10 @@
             <a class="home btn btn-2 color-green" href="/users/view">NasaGram</a>
         </div>
         <div class="center-search">
-            <form class="search">
-                <input type="text" name="search" placeholder="Search...">
-            </form>
+            <div class="search">
+                <input type="text" size="30" onautocomplete="false" placeholder="Search..."  onkeyup="showResult(this.value)">
+                <div id="livesearch"></div>
+            </div>
         </div>
         <div class="right">
             <div class=" right dropdown">
@@ -42,4 +63,3 @@
     </div>
 
 </div>
-

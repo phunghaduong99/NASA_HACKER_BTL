@@ -258,6 +258,45 @@ class UsersController extends VanillaController
         }
     }
 
+    function vSearch($queries = [], $idQuery = "")
+    {
+        global $method;
+        global $loginUserId;
+        $respone = "";
+        $hint = "";
+        if ($method == 'GET' &&  $this->checkLogin() == true) {
+
+            if (isset($queries["q"]) ) {
+                $q = $queries["q"];
+                $this->User->like('username', $q);
+                $result = $this->User->search();
+                if(count($result) > 0){
+                    for($i = 0; $i <count($result) ; $i ++){
+                        if ($hint=="") {
+                            $hint="<a class='item' href='" ."/users/view_profile/".
+                                $result[$i]["User"]["id"] .
+                                "' target='_blank'>" .
+                                $result[$i]["User"]["username"] . "</a>";
+                        } else {
+                            $hint= $hint . "<a class='item' href='" ."/users/view_profile/".
+                                $result[$i]["User"]["id"] .
+                                "' target='_blank'>" .
+                                $result[$i]["User"]["username"] . "</a>";
+                        }
+                    }
+                }
+            }
+            if ($hint=="") {
+                $response="no suggestion";
+            } else {
+                $response=$hint;
+            }
+            $this->sendJson(["response" => $response]);
+
+        } else {
+            http_response_code(404);
+        }
+    }
 
     function vFollow($queries = [], $idQuery = "")
     {
@@ -476,24 +515,7 @@ class UsersController extends VanillaController
         }
     }
 
-    function validateLoginInput($email, $password)
-    {
-        include_once(ROOT . DS . 'helpers/validate.php');
 
-        $validator = new Validator();
-
-        $validateResult = $validator->validateEmail($email);
-        if ($validateResult["error"]) {
-            $validateError["email"] = $validateResult["error"];
-        }
-
-        $validateResult = $validator->validatePassword($password);
-        if ($validateResult["error"]) {
-            $validateError["password"] = $validateResult["error"];
-        }
-
-        return $validateError;
-    }
 
     //API update Users of table users
     function vEdit($queryString = "")
@@ -575,6 +597,25 @@ class UsersController extends VanillaController
         } else {
             header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
         }
+    }
+
+    function validateLoginInput($email, $password)
+    {
+        include_once(ROOT . DS . 'helpers/validate.php');
+
+        $validator = new Validator();
+
+        $validateResult = $validator->validateEmail($email);
+        if ($validateResult["error"]) {
+            $validateError["email"] = $validateResult["error"];
+        }
+
+        $validateResult = $validator->validatePassword($password);
+        if ($validateResult["error"]) {
+            $validateError["password"] = $validateResult["error"];
+        }
+
+        return $validateError;
     }
 
     //API register User of table users
